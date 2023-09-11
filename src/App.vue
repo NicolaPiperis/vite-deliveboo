@@ -3,6 +3,7 @@ import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
+  <h1>Deliveboo</h1>
   <div>
     <h2>Hello World</h2>
     <a href="https://vitejs.dev" target="_blank">
