@@ -1,4 +1,8 @@
 <script>
+import axios from 'axios';
+
+
+const apiURL = 'http://localhost:8000/api/v1';
 
 export default {
     name: 'TypeCard',
@@ -8,13 +12,12 @@ export default {
         }
     },
     methods: {
-        searchRestaurant() {
-            console.log('ciao');
-        }
-    },
-
+        emit() {
+            let id = this.type.id;
+            this.$emit('id-emitted', id);
+        },
+    }
 }
-
 </script>
 
 <template>
@@ -25,7 +28,7 @@ export default {
         <div>
             img
         </div>
-        <input type="checkbox" @click="searchRestaurant()">
+        <input type="checkbox" @click="emit">
     </div>
 </template>
 
