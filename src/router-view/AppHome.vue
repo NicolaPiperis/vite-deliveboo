@@ -1,18 +1,17 @@
 <script>
 import axios from 'axios';
-// import ProjectCard from '../components/ProjectCard.vue';
+import TypeCard from '../components/TypeCard.vue';
 
 const apiURL = 'http://localhost:8000/api/v1';
 
 export default {
     name: 'Home',
-    // components: {
-    //     ProjectCard
-    // },
+    components: {
+        TypeCard
+    },
     data: function () {
         return {
             types: [],
-            // pages: [],
         }
     },
     // methods: {
@@ -29,13 +28,13 @@ export default {
     //     //         });
     //     // }
     // },
+
     mounted() {
         axios.get(apiURL + '/home')
             .then(response => {
 
-                // this.types = response.data.types;
-                // this.pages = response.data.projects.links;
-                console.log(response);
+                this.types = response.data.types;
+                console.log(response.data.types);
             })
             .catch(error => {
                 console.log(error);
@@ -45,17 +44,18 @@ export default {
 </script>
 
 <template>
-    <!-- <div class="container">
-        <ProjectCard v-for="project in projects" :key="project.id" :project="project" />
-    </div> -->
+    <h3>Questa e' la Homepage</h3>
+
+    <div class="container">
+        <TypeCard v-for="t in types" :key="t.id" :type="t" />
+    </div>
+
 
     <!-- <div class="pages">
-        <div v-for="(page, index) in pages" v-html="page.label" @click="changePage(page.url)">
+    //     <div v-for="(page, index) in pages" v-html="page.label" @click="changePage(page.url)">
 
-        </div>
-    </div> -->
-
-    <h3>Questa e' la Homepage</h3>
+    //     </div>
+    // </div> -->
 </template>
 
 <style lang="scss" scoped>
