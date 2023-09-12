@@ -1,19 +1,13 @@
 <script>
-import axios from 'axios';
-
-
-const apiURL = 'http://localhost:8000/api/v1';
 
 export default {
     name: 'TypeCard',
     props: {
-        type: {
-            type: Object
-        }
+        detailsType: Object
     },
     methods: {
         emit() {
-            let id = this.type.id;
+            let id = this.detailsType.id;
             this.$emit('id-emitted', id);
         },
     }
@@ -23,12 +17,14 @@ export default {
 <template>
     <div class="card">
         <div>
-            {{ type.type_name }}
+            {{ detailsType.type_name }}
         </div>
         <div>
-            img
+            IMMAGINE TIPOLOGIA
         </div>
-        <input type="checkbox" @click="emit">
+        <input type="checkbox" @click="emit" >
+        
+        <!-- v-model="detailsType.id" -->
     </div>
 </template>
 

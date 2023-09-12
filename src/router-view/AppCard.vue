@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios';
 import TypeCard from '../components/TypeCard.vue';
+import UserCard from '../components/UserCard.vue';
 
 const apiURL = 'http://localhost:8000/api/v1';
 
@@ -8,23 +9,38 @@ export default {
     name: 'Card',
     components: {
         TypeCard,
+        UserCard
     },
     data: function () {
         return {
             types: [],
-            typesID: [],
+            pivotTypeUserData: [],
+            pivotUsersIDs: [],
+            matchingUserIds: [],
+            checkBoxID: []
+
         }
     },
     methods: {
-        searchRestaurant(id) {
+        searchRestaurant(idType) {
 
-            this.typesID.push(id);
+            this.pivotTypeUserData.forEach(pivotElement => {
 
-            console.log(this.typesID.join(','));
+                if (pivotElement.type_id === idType) {
 
-            axios.get(apiURL + '/restaurants/' + this.typesID.join('-'))
+                    this.pivotUsersIDs.push(pivotElement.user_id);
+
+                    console.log('ID degli user nella pivot che combaciano con la tipologia:', this.pivotUsersIDs);
+                    console.log('TypeUser Data:', this.pivotTypeUserData);
+                }
+            });
+
+            axios.post(apiURL + '/restaurants/', { data: this.pivotUsersIDs })
                 .then(response => {
-                    console.log(response.data);
+
+                    this.matchingUserIds = response.data.users;
+
+                    console.log('Gli user che combaciano con i ristoranti:', this.matchingUserIds);
                 })
                 .catch(error => {
                     console.log(error);
@@ -35,9 +51,9 @@ export default {
     mounted() {
         axios.get(apiURL + '/home')
             .then(response => {
-
+                // monta i dati le Tipologie e la tabella pivot Type_User
                 this.types = response.data.types;
-                console.log(response.data.types);
+                this.pivotTypeUserData = response.data.pivotData;
             })
             .catch(error => {
                 console.log(error);
@@ -48,13 +64,16 @@ export default {
 </script>
 
 <template>
-    <h3>Questa e' la card type</h3>
+    <h3>Questa e' la HOMEPAGE</h3>
 
-    <div class="card">
-        <TypeCard v-for="t in types" :key="t.id" :type="t" @id-emitted="searchRestaurant" />
+    <div>
+        <TypeCard v-for="(t, idxType) in this.types" :key="idxType" :detailsType="t" @id-emitted="searchRestaurant" />
+
     </div>
     <div>
-
+        <!-- <div v-if="this.matchingUserIds.length"> -->
+        <UserCard v-for="(match, idxMatch) in this.matchingUserIds" :key="idxMatch" :detailsUser="match" />
+        <!-- </div> -->
     </div>
 </template>
 

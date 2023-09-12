@@ -14,7 +14,6 @@ const router = createRouter({
             // name: 'project-show',
             // component: () => import('./route-vue/ProjectShow.vue')
         }
-
     ]
 });
 
