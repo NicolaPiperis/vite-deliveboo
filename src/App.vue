@@ -1,13 +1,22 @@
-<script setup>
+<script>
+import AppHeader from './components/AppHeader.vue';
 
+export default {
+  name: 'App',
+  components: {
+    AppHeader
+
+  }
+}
 </script>
 
 <template>
-<h2>
-  Ho piallato tutto!
-</h2>
+  <AppHeader />
+  <router-view></router-view>
 </template>
 
-<style scoped>
-
+<style >
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
 </style>
