@@ -1,0 +1,16 @@
+@use './partials/variables' as *;
+
+//bootstrap
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+
+//font -> npm install @fontsource-variable/montserrat
+//trovato su https://fontsource.org/fonts/montserrat/install
+
+// @import '../../node_modules/@fontsource-variable/montserrat/index.css';
+// @import '../../node_modules/@fontsource-variable/montserrat';
+
+body {
+    font-family: $main-font;
+    color: $text-color;
+    background-color: $bg-color;
+}

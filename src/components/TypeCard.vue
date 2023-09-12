@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios';
+import { store } from '../store';
 
 
 const apiURL = 'http://localhost:8000/api/v1';
@@ -11,25 +12,19 @@ export default {
             type: Object
         }
     },
+    data() {
+        return {
+      store,
+    }
+  },
     methods: {
-        emit() {
-            let id = this.type.id;
-            this.$emit('id-emitted', id);
-        },
+
     }
 }
 </script>
 
 <template>
-    <div class="card">
-        <div>
-            {{ type.type_name }}
-        </div>
-        <div>
-            img
-        </div>
-        <input type="checkbox" @click="emit">
-    </div>
+    <input type="checkbox" :name="type.id" /> {{ type.type_name }}
 </template>
 
 <style lang="scss" scoped>
