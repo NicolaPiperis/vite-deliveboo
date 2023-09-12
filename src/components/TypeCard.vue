@@ -1,15 +1,18 @@
 <script>
-
 export default {
     name: 'TypeCard',
     props: {
         detailsType: Object
     },
     methods: {
-        emit() {
-            let id = this.detailsType.id;
-            this.$emit('id-emitted', id);
-        },
+        emit(event) {
+            let payload = {
+                id: this.detailsType.id,
+                isSelected: event.target.checked // Verifica lo stato della checkbox
+            };
+            // Emettiamo l'evento con il nuovo payload
+            this.$emit('type-selection', payload);
+        }
     }
 }
 </script>
@@ -22,9 +25,8 @@ export default {
         <div>
             IMMAGINE TIPOLOGIA
         </div>
-        <input type="checkbox" @click="emit" >
-        
-        <!-- v-model="detailsType.id" -->
+        <input type="checkbox" @change="emit">
+        <!-- Usiamo @change invece di @click per garantire che venga rilevato ogni cambiamento dello stato -->
     </div>
 </template>
 
@@ -37,7 +39,6 @@ export default {
 
     div {
         margin: 3px;
-
     }
 }
 </style>

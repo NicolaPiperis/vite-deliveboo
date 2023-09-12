@@ -15,43 +15,47 @@ export default {
         return {
             types: [],
             pivotTypeUserData: [],
-            pivotUsersIDs: [],
             matchingUserIds: [],
-            checkBoxID: []
-
+            selectedTypes: [],
+            userIdsByType: {}
         }
     },
     methods: {
-        searchRestaurant(idType) {
+        handleTypeSelection(payload) {
+            const { id, isSelected } = payload;
 
-            this.pivotTypeUserData.forEach(pivotElement => {
+            let currentUserIds = this.pivotTypeUserData
+                .filter(pivot => pivot.type_id === id)
+                .map(pivot => pivot.user_id);
 
-                if (pivotElement.type_id === idType) {
+            if (isSelected) {
+                this.selectedTypes.push(id);
+                this.userIdsByType[id] = new Set(currentUserIds);
+            } else {
+                this.selectedTypes = this.selectedTypes.filter(type => type !== id);
+                delete this.userIdsByType[id];
+            }
 
-                    this.pivotUsersIDs.push(pivotElement.user_id);
+            this.findMatchingUsers();
+        },
+        findMatchingUsers() {
+            let intersection = [...(this.userIdsByType[this.selectedTypes[0]] || [])];
+            for (let i = 1; i < this.selectedTypes.length; i++) {
+                intersection = intersection.filter(id => this.userIdsByType[this.selectedTypes[i]].has(id));
+            }
 
-                    console.log('ID degli user nella pivot che combaciano con la tipologia:', this.pivotUsersIDs);
-                    console.log('TypeUser Data:', this.pivotTypeUserData);
-                }
-            });
-
-            axios.post(apiURL + '/restaurants/', { data: this.pivotUsersIDs })
+            axios.post(apiURL + '/restaurants/', { data: intersection })
                 .then(response => {
-
                     this.matchingUserIds = response.data.users;
-
-                    console.log('Gli user che combaciano con i ristoranti:', this.matchingUserIds);
                 })
                 .catch(error => {
                     console.log(error);
                 });
-        },
+        }
     },
-
     mounted() {
         axios.get(apiURL + '/home')
             .then(response => {
-                // monta i dati le Tipologie e la tabella pivot Type_User
                 this.types = response.data.types;
                 this.pivotTypeUserData = response.data.pivotData;
             })
@@ -60,20 +64,16 @@ export default {
             });
     },
 }
-
 </script>
 
 <template>
     <h3>Questa e' la HOMEPAGE</h3>
 
     <div>
-        <TypeCard v-for="(t, idxType) in this.types" :key="idxType" :detailsType="t" @id-emitted="searchRestaurant" />
-
+        <TypeCard v-for="(t, idxType) in types" :key="idxType" :detailsType="t" @type-selection="handleTypeSelection" />
     </div>
     <div>
-        <!-- <div v-if="this.matchingUserIds.length"> -->
-        <UserCard v-for="(match, idxMatch) in this.matchingUserIds" :key="idxMatch" :detailsUser="match" />
-        <!-- </div> -->
+        <UserCard v-for="(match, idxMatch) in matchingUserIds" :key="idxMatch" :detailsUser="match" />
     </div>
 </template>
 
