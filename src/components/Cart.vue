@@ -16,18 +16,8 @@ export default {
 
     data() {
         return {
-            // Dati locali del componente, se necessario
-            // esempio:
-            // totalAmount: 0
+            store
         }
-    },
-
-    computed: {
-        // Funzioni calcolate, se necessario
-        // esempio:
-        // totalPrice() {
-        //     return this.items.reduce((sum, item) => sum + item.price, 0);
-        // }
     },
 
     methods: {
@@ -38,19 +28,23 @@ export default {
 
 
 <template>
-    <h1>hello</h1>
+    <p>{{ this.store.cart }}</p>
+    
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .cart {
     min-height: 500px;
-    width: 300px;
+    max-width: 300px;
+    min-width: 300px;
     background-color: #0099ff;
     border: 3px solid black;
     border-radius: 30px;
     position: fixed;
     top: 120px;
     right: 20px;
+
+
 }
 
 .invisible-cart {
