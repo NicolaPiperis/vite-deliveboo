@@ -10,8 +10,6 @@ library.add(fas);
 
 import { router } from './router.js';
 
-const braintree = require('braintree');
-
 
 createApp(App).use(router).component("font-awesome-icon", FontAwesomeIcon).mount('#app')
 
