@@ -94,6 +94,7 @@ export default {
 
         console.log('lista ristoranti: ', store.restaurantList);
         console.log('lista type: ', store.typeSearch);
+        console.log('tutti type: ', store.typeList);
       })
       .catch(error => {
         console.log(error);
@@ -106,19 +107,20 @@ export default {
   <h3>Questa è la card type</h3>
 
   <div class="container container d-flex flex-wrap justify-content-center mb-5">
-    <form @change="searchTypeRestaurant()">
-      <TypeCard v-for="t in store.typeList" :key="t.id" :type="t" />
-    </form>
+    
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-6">
-        <h2>tutti i ristoranti</h2>
-        <div class="container d-flex flex-wrap justify-content-center gap-4">
-          <RestaurantCard v-for="r in store.restaurantList" :key="r.id" :restaurant="r" />
-        </div>
+      <div class="col-2">
+        <h4>Tipologie</h4>
+        <i class="fa-solid fa-burger"></i>
+        <form @change="searchTypeRestaurant()">
+            <div v-for="t in store.typeList" :key="t.id" class="border-bottom">
+                <TypeCard  :type="t" />
+            </div>
+        </form>
       </div>
-      <div class="col-6">
+      <div class="col-10">
         <h2>ristoranti cercati</h2>
         <div class="container d-flex flex-wrap justify-content-center gap-4">
           <RestaurantCard v-for="r in store.restaurantSearch" :key="r.id" :restaurant="r" />

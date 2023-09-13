@@ -20,19 +20,32 @@ export default {
 </script>
 
 <template>
-    <input type="checkbox" :name="type.id" /> {{ type.type_name }}
+    <label>
+        <input type="checkbox" :name="type.id" />
+        <span v-html="type.img"></span>
+        {{ type.type_name }}
+    </label>
+    <div v-html="type.img"></div>
+    <i class="fa-solid fa-burger"></i>
 </template>
 
 <style lang="scss" scoped>
-.card {
-    display: inline-block;
-    width: calc(100% / 4 - 10px);
-    border: 2px solid greenyellow;
-    margin: 10px;
+@use '../styles/general.scss';
+i {
 
-    div {
-        margin: 3px;
+    color: black;
+    font-size: 20px;
+}
+input {
+    :checked {
 
+    };
+
+    ::before {
+      content: attr(value);
+      font-family: 'Font Awesome 5';
+      font-weight: 900;
+      font-size: 18px;
     }
 }
 </style>
