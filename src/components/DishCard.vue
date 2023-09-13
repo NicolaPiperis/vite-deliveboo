@@ -17,18 +17,23 @@ export default {
     methods: {
 
         addToCart() {
-            // Crea un oggetto piatto
-            const dishToAdd = {
-                name: this.dish.dish_name,
-                price: this.dish.price,
-                id: this.dish.id
-            };
+            // Cerca il piatto nel carrello usando l'id
+            const existingDish = store.cart.find(item => item.id === this.dish.id);
 
-            // Aggiungi l'oggetto piatto all'array cart nello store
-            store.cart.push(dishToAdd);
-            console.log("ciao sono addtocart");
-
-            console.log(store.cart);
+            if (existingDish) {
+                // Se il piatto esiste nel carrello, aumenta la sua quantity
+                existingDish.quantity += 1;
+            } else {
+                // Altrimenti, aggiungi un nuovo oggetto al carrello
+                const dishToAdd = {
+                    id: this.dish.id,  // Assicurati di avere un id per ciascun piatto
+                    name: this.dish.dish_name,
+                    description: this.dish.description,
+                    price: this.dish.price,
+                    quantity: 1
+                };
+                store.cart.push(dishToAdd);
+            }
         }
 
     }

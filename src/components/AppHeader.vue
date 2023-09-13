@@ -1,5 +1,6 @@
 <script>
 import Cart from './Cart.vue';
+import { store } from '../store';
 
 export default {
     name: 'AppHeader',
@@ -10,6 +11,12 @@ export default {
         return {
             isCartVisible: false
         };
+    },
+    computed: {
+        totalDishesInCart() {
+            // Somma le quantità di tutti gli articoli nel carrello
+            return store.cart.reduce((acc, dish) => acc + dish.quantity, 0);
+        }
     },
     methods: {
         openCart() {
@@ -26,11 +33,12 @@ export default {
         </h1>
         <div class="cart-container" @click="openCart">
             <span id="cart-logo"><font-awesome-icon icon="cart-shopping" /></span>
-            <span id="dish-counter">2</span>
+            <span id="dish-counter">{{ totalDishesInCart }}</span>
         </div>
         <Cart class="cart" :class="isCartVisible ? 'visible-cart' : 'invisible-cart'" />
     </div>
 </template>
+
 
 <style lang="scss" scoped>
 @use '../styles/general.scss';

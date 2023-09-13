@@ -22,6 +22,28 @@ export default {
 
     methods: {
 
+        increaseQuantity(item) {
+            item.quantity += 1;
+        },
+
+        decreaseQuantity(item) {
+            if (item.quantity > 1) {
+                item.quantity -= 1;
+            } else {
+                // Se la quantity diventa 0, rimuovi l'oggetto dal carrello
+                const index = this.store.cart.indexOf(item);
+                if (index !== -1) {
+                    this.store.cart.splice(index, 1);
+                }
+            }
+        },
+
+        removeDishesById(item) {
+            const index = this.store.cart.findIndex(dish => dish.id === item.id);
+            if (index !== -1) {
+                this.store.cart.splice(index, 1);
+            }
+        },
     }
 }
 </script>
@@ -32,41 +54,31 @@ export default {
         <div v-for="details in store.cart" :key="details.id">
             <div class="d-flex align-items-center">
                 <div class="delete-button-container">
-                    <span>X</span>
+                    <span @click="removeDishesById(details)">X</span>
                 </div>
                 <ul class="dish-display-container">
                     <li>Nome: {{ details.name }}</li>
                     <li>Prezzo: {{ details.price }}</li>
                 </ul>
                 <div class="count-cart-container d-flex">
-                    <span class="add-button">-</span>
-                    <span class="counter">X</span>
-                    <span class="deduct-button">+</span>
+                    <span class="add-button" @click="decreaseQuantity(details)">-</span>
+                    <span class="counter">{{ details.quantity }}</span>
+                    <span class="deduct-button" @click="increaseQuantity(details)">+</span>
                 </div>
             </div>
             <hr>
         </div>
-        <div class="d-flex justify-content-between" id="cart-total">
+        <div class="d-flex justify-content-between" id="cart-total" v-if="store.cart.length > 0">
             <p>TOTALE ORDINE:</p>
             <p>&#8364;</p>
         </div>
+        <div class="d-flex flex-column justify-content-center align-items-center" id="empty-cart"
+            v-if="store.cart.length < 1">
+            <p>IL TUO CARRELLO E' VUOTO</p>
+            <span><font-awesome-icon icon="cart-shopping" /></span>
+        </div>
     </div>
 </template>
-
-<!-- <template>
-    <div>
-        <div class="d-flex justify-content-between" v-for="details in store.cart" :key="details.id">
-            <ul>
-                <li>Nome: {{ details.name }}</li>
-                <li>Prezzo: {{ details.price }}</li>
-                <li></li>
-                <hr>
-            </ul>
-            <span>X</span>
-        </div>
-
-    </div>
-</template> -->
 
 <style scoped lang="scss">
 @use '../styles/general.scss';
@@ -114,6 +126,10 @@ hr {
         background-color: white;
         padding: 1px 4px;
     }
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .dish-display-container {
@@ -132,6 +148,10 @@ hr {
         border: 1px solid gray;
         padding: 0 9px;
         border-radius: 4px;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     .counter {
@@ -148,6 +168,30 @@ hr {
         border: 1px solid gray;
         padding: 0 7px;
         border-radius: 4px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+#cart-total {
+    margin: 0 20px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#empty-cart {
+    color: white;
+    height: 100%;
+
+    p {
+        font-size: 25px;
+        margin: 100px 0;
+    }
+
+    span {
+        font-size: 70px;
     }
 }
 </style>
