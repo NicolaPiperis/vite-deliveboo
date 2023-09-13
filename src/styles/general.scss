@@ -5,6 +5,11 @@
 
 //font awsome
 
+// @import '../../node_modules/@fortawesome/fontawesome-svg-core/styles.css';
+// @import '../../node_modules/@fortawesome/free-brands-svg-icons/';
+// @import '../../node_modules/@fortawesome/free-solid-svg-icons/';
+
+
 //font -> npm install @fontsource-variable/montserrat
 //trovato su https://fontsource.org/fonts/montserrat/install
 
@@ -15,10 +20,4 @@ body {
     font-family: $main-font;
     color: $text-color;
     background-color: $bg-color;
-}
-
-i {
-
-    color: black;
-    font-size: 20px;
 }

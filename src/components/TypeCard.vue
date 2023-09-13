@@ -2,50 +2,52 @@
 import { store } from '../store';
 
 export default {
-    name: 'TypeCard',
-    props: {
-        type: {
-            type: Object
-        }
+  name: 'TypeCard',
+  props: {
+    type: {
+      type: Object,
     },
-    data() {
-        return {
-      store,
-    }
   },
-    methods: {
-
-    }
-}
+  data() {
+    return {
+      store,
+    };
+  },
+  methods: {},
+};
 </script>
 
 <template>
-    <label>
-        <input type="checkbox" :name="type.id" />
-        <span v-html="type.img"></span>
-        {{ type.type_name }}
-    </label>
-    <div v-html="type.img"></div>
-    <i class="fa-solid fa-burger"></i>
+  <label class="custom-checkbox">
+    <input
+      type="checkbox"
+      :name="type.id"
+      :value="type.img"
+      v-model="isChecked"
+    />
+    <span v-html="type.img"></span>
+    {{ type.type_name }}
+  </label>
 </template>
 
 <style lang="scss" scoped>
 @use '../styles/general.scss';
-i {
 
-    color: black;
+// input[type="checkbox"] {
+//   position: absolute;
+//   opacity: 0;
+// }
+
+label{
+    display: block;
+    position: relative;
+    margin: 5px 0;
+    cursor: pointer;
     font-size: 20px;
-}
-input {
-    :checked {
-
-    };
-
-    ::before {
-      content: attr(value);
-      font-family: 'Font Awesome 5';
-      font-weight: 900;
-      font-size: 18px;
+    user-select: none;
+    span{
+        
     }
 }
+
 </style>

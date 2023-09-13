@@ -113,7 +113,6 @@ export default {
     <div class="row">
       <div class="col-2">
         <h4>Tipologie</h4>
-        <i class="fa-solid fa-burger"></i>
         <form @change="searchTypeRestaurant()">
             <div v-for="t in store.typeList" :key="t.id" class="border-bottom">
                 <TypeCard  :type="t" />
@@ -122,7 +121,7 @@ export default {
       </div>
       <div class="col-10">
         <h2>ristoranti cercati</h2>
-        <div class="container d-flex flex-wrap justify-content-center gap-4">
+        <div class="container d-flex flex-wrap">
           <RestaurantCard v-for="r in store.restaurantSearch" :key="r.id" :restaurant="r" />
         </div>
       </div>
