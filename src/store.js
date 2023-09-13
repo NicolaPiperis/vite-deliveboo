@@ -7,9 +7,8 @@ export const store = reactive({
     typeSearch: [],
     restaurantList: [],
     restaurantSearch: [],
-    // shortSearch: '?num=20&offset=0',
-    // searchValue: 'all',
-    // searchData: "archetype",
-    // // searchString: `?${this.searchData}=${this.searchValue}`,
+    dishesList: [],
+    restaurantSelected: {},
+
     // loading: true //per disattivare loading
 });

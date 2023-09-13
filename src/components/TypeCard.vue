@@ -1,9 +1,5 @@
 <script>
-import axios from 'axios';
 import { store } from '../store';
-
-
-const apiURL = 'http://localhost:8000/api/v1';
 
 export default {
     name: 'TypeCard',
