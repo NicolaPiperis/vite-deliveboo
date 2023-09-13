@@ -10,9 +10,9 @@ const router = createRouter({
         },
 
         {
-            // path: '/projects/:id',
-            // name: 'project-show',
-            // component: () => import('./route-vue/ProjectShow.vue')
+            path: '/dishes/:id',
+            name: 'DishesShow',
+            component: () => import('./router-view/DishesShow.vue')
         }
     ]
 });

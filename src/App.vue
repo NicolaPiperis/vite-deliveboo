@@ -1,4 +1,5 @@
 <script>
+import { store } from '../src/store';
 import AppHeader from './components/AppHeader.vue';
 
 export default {
@@ -6,7 +7,12 @@ export default {
   components: {
     AppHeader
 
-  }
+  },
+  data() {
+    return {
+      store,
+    }
+  },
 }
 </script>
 
@@ -15,7 +21,8 @@ export default {
   <router-view></router-view>
 </template>
 
-<style >
+<style  lang="scss">
+  @use './styles/general.scss';
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }

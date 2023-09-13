@@ -1,44 +1,53 @@
 <script>
+import { store } from '../store';
+
 export default {
-    name: 'TypeCard',
-    props: {
-        detailsType: Object
+  name: 'TypeCard',
+  props: {
+    type: {
+      type: Object,
     },
-    methods: {
-        emit(event) {
-            let payload = {
-                id: this.detailsType.id,
-                isSelected: event.target.checked // Verifica lo stato della checkbox
-            };
-            // Emettiamo l'evento con il nuovo payload
-            this.$emit('type-selection', payload);
-        }
-    }
-}
+  },
+  data() {
+    return {
+      store,
+    };
+  },
+  methods: {},
+};
 </script>
 
 <template>
-    <div class="card">
-        <div>
-            {{ detailsType.type_name }}
-        </div>
-        <div>
-            IMMAGINE TIPOLOGIA
-        </div>
-        <input type="checkbox" @change="emit">
-        <!-- Usiamo @change invece di @click per garantire che venga rilevato ogni cambiamento dello stato -->
-    </div>
+  <label class="custom-checkbox">
+    <input
+      type="checkbox"
+      :name="type.id"
+      :value="type.img"
+      v-model="isChecked"
+    />
+    <span v-html="type.img"></span>
+    {{ type.type_name }}
+  </label>
 </template>
 
 <style lang="scss" scoped>
-.card {
-    display: inline-block;
-    width: calc(100% / 4 - 10px);
-    border: 2px solid greenyellow;
-    margin: 10px;
+@use '../styles/general.scss';
 
-    div {
-        margin: 3px;
+// input[type="checkbox"] {
+//   position: absolute;
+//   opacity: 0;
+// }
+
+label{
+    display: block;
+    position: relative;
+    margin: 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+    user-select: none;
+    span{
+        
     }
 }
+
 </style>
