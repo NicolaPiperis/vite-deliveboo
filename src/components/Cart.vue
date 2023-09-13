@@ -5,20 +5,20 @@ import { store } from '../store';
 export default {
     name: 'Cart',
 
-    // Se desideri passare delle props, come nel componente RestaurantCard, puoi farlo qui
-    props: {
-        // esempio
-        // items: {
-        //     type: Array,
-        //     default: () => []
-        // }
-    },
-
     data() {
         return {
             store
         }
     },
+
+    computed: {
+        cartTotal() {
+            return this.store.cart.reduce((acc, dish) => {
+                return acc + (dish.price * dish.quantity);
+            }, 0);
+        }
+    },
+
 
     methods: {
 
@@ -70,7 +70,7 @@ export default {
         </div>
         <div class="d-flex justify-content-between" id="cart-total" v-if="store.cart.length > 0">
             <p>TOTALE ORDINE:</p>
-            <p>&#8364;</p>
+            <p>&#8364; {{ cartTotal.toFixed(2) }}</p>
         </div>
         <div class="d-flex flex-column justify-content-center align-items-center" id="empty-cart"
             v-if="store.cart.length < 1">
@@ -84,7 +84,7 @@ export default {
 @use '../styles/general.scss';
 
 .cart {
-    min-height: 500px;
+    min-height: 150px;
     max-width: 300px;
     min-width: 400px;
     background-color: #0099ff;
@@ -187,11 +187,12 @@ hr {
 
     p {
         font-size: 25px;
-        margin: 100px 0;
+        margin: 30px 0;
     }
 
     span {
         font-size: 70px;
+        margin-bottom: 30px;
     }
 }
 </style>
