@@ -41,4 +41,23 @@ export default {
     <h1>hello</h1>
 </template>
 
-<style scoped></style>
+<style scoped>
+.cart {
+    min-height: 500px;
+    width: 300px;
+    background-color: #0099ff;
+    border: 3px solid black;
+    border-radius: 30px;
+    position: fixed;
+    top: 120px;
+    right: 20px;
+}
+
+.invisible-cart {
+    display: none;
+}
+
+.visible-cart {
+    display: block;
+}
+</style>

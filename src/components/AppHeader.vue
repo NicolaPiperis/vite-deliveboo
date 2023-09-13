@@ -62,23 +62,4 @@ h1 {
 #cart-logo {
     font-size: 50px;
 }
-
-.cart {
-    min-height: 500px;
-    width: 300px;
-    background-color: #0099ff;
-    border: 3px solid black;
-    border-radius: 30px;
-    position: fixed;
-    top: 120px;
-    right: 20px;
-}
-
-.invisible-cart {
-    display: none;
-}
-
-.visible-cart {
-    display: block;
-}
 </style>
