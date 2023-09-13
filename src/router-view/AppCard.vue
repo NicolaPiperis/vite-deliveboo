@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios';
+import { store } from "../store";
 import TypeCard from '../components/TypeCard.vue';
 import UserCard from '../components/UserCard.vue';
 
@@ -11,27 +12,38 @@ export default {
         TypeCard,
         UserCard
     },
-    data: function () {
+
+    data() {
         return {
             types: [],
             pivotTypeUserData: [],
             pivotUsersIDs: [],
             matchingUserIds: [],
-            checkBoxID: []
-
+            store,
         }
     },
     methods: {
-        searchRestaurant(idType) {
+        searchRestaurant() {
 
+            console.log(this.pivotTypeUserData);
+
+            // cicla la pivot
             this.pivotTypeUserData.forEach(pivotElement => {
 
-                if (pivotElement.type_id === idType) {
+                // cicla l'array id checkbox(tipologie)
+                for (let i = 0; i < store.checkboxIDs.length; i++) {
+                    // se type_id ==== a type della checkbox
+                    if (pivotElement.type_id === store.checkboxIDs[i])  {
+                        
+                        // prendi il relativo user_id e salvalo
+                        this.pivotUsersIDs.push(pivotElement.user_id);
+    
+                        // cicla gli user_id e solo quelli che hanno la tipologia
 
-                    this.pivotUsersIDs.push(pivotElement.user_id);
 
-                    console.log('ID degli user nella pivot che combaciano con la tipologia:', this.pivotUsersIDs);
-                    console.log('TypeUser Data:', this.pivotTypeUserData);
+                        // console.log('ID degli user nella pivot che combaciano con la tipologia:', this.pivotUsersIDs);
+                        // console.log('TypeUser Data:', this.pivotTypeUserData);
+                    } 
                 }
             });
 
@@ -75,6 +87,10 @@ export default {
         <UserCard v-for="(match, idxMatch) in this.matchingUserIds" :key="idxMatch" :detailsUser="match" />
         <!-- </div> -->
     </div>
+
+    <button @click="searchRestaurant()">
+        Cerca tipologia 6 e 9
+    </button>
 </template>
 
 <style lang="scss" scoped>

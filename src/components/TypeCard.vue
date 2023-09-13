@@ -1,14 +1,21 @@
 <script>
 
+import { store } from "../store";
+
 export default {
     name: 'TypeCard',
     props: {
         detailsType: Object
     },
+    data() {
+        return {
+            store,
+        }
+    },
     methods: {
         emit() {
-            let id = this.detailsType.id;
-            this.$emit('id-emitted', id);
+            // let id = this.detailsType.id;
+            // this.$emit('id-emitted', id);
         },
     }
 }
@@ -22,9 +29,9 @@ export default {
         <div>
             IMMAGINE TIPOLOGIA
         </div>
-        <input type="checkbox" @click="emit" >
-        
-        <!-- v-model="detailsType.id" -->
+        <input type="checkbox" @click="emit">
+        <!-- v-model="store.checkboxIDs" -->
+
     </div>
 </template>
 
