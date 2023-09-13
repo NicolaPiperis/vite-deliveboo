@@ -29,22 +29,27 @@ export default {
 
 <template>
     <div>
-        <div class="d-flex align-items-center" v-for="details in store.cart" :key="details.id">
-            <div class="delete-button-container">
-                <span>X</span>
+        <div v-for="details in store.cart" :key="details.id">
+            <div class="d-flex align-items-center">
+                <div class="delete-button-container">
+                    <span>X</span>
+                </div>
+                <ul class="dish-display-container">
+                    <li>Nome: {{ details.name }}</li>
+                    <li>Prezzo: {{ details.price }}</li>
+                </ul>
+                <div class="count-cart-container d-flex">
+                    <span class="add-button">-</span>
+                    <span class="counter">X</span>
+                    <span class="deduct-button">+</span>
+                </div>
             </div>
-            <ul class="dish-display-container">
-                <li>Nome: {{ details.name }}</li>
-                <li>Prezzo: {{ details.price }}</li>
-                <hr>
-            </ul>
-            <div class="count-cart-container d-flex">
-                <span>-</span>
-                <span>X</span>
-                <span>+</span>
-            </div>
+            <hr>
         </div>
-
+        <div class="d-flex justify-content-between" id="cart-total">
+            <p>TOTALE ORDINE:</p>
+            <p>&#8364;</p>
+        </div>
     </div>
 </template>
 
@@ -89,18 +94,26 @@ export default {
 
 ul {
     list-style: none;
+}
 
-    hr {
-        width: 95%;
-        margin-left: -10px;
-        color: black;
-        border: 1px solid black;
-    }
+hr {
+    margin-right: 15px;
+    margin-left: 15px;
+    color: black;
+    border: 1px solid black;
 }
 
 .delete-button-container {
     width: 10%;
 
+    span {
+        color: red;
+        font-weight: bold;
+        font-size: 18px;
+        margin-left: 10px;
+        background-color: white;
+        padding: 1px 4px;
+    }
 }
 
 .dish-display-container {
@@ -109,5 +122,32 @@ ul {
 
 .count-cart-container {
     width: 25%;
+    margin-left: 10px;
+
+    .add-button {
+        color: black;
+        font-weight: bold;
+        font-size: 15px;
+        background-color: white;
+        border: 1px solid gray;
+        padding: 0 9px;
+        border-radius: 4px;
+    }
+
+    .counter {
+        margin: 0 7px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .deduct-button {
+        color: black;
+        font-weight: bold;
+        font-size: 15px;
+        background-color: white;
+        border: 1px solid gray;
+        padding: 0 7px;
+        border-radius: 4px;
+    }
 }
 </style>
