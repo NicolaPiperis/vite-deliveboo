@@ -20,13 +20,15 @@ export default {
             // Crea un oggetto piatto
             const dishToAdd = {
                 name: this.dish.dish_name,
-                description: this.dish.description,
-                price: this.dish.price
+                price: this.dish.price,
+                id: this.dish.id
             };
 
             // Aggiungi l'oggetto piatto all'array cart nello store
             store.cart.push(dishToAdd);
             console.log("ciao sono addtocart");
+
+            console.log(store.cart);
         }
 
     }

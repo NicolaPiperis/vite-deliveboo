@@ -33,6 +33,8 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@use '../styles/general.scss';
+
 h1 {
     text-align: center;
 }

@@ -13,4 +13,7 @@ body {
     font-family: $main-font;
     color: $text-color;
     background-color: $bg-color;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
