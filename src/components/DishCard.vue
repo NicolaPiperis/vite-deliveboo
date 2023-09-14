@@ -33,10 +33,7 @@ export default {
                 };
                 store.cart.push(dishToAdd);
             }
-
-            this.saveCartToSession();
         }
-
     }
 }
 </script>
