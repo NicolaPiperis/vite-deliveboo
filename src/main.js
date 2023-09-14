@@ -7,8 +7,6 @@ import { createApp } from 'vue'
 import App from './App.vue'
 
 
-library.add(fas);
-
 // import store from './store';
 
 import { router } from './router.js';
