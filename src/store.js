@@ -11,6 +11,5 @@ export const store = reactive({
     dishesList: [],
     restaurantSelected: {},
     cart: []
-
     // loading: true //per disattivare loading
 });
