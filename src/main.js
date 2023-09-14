@@ -11,6 +11,5 @@ library.add(fas);
 import { router } from './router.js';
 
 
-
 createApp(App).use(router).component("font-awesome-icon", FontAwesomeIcon).mount('#app')
 
