@@ -26,17 +26,15 @@ export default {
       v-model="isChecked"
     />
     <span v-html="type.img"></span>
+  
     {{ type.type_name }}
+   
   </label>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use '../styles/general.scss';
 
-// input[type="checkbox"] {
-//   position: absolute;
-//   opacity: 0;
-// }
 
 label{
     display: block;
@@ -44,10 +42,24 @@ label{
     margin: 5px 0;
     cursor: pointer;
     font-size: 20px;
+    font-weight: lighter;
     user-select: none;
     span{
-        
+        color: rgba(255, 160, 122);
+    }
+
+    input[type="checkbox"]{
+        position: absolute;
+        opacity: 0;
+        font-weight: normal;
+        transition: font-weight 0.3s; 
+    }
+    :checked + span{
+        color: rgb(246, 92, 31); 
     }
 }
+
+
+
 
 </style>
