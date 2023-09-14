@@ -1,6 +1,7 @@
 <script>
 
 import { store } from '../store';
+import { watch } from 'vue';
 
 export default {
     name: 'Cart',
@@ -19,9 +20,16 @@ export default {
         }
     },
 
+    watch: {
+        'store.cart': {
+            handler() {
+                this.saveCartToSession();
+            },
+            deep: true
+        }
+    },
 
     methods: {
-
         increaseQuantity(item) {
             item.quantity += 1;
         },
@@ -30,7 +38,6 @@ export default {
             if (item.quantity > 1) {
                 item.quantity -= 1;
             } else {
-                // Se la quantity diventa 0, rimuovi l'oggetto dal carrello
                 const index = this.store.cart.indexOf(item);
                 if (index !== -1) {
                     this.store.cart.splice(index, 1);
@@ -44,10 +51,25 @@ export default {
                 this.store.cart.splice(index, 1);
             }
         },
-    }
-}
-</script>
 
+        saveCartToSession() {
+            sessionStorage.setItem('cart', JSON.stringify(this.store.cart));
+        }
+    },
+
+    mounted() {
+        const savedCart = sessionStorage.getItem('cart');
+        if (savedCart) {
+            try {
+                this.store.cart = JSON.parse(savedCart);
+            } catch (e) {
+                console.error('Failed to load cart from sessionStorage:', e);
+            }
+        }
+    },
+}
+
+</script>
 
 <template>
     <div>

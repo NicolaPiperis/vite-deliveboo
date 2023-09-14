@@ -34,7 +34,6 @@ export default {
                 store.cart.push(dishToAdd);
             }
         }
-
     }
 }
 </script>
