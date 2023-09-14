@@ -46,6 +46,7 @@ label{
     user-select: none;
     span{
         color: rgba(255, 160, 122);
+
     }
 
     input[type="checkbox"]{
@@ -55,8 +56,11 @@ label{
         transition: font-weight 0.3s; 
     }
     :checked + span{
-        color: rgb(246, 92, 31); 
+
+        color: rgb(165, 35, 3);
+
     }
+
 }
 
 

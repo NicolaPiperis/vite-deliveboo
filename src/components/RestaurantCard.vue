@@ -40,6 +40,10 @@ export default {
                 <li class="list-group-item bg-transparent border-0">{{ restaurant.email }}</li>
                 <li class="list-group-item bg-transparent border-0">{{ restaurant.address }}</li>
                 <li class="list-group-item bg-transparent border-0">{{ restaurant.phone_number }}</li>
+                <li class="list-group-item bg-transparent border-0">
+                  <span v-for="item in restaurant.types" :key="item.id" v-html="item.img">
+                  </span>
+                </li>
             </ul>
         </div>
        
@@ -50,5 +54,11 @@ export default {
 
 <style lang="scss" scoped>
   @use '../styles/general.scss';
+
+  span{
+    color: gray;
+    margin: 0 5px;
+    font-size: 20px;
+  }
 
 </style>

@@ -65,6 +65,23 @@ export default {
       store.restaurantSearch = ristorantiFiltrati;
       console.log('store.restaurantSearch aggiornato: ', store.restaurantSearch);
     },
+
+     // Nuovo metodo per cercare i ristoranti in base ai tipi selezionati
+     cercaRistorante() {
+      this.saveTypeSearch();
+      // Converti l'array di ID in una stringa separata da virgole
+      const idString = store.typeSearch.join(',');
+
+      // Effettua la chiamata Axios per ottenere i ristoranti
+      axios.get(`${store.apiURL}/restaurants/${idString}`)
+        .then(response => {
+          store.restaurantSearch = response.data.restaurant;
+          console.log('Ristoranti filtrati: ', store.restaurantSearch);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
   },
 
   mounted() {
@@ -95,7 +112,8 @@ export default {
         <div class="col-2">
           <div class="container-element">
             <h4>Tipologie</h4>
-            <TypeMenu  @change="searchTypeRestaurant()"/>   
+            <!-- <TypeMenu  @change="searchTypeRestaurant()"/>    -->
+            <TypeMenu  @change="cercaRistorante()"/>   
           </div>
         </div>
         <div class="col-10">
