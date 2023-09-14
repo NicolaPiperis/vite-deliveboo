@@ -34,7 +34,7 @@ export default {
       store.typeSearch = typeSearch;
       console.log('store.typeSearch aggiornato: ', store.typeSearch);
     },
-    // Funzione per cercare ristoranti in base ai tipi selezionati
+    // Funzione per cercare ristoranti in base ai tipi selezionati nel front end
     searchTypeRestaurant() {
       this.saveTypeSearch();
 
@@ -66,9 +66,14 @@ export default {
       console.log('store.restaurantSearch aggiornato: ', store.restaurantSearch);
     },
 
-     // Nuovo metodo per cercare i ristoranti in base ai tipi selezionati
+     // Nuovo metodo per cercare i ristoranti in base ai tipi selezionati back end
      cercaRistorante() {
       this.saveTypeSearch();
+      // Se store.typeSearch è vuoto, mostra tutti i ristoranti
+      if (store.typeSearch.length === 0) {
+        store.restaurantSearch = store.restaurantList;
+        return;
+      }
       // Converti l'array di ID in una stringa separata da virgole
       const idString = store.typeSearch.join(',');
 
