@@ -27,7 +27,7 @@ export default {
 </script>
 
 <template>
-    <div class="d-flex justify-content-around">
+    <div class="d-flex justify-content-around header-style">
         <h1>
             Header di Deliveboo
         </h1>
