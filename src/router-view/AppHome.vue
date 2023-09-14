@@ -13,6 +13,7 @@ export default {
   data() {
     return {
       store,
+      lastScrollPosition: 0,
     }
   },
   methods: {
@@ -66,8 +67,8 @@ export default {
       console.log('store.restaurantSearch aggiornato: ', store.restaurantSearch);
     },
 
-     // Nuovo metodo per cercare i ristoranti in base ai tipi selezionati back end
-     cercaRistorante() {
+    // Nuovo metodo per cercare i ristoranti in base ai tipi selezionati back end
+    cercaRistorante() {
       this.saveTypeSearch();
       // Se store.typeSearch è vuoto, mostra tutti i ristoranti
       if (store.typeSearch.length === 0) {
@@ -85,8 +86,33 @@ export default {
         })
         .catch(error => {
           console.log(error);
-        });
+        }
+        );
     },
+
+    handleScroll() {
+      const currentScrollPosition = window.scrollY;  // Ottieni la posizione corrente di scroll
+      const isScrollingDown = currentScrollPosition > this.lastScrollPosition; // Determina se stai scorrendo verso il basso
+
+      const containerElements = document.querySelectorAll('.container-element');
+
+      containerElements.forEach(element => {
+        const distanceToTop = element.getBoundingClientRect().top;
+        const screenHeight = window.innerHeight;
+
+        // Se stai scorrendo verso il basso e l'elemento è nella vista, rendilo visibile
+        if (isScrollingDown && distanceToTop < screenHeight / 1.5 && distanceToTop > 0) {
+          element.style.opacity = "1";
+        }
+
+        // Se stai scorrendo verso l'alto e l'elemento esce dalla vista, rendilo invisibile
+        if (!isScrollingDown && distanceToTop > screenHeight / 1.5) {
+          element.style.opacity = "0";
+        }
+      });
+
+      this.lastScrollPosition = currentScrollPosition;  // Aggiorna la tua ultima posizione di scroll
+    }
   },
 
   mounted() {
@@ -106,7 +132,14 @@ export default {
       .catch(error => {
         console.log(error);
       });
+
+    window.addEventListener('scroll', this.handleScroll);
+    this.handleScroll(); // Chiamato all'inizio per fare il setup iniziale dell'opacità  
   },
+
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
 }
 </script>
 
@@ -115,17 +148,21 @@ export default {
     <div class="container">
       <div class="row">
         <div class="col-2">
+          <div class="upper-fade"></div>
           <div class="container-element">
             <h4>Tipologie</h4>
             <!-- <TypeMenu  @change="searchTypeRestaurant()"/>    -->
-            <TypeMenu  @change="cercaRistorante()"/>   
+            <TypeMenu @change="cercaRistorante()" />
           </div>
+          <div class="lower-fade"></div>
         </div>
         <div class="col-10">
+          <div class="upper-fade"></div>
           <div class="container-element">
             <h2>ristoranti cercati</h2>
-            <RestaurantShow/>
+            <RestaurantShow />
           </div>
+          <div class="lower-fade"></div>
         </div>
       </div>
     </div>
@@ -134,26 +171,69 @@ export default {
 
 <style lang="scss" scoped>
 @use '../styles/general.scss';
-.main-container{
+
+.main-container {
   // height: calc(100vh - 50px);
 
   h3 {
     text-align: center;
   }
+
+  .col-2 {
+    position: relative;
+    padding: 20px 0;
+  }
+
+  .col-10 {
+    position: relative;
+    padding: 20px 0;
+  }
+
   .container-element {
     padding-top: 20px;
     height: calc(100vh - 100px);
-    overflow-y: scroll; /* Abilita lo scorrimento quando necessario */
-    scrollbar-width: thin; /* Larghezza sottile della barra di scorrimento */
-    scrollbar-color: transparent transparent; /* Colore trasparente per la barra di scorrimento */
-}
+    overflow-y: scroll;
+    /* Abilita lo scorrimento quando necessario */
+    scrollbar-width: thin;
+    /* Larghezza sottile della barra di scorrimento */
+    scrollbar-color: transparent transparent;
+    /* Colore trasparente per la barra di scorrimento */
+    margin: 100px 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    position: relative;
+  }
 
-.container-element::-webkit-scrollbar {
-  width: 6px; /* Larghezza della barra di scorrimento */
-}
+  .upper-fade {
+    position: absolute;
+    left: 0;
+    top: 100px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    height: 80px;
+    width: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
 
-.container-element::-webkit-scrollbar-thumb {
-  background-color: transparent; /* Colore trasparente per il "pulsante" di scorrimento */
-}
+  .lower-fade {
+    position: absolute;
+    left: 0;
+    bottom: 100px;
+    background: linear-gradient(to top, rgb(255, 255, 255), rgba(255, 255, 255, 0));
+    height: 80px;
+    width: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .container-element::-webkit-scrollbar {
+    width: 6px;
+    /* Larghezza della barra di scorrimento */
+  }
+
+  .container-element::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    /* Colore trasparente per il "pulsante" di scorrimento */
+  }
 }
 </style>

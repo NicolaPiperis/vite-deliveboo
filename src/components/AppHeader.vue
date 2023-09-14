@@ -9,33 +9,55 @@ export default {
     },
     data() {
         return {
-            isCartVisible: false
+            isCartVisible: false,
+            headerOpacity: 0
         };
     },
     computed: {
         totalDishesInCart() {
-            // Somma le quantità di tutti gli articoli nel carrello
             return store.cart.reduce((acc, dish) => acc + dish.quantity, 0);
+        },
+        headerStyle() {
+            return {
+                backgroundColor: `rgba(0, 0, 0, ${this.headerOpacity})`
+            };
         }
     },
     methods: {
         openCart() {
             this.isCartVisible = !this.isCartVisible;
+        },
+        updateHeaderOpacity() {
+            const containerHeight = document.getElementById('header-container').offsetHeight;
+            const scrollY = window.scrollY;
+            const opacity = Math.min(scrollY / containerHeight, 1);
+            this.headerOpacity = opacity;
         }
+    },
+    mounted() {
+        window.addEventListener('scroll', this.updateHeaderOpacity);
+        this.updateHeaderOpacity(); // Imposta l'opacità iniziale
+    },
+    beforeDestroy() {
+        window.removeEventListener('scroll', this.updateHeaderOpacity);
     }
 }
 </script>
 
 <template>
-    <div class="d-flex justify-content-around header-style">
-        <h1>
-            Header di Deliveboo
-        </h1>
-        <div class="cart-container" @click="openCart">
-            <span id="cart-logo"><font-awesome-icon icon="cart-shopping" /></span>
-            <span id="dish-counter">{{ totalDishesInCart }}</span>
+    <div id="header-container">
+        <div class="d-flex justify-content-around header-style" :style="headerStyle">
+            <img id="logo" src="../assets/img/Logo-Bianco-DeliveBoo.png" alt="logo">
+            <h1>
+                Header di Deliveboo
+            </h1>
+            <div class="cart-container" @click="openCart">
+                <span id="cart-logo"><font-awesome-icon icon="cart-shopping" /></span>
+                <span id="dish-counter">{{ totalDishesInCart }}</span>
+            </div>
+            <Cart class="cart" :class="isCartVisible ? 'visible-cart' : 'invisible-cart'" />
         </div>
-        <Cart class="cart" :class="isCartVisible ? 'visible-cart' : 'invisible-cart'" />
+
     </div>
 </template>
 
@@ -43,14 +65,27 @@ export default {
 <style lang="scss" scoped>
 @use '../styles/general.scss';
 
+#header-container {
+    background-image: url(../assets/img/home-background-hero-scaled.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 1200px;
+    position: relative;
+}
+
 .header-style {
-    background-color: salmon;
     padding: 20px;
+    width: 100%;
     height: 100px;
+    position: fixed;
+    z-index: 10;
 }
 
 h1 {
     text-align: center;
+    color: white;
 }
 
 .cart-container {
@@ -81,5 +116,6 @@ h1 {
 
 #cart-logo {
     font-size: 50px;
+    color: white;
 }
 </style>
