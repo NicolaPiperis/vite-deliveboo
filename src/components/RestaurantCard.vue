@@ -23,31 +23,28 @@ export default {
 
 <template>
   <router-link
-    class="btn btn-outline-light border-0 mb-3 p-0"
+    class="btn"
     :to="{ 
       name: 'DishesShow',
       params: { id: restaurant.id }
     }"
   >
-    <div class="card w-100 bg-transparent border-0" style="width: 18rem;">
-        <img :src="store.imageURL + restaurant.img" class="img-fluid rounded-start"
+
+    <div class="container-img">
+      <img :src="store.imageURL + restaurant.img"
             @error="handleImageError"
             :alt="restaurant.restaurant_name"
             >
-        <div class="card-body">
-            <h5 class="card-title">{{ restaurant.restaurant_name }}</h5>
-            <ul class="list-group list-group-flush bg-transparent">
-                <li class="list-group-item bg-transparent border-0">{{ restaurant.email }}</li>
-                <li class="list-group-item bg-transparent border-0">{{ restaurant.address }}</li>
-                <li class="list-group-item bg-transparent border-0">{{ restaurant.phone_number }}</li>
-                <li class="list-group-item bg-transparent border-0">
-                  <span v-for="item in restaurant.types" :key="item.id" v-html="item.img">
-                  </span>
-                </li>
-            </ul>
-        </div>
-       
+        <div class="types">
+          <span v-for="item in restaurant.types" :key="item.id" v-html="item.img">
+        </span>
+      </div>
     </div>
+    <div class="content">
+      <h3>{{ restaurant.restaurant_name }}</h3>
+
+    </div>
+
 
   </router-link>
 </template>
@@ -55,10 +52,34 @@ export default {
 <style lang="scss" scoped>
   @use '../styles/general.scss';
 
-  span{
-    color: gray;
-    margin: 0 5px;
-    font-size: 20px;
+  
+  .container-img{
+    position: relative;
+    height: 200px;
+    width: 100%;
+    border-radius: 30px;
+    img{
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 30px;
+    }
+    .types{
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: lightblue;
+      margin: 0 5px;
+      font-size: 20px;
+    }
+  }
+  .content{
+    h3{
+      font-size: 20px;
+      text-align: left;
+      font-weight: bold;
+      padding-left: 20px;
+    }
   }
 
 </style>
