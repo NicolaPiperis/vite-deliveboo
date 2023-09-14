@@ -12,6 +12,5 @@ import App from './App.vue'
 import { router } from './router.js';
 
 
-
 createApp(App).use(router).component("font-awesome-icon", FontAwesomeIcon).mount('#app')
 
