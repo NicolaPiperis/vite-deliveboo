@@ -23,7 +23,7 @@ export default {
 
 <template>
   <router-link
-    class="btn btn-outline-light border-0 mb-3 w-25 p-0"
+    class="btn btn-outline-light border-0 mb-3 p-0"
     :to="{ 
       name: 'DishesShow',
       params: { id: restaurant.id }

@@ -1,16 +1,14 @@
 <script>
 import axios from 'axios';
 import { store } from '../store';
-import TypeCard from '../components/TypeCard.vue';
-import RestaurantCard from '../components/RestaurantCard.vue';
-
-const apiURL = 'http://localhost:8000/api/v1'; // Sostituisci con la tua URL API
+import TypeMenu from '../components/TypeMenu.vue';
+import RestaurantShow from '../components/RestaurantShow.vue';
 
 export default {
-  name: 'Card',
+  name: 'AppHome',
   components: {
-    TypeCard,
-    RestaurantCard
+    TypeMenu,
+    RestaurantShow,
   },
   data() {
     return {
@@ -18,20 +16,7 @@ export default {
     }
   },
   methods: {
-    // Funzione per cercare un ristorante in base all'ID del tipo
-    searchRestaurant(id) {
-      this.typesID.push(id);
 
-      console.log(this.typesID.join(','));
-
-      axios.get(apiURL + '/restaurants/' + this.typesID.join('-'))
-        .then(response => {
-          console.log(response.data);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
     // Funzione per salvare gli ID dei tipi selezionati nello store
     saveTypeSearch() {
       const typeSearch = [];
@@ -84,7 +69,7 @@ export default {
 
   mounted() {
     // Chiamata Axios per ottenere i dati iniziali
-    axios.get(apiURL + '/home')
+    axios.get(store.apiURL + '/home')
       .then(response => {
         store.typeList = response.data.types;
         store.restaurantList = response.data.restaurant;
@@ -104,25 +89,20 @@ export default {
 </script>
 
 <template>
-  <h3>Questa è la card type</h3>
-
-  <div class="container container d-flex flex-wrap justify-content-center mb-5">
-    
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-2">
-        <h4>Tipologie</h4>
-        <form @change="searchTypeRestaurant()">
-            <div v-for="t in store.typeList" :key="t.id" class="border-bottom">
-                <TypeCard  :type="t" />
-            </div>
-        </form>
-      </div>
-      <div class="col-10">
-        <h2>ristoranti cercati</h2>
-        <div class="container d-flex flex-wrap">
-          <RestaurantCard v-for="r in store.restaurantSearch" :key="r.id" :restaurant="r" />
+  <div class="main-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-2">
+          <div class="container-element">
+            <h4>Tipologie</h4>
+            <TypeMenu  @change="searchTypeRestaurant()"/>   
+          </div>
+        </div>
+        <div class="col-10">
+          <div class="container-element">
+            <h2>ristoranti cercati</h2>
+            <RestaurantShow/>
+          </div>
         </div>
       </div>
     </div>
@@ -131,7 +111,26 @@ export default {
 
 <style lang="scss" scoped>
 @use '../styles/general.scss';
-h3 {
-  text-align: center;
+.main-container{
+  // height: calc(100vh - 50px);
+
+  h3 {
+    text-align: center;
+  }
+  .container-element {
+    padding-top: 20px;
+    height: calc(100vh - 100px);
+    overflow-y: scroll; /* Abilita lo scorrimento quando necessario */
+    scrollbar-width: thin; /* Larghezza sottile della barra di scorrimento */
+    scrollbar-color: transparent transparent; /* Colore trasparente per la barra di scorrimento */
+}
+
+.container-element::-webkit-scrollbar {
+  width: 6px; /* Larghezza della barra di scorrimento */
+}
+
+.container-element::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Colore trasparente per il "pulsante" di scorrimento */
+}
 }
 </style>

@@ -5,8 +5,8 @@ const router = createRouter({
     routes: [
         {
             path: '/',
-            name: 'Card',
-            component: () => import('./router-view/AppCard.vue')
+            name: 'AppHome',
+            component: () => import('./router-view/AppHome.vue')
         },
 
         {
