@@ -72,6 +72,7 @@ export default {
             <p>TOTALE ORDINE:</p>
             <p>&#8364; {{ cartTotal.toFixed(2) }}</p>
         </div>
+        <button id="checkout-btn" v-if="store.cart.length > 0">Vai al pagamento</button>
         <div class="d-flex flex-column justify-content-center align-items-center" id="empty-cart"
             v-if="store.cart.length < 1">
             <p>IL TUO CARRELLO E' VUOTO</p>
@@ -193,6 +194,27 @@ hr {
     span {
         font-size: 70px;
         margin-bottom: 30px;
+    }
+}
+
+#checkout-btn {
+    display: block; // Centra il bottone
+    margin: 0 auto 20px; // Centra il bottone
+    padding: 10px 20px; // Spazio interno
+    background-color: rgb(202, 146, 73); // Colore di sfondo
+    color: #ffffff; // Colore del testo
+    border: 2px solid black;
+    border-radius: 8px; // Angoli arrotondati
+    font-size: 16px; // Dimensione del testo
+    cursor: pointer; // Cambia il cursore quando sopra il bottone
+    transition: background-color 0.3s, transform 0.2s; // Aggiunge una transizione per l'hover e l'active
+
+    &:hover {
+        background-color: rgb(182, 126, 53); // Scurisce il colore di sfondo quando il mouse è sopra
+    }
+
+    &:active {
+        transform: scale(0.97); // Riduce leggermente la dimensione del bottone quando premuto
     }
 }
 </style>

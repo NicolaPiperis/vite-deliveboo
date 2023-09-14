@@ -28,7 +28,6 @@ export default {
                 const dishToAdd = {
                     id: this.dish.id,  // Assicurati di avere un id per ciascun piatto
                     name: this.dish.dish_name,
-                    description: this.dish.description,
                     price: this.dish.price,
                     quantity: 1
                 };
@@ -44,7 +43,7 @@ export default {
     <div v-if="dish.visibility && !dish.deleted" class="card-container card mb-3" style="max-width: 540px;">
         <div class="row g-0">
             <div class="col-md-4">
-                <img :src="store.imageURL + dish.img" class="img-fluid rounded-start" :alt="dish.dish_name">
+                <img :src="store.imageURL + dish.img" class="img-fluid rounded-start card-image" :alt="dish.dish_name">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
@@ -63,11 +62,27 @@ export default {
 <style lang="scss" scoped>
 @use '../styles/general.scss';
 
-.card-cart {
-    display: none;
+.card-image {
+    background-size: cover;
 }
 
-.card-container:hover .card-cart {
-    display: block;
+.card-cart {
+    background-color: #333;
+    font-size: 14px;
+    color: white;
+    border: none;
+    padding: 7px 14px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+
+    &:hover {
+        background-color: #555;
+        color: white;
+    }
+
+    &:active {
+        transform: scale(0.97);
+    }
 }
 </style>
