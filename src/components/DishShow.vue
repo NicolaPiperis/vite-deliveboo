@@ -1,12 +1,12 @@
 <script>
-import axios from 'axios';
+
 import { store } from '../store';
-import RestaurantCard from '../components/RestaurantCard.vue';
+import DishCard from '../components/DishCard.vue';
 
 export default {
-  name: 'RestaurantShow',
+  name: 'DishShow',
   components: {
-    RestaurantCard,
+    DishCard,
   },
   data() {
     return {
@@ -23,10 +23,11 @@ export default {
 </script>
 
 <template>
+
   <div class="container">
     <div class="row">
-      <div class="col-4" v-for="singleRestaurant in store.restaurantSearch" :key="singleRestaurant.id">
-        <RestaurantCard :restaurant="singleRestaurant" />
+      <div class="col-6" v-for="singleDish in store.dishesList" :key="singleDish.id" >
+        <DishCard :dish="singleDish" />
       </div>
     </div>
   </div>
@@ -34,4 +35,5 @@ export default {
 
 <style lang="scss" scoped>
 @use '../styles/general.scss';
+
 </style>
