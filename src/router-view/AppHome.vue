@@ -150,7 +150,7 @@ export default {
 <template>
   <Jumbotron />
   <div class="main-container">
-    <img id="wave" src="../assets/img/svg-0.svg" alt="wave">
+    <img id="wave-home" src="../assets/img/svg-0.svg" alt="wave">
     <div class="container">
       <div class="row">
         <div class="col-2">
@@ -182,7 +182,7 @@ export default {
 .main-container {
   position: relative;
 
-  #wave {
+  #wave-home {
     transform: scaleX(-1) scaleY(-1);
     position: absolute;
     top: -110px;
