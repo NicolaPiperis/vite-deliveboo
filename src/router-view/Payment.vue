@@ -10,6 +10,13 @@ export default {
 
         }
     },
+    computed: {
+        priceTotal() {
+            return this.store.cart.reduce((acc, dish) => {
+                return acc + (dish.price * dish.quantity);
+            }, 0);
+        }
+    },
     methods: {
         // Conferma pagamento dal carrello
         confirmPayment() {
@@ -118,47 +125,74 @@ export default {
 
 <template>
 
-    <div class="container">
+    <div class="d-flex">
 
-        <h1>Completa l'ordine</h1>
+        <div class="ordine col-7">
 
-        <form action="#" method="POST">
-            <label for="customers_namecustomers_adress">Nome:</label>
-            <input type="text" id="customers_namecustomers_adress" name="customers_namecustomers_adress" required><br><br>
+            <h1>Completa con i tuoi dati</h1>
+
+            <form action="#" method="POST">
+                <label for="customers_namecustomers_adress">Nome:</label>
+                <input type="text" id="customers_namecustomers_adress" name="customers_namecustomers_adress" required><br><br>
+                
+                <label for="customers_adress">Indirizzo di Consegna:</label>
+                <textarea id="customers_adress" name="customers_adress" required></textarea><br><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="phone_number">Numero di Telefono:</label>
+                <input type="tel" id="phone_number" name="phone_number" required><br><br>
+
+                <hr>
+
+                <!-- Campo di pagamento -->
+                <label for="pagamento">Metodo di Pagamento:</label>
+                <select id="pagamento" name="pagamento" required>
+                    <option value="carta">Carta di Credito</option>
+                    <option value="paypal">PayPal</option>
+                </select><br><br>
+
+                <!-- Campo per i dati della carta di credito -->
+                <label for="carta-credito">Numero della Carta di Credito:</label>
+                <input type="text" id="carta-credito" name="carta-credito" class="credit-card" placeholder="XXXX-XXXX-XXXX-XXXX" required><br><br>
+
+                <!-- Campo per la data di scadenza -->
+                <label for="scadenza">Data di Scadenza:</label>
+                <input type="text" id="scadenza" name="scadenza" class="credit-card" placeholder="MM/AA" required><br><br>
+
+                <!-- Campo per il codice di sicurezza (CVV) -->
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" class="credit-card" placeholder="CVV" required><br><br>
+
+                <input type="submit" value="Invia Ordine">
+
+            </form>
+
+        </div>
+
+        <div class="align-self-start container-riepilogo flex-column d-flex">
             
-            <label for="customers_adress">Indirizzo di Consegna:</label>
-            <textarea id="customers_adress" name="customers_adress" required></textarea><br><br>
+            <h3>Riepilogo ordine</h3>
+            <div class="riepilogo">
+                <ul v-for="details in store.cart" :key="details.id">
+                    <li>
+                        <span>{{ details.quantity }} </span>
+                        <span>{{ details.name }} </span>
+                        <span>{{ details.price }} &euro;</span>
+                    </li>
+                </ul>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required><br><br>
+                <div class="total-price">
+                    <hr>
+                    <span >
+                        Prezzo Totale : {{ priceTotal.toFixed(2) }} &euro;
+                    </span>
+                </div>
 
-            <label for="phone_number">Numero di Telefono:</label>
-            <input type="tel" id="phone_number" name="phone_number" required><br><br>
+            </div>
 
-            <hr>
-
-            <!-- Campo di pagamento -->
-            <label for="pagamento">Metodo di Pagamento:</label>
-            <select id="pagamento" name="pagamento" required>
-                <option value="carta">Carta di Credito</option>
-                <option value="paypal">PayPal</option>
-            </select><br><br>
-
-            <!-- Campo per i dati della carta di credito -->
-            <label for="carta-credito">Numero della Carta di Credito:</label>
-            <input type="text" id="carta-credito" name="carta-credito" class="credit-card" placeholder="XXXX-XXXX-XXXX-XXXX" required><br><br>
-
-            <!-- Campo per la data di scadenza -->
-            <label for="scadenza">Data di Scadenza:</label>
-            <input type="text" id="scadenza" name="scadenza" class="credit-card" placeholder="MM/AA" required><br><br>
-
-            <!-- Campo per il codice di sicurezza (CVV) -->
-            <label for="cvv">CVV:</label>
-            <input type="text" id="cvv" name="cvv" class="credit-card" placeholder="CVV" required><br><br>
-
-            <input type="submit" value="Invia Ordine">
-
-        </form>
+        </div>
 
     </div>
 
@@ -169,10 +203,10 @@ export default {
     
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 
-    .container {
-    width: 600px;
+    .ordine {
+
     margin-top: 20px;
     padding: 20px;
     text-align: center; /* Per centrare il contenuto orizzontalmente */
@@ -183,6 +217,7 @@ export default {
     h1 {
     font-size: 24px; /* Imposta la dimensione desiderata */
     margin-bottom: 20px; /* Spazio tra l'h1 e il form */
+    font-weight: bold;
     }
 
         /* Stile generale del form */
@@ -257,39 +292,53 @@ export default {
     margin-top: 20px;
     }
 
+    ul li span {
+    margin-right: 10px; /* Aggiunge uno spazio di 10px a destra di ciascun <span> */
+    }
+
+    .container-riepilogo{
+        margin-top: 130px;
+
+        h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        text-align: center;
+        font-weight: bold;
+        }
+    }
+
+    .riepilogo {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
 
 
-/* .button {
-  cursor: pointer;
-  font-weight: 500;
-  left: 3px;
-  line-height: inherit;
-  position: relative;
-  text-decoration: none;
-  text-align: center;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 3px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  display: inline-block;
-}
+        ul {
+        list-style: none;
+        padding: 0;
+    
+            li {
+            margin-bottom: 5px;
+        
+                span {
+                margin-right: 10px;
+                }
 
-.button--small {
-  padding: 10px 20px;
-  font-size: 0.875rem;
-}
+            }
+        
+        }
 
-.button--green {
-  outline: none;
-  background-color: #64d18a;
-  border-color: #64d18a;
-  color: white;
-  transition: all 200ms ease;
-}
+        .total-price {
 
-.button--green:hover {
-  background-color: #8bdda8;
-  color: white;
-} */
+        justify-content: end;
+        }
+
+    }
+
 </style>
