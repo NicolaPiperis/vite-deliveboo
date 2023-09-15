@@ -3,12 +3,14 @@ import axios from 'axios';
 import { store } from '../store';
 import TypeMenu from '../components/TypeMenu.vue';
 import RestaurantShow from '../components/RestaurantShow.vue';
+import Jumbotron from '../components/Jumbotron.vue';
 
 export default {
   name: 'AppHome',
   components: {
     TypeMenu,
     RestaurantShow,
+    Jumbotron,
   },
   data() {
     return {
@@ -144,6 +146,7 @@ export default {
 </script>
 
 <template>
+  <Jumbotron />
   <div class="main-container">
     <div class="container">
       <div class="row">
