@@ -4,6 +4,7 @@ import { store } from '../store';
 import TypeMenu from '../components/TypeMenu.vue';
 import RestaurantShow from '../components/RestaurantShow.vue';
 import Jumbotron from '../components/Jumbotron.vue';
+import Footer from '../components/Footer.vue';
 
 export default {
   name: 'AppHome',
@@ -11,6 +12,7 @@ export default {
     TypeMenu,
     RestaurantShow,
     Jumbotron,
+    Footer,
   },
   data() {
     return {
@@ -170,6 +172,7 @@ export default {
       </div>
     </div>
   </div>
+  <Footer />
 </template>
 
 <style lang="scss" scoped>
