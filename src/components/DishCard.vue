@@ -64,7 +64,7 @@ export default {
           <h5 class="card-title">{{ dish.dish_name }}</h5>
           <p class="card-text">{{ dish.description }}</p>
           <p class="card-text">
-            <small class="text-body-secondary">{{ dish.price }}</small>
+            <small class="text-body-secondary">{{ dish.price }} &euro;</small>
           </p>
           <div class="container-add">
             <span class="plus">+</span>

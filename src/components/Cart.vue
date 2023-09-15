@@ -82,7 +82,7 @@ export default {
                     <div class="row">
                         <div class="col-2 text-start quantita">{{ details.quantity }}x</div>
                         <div class="col-7 text-center dish-name">{{ details.name }}</div>
-                        <div class="col-3 text-end prezzo">{{ details.price }} &euro;</div>
+                        <div class="col-3 text-end prezzo">{{ (details.price * details.quantity).toFixed(2) }} &euro;</div>
                     </div>
                     <div class="row">
                         <div class="col-2 text-start">
