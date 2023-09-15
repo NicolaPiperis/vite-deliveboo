@@ -57,9 +57,8 @@ export default {
                 <span id="cart-logo"><font-awesome-icon icon="cart-shopping" /></span>
                 <span id="dish-counter">{{ totalDishesInCart }}</span>
             </div>
-            <Cart class="cart" :class="isCartVisible ? 'visible-cart' : 'invisible-cart'" />
+            <!-- <Cart class="cart" :class="isCartVisible ? 'visible-cart' : 'invisible-cart'" /> -->
         </div>
-        <!-- <Cart class="cart" :class="isCartVisible ? 'visible-cart' : 'invisible-cart'" /> -->
     </div>
 </template>
 
