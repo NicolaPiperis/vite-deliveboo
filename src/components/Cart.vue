@@ -102,27 +102,27 @@ export default {
                 <div class="text-center"><font-awesome-icon icon="cart-shopping" /></div>
             </div>
         </div>
-        <div class="d-flex justify-content-between" id="cart-total" v-if="store.cart.length > 0">
+        <!-- <div class="d-flex justify-content-between" id="cart-total" v-if="store.cart.length > 0">
             <p>TOTALE ORDINE:</p>
             <p>&#8364; {{ cartTotal.toFixed(2) }}</p>
-        </div>
+        </div> -->
 
-    </div>
     
     <!-- collegamento pagina checkout -->
-    <router-link
-    :to="{ 
-        name: 'Payment',
-    }">
-
         <div class="card-footer text-body-secondary text-center">
-            <button class="btn btn-success " v-if="store.cart.length > 0">
-                Ordina e Paga {{ cartTotal.toFixed(2) }} &euro;
-            </button>
+            <router-link
+            :to="{ 
+                name: 'Payment',
+            }">
+
+                <button class="btn btn-success " v-if="store.cart.length > 0">
+                    Ordina e Paga {{ cartTotal.toFixed(2) }} &euro;
+                </button>
+
+            </router-link>
+
         </div>
-
-    </router-link>
-
+    </div>
 </template>
 
 <style scoped lang="scss">
