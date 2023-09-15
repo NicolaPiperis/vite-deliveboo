@@ -67,7 +67,7 @@ export default {
                 <i class="fa-solid fa-rss"></i>
                 <i class="fa-regular fa-envelope"></i>
             </div>
-            <p id="copyright"><span class="yellow"><i class="fa-regular fa-copyright"></i> Copyright 2023 | Deliveboo by
+            <p id="copyright"><span class="yellow"><i class="fa-regular fa-copyright"></i> Copyright 2023 | DeliveBoo by
                 </span>TEAM 1<span class="yellow">| All Right Reserved | Powered by </span>Laravel + Vue</p>
         </section>
     </div>
