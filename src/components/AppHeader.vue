@@ -16,13 +16,14 @@ export default {
         totalDishesInCart() {
             // Somma le quantità di tutti gli articoli nel carrello
             return store.cart.reduce((acc, dish) => acc + dish.quantity, 0);
-        }
+        },
+        
     },
     methods: {
         openCart() {
             this.isCartVisible = !this.isCartVisible;
         }
-    }
+    },
 }
 </script>
 

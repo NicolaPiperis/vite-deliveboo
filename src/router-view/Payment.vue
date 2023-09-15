@@ -162,6 +162,8 @@ export default {
 
     </div>
 
+    
+
     <div id="dropin-container"></div>
     <button id="submit-button">Conferma pagamento</button>
     
@@ -170,10 +172,11 @@ export default {
 <style scoped>
 
     .container {
-    max-width: 600px;
+    width: 600px;
     margin-top: 20px;
     padding: 20px;
     text-align: center; /* Per centrare il contenuto orizzontalmente */
+
     }
 
     /* Stile per l'elemento h1 */
