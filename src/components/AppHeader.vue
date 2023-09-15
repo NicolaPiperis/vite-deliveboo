@@ -47,7 +47,9 @@ export default {
 <template>
     <div id="header-container">
         <div class="d-flex justify-content-around header-style" :style="headerStyle">
-            <img id="logo" src="../assets/img/Logo-Bianco-DeliveBoo.png" alt="logo">
+            <router-link :to="{ name: 'AppHome' }">
+                <img id="logo" src="../assets/img/Logo-Bianco-DeliveBoo.png" alt="logo">
+            </router-link>
             <h1>
                 Header di Deliveboo
             </h1>
@@ -107,6 +109,11 @@ h1 {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+#logo {
+    cursor: pointer;
+    height: 60px;
 }
 
 #cart-logo {
