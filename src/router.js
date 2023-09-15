@@ -13,6 +13,12 @@ const router = createRouter({
             path: '/dishes/:id',
             name: 'DishesShow',
             component: () => import('./router-view/DishesShow.vue')
+        },
+
+        {
+            path: '/order',
+            name: 'Payment',
+            component: () => import('./router-view/Payment.vue')
         }
     ]
 });
