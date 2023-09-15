@@ -14,13 +14,18 @@ export default {
 
 <template>
     <div id="header-container">
-
+        <div id="title-container">
+            <p class="white">Affamato?</p>
+            <h1 class="yellow">Cibo <br> Direttamente a<br> Casa!</h1>
+            <button class="white red-button"> VISUALIZZA I RISTORANTI <i class="fa-solid fa-circle-right"></i></button>
+        </div>
     </div>
 </template>
 
 
 <style lang="scss" scoped>
 @use '../styles/general.scss';
+@use "../styles/partials/mixins.scss" as *;
 
 #header-container {
     background-image: url(../assets/img/home-background-hero-scaled.jpg);
@@ -30,5 +35,21 @@ export default {
     width: 100%;
     height: 1200px;
     position: relative;
+
+    #title-container {
+        padding: 250px 20% 400px;
+
+        p:first-of-type {
+            font-size: 45px;
+            font-weight: 600;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 80px;
+            line-height: 80px;
+            margin-bottom: 50px;
+        }
+    }
 }
 </style>

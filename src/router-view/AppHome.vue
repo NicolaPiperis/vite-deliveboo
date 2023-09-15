@@ -4,6 +4,7 @@ import { store } from '../store';
 import TypeMenu from '../components/TypeMenu.vue';
 import RestaurantShow from '../components/RestaurantShow.vue';
 import Jumbotron from '../components/Jumbotron.vue';
+import Footer from '../components/Footer.vue';
 
 export default {
   name: 'AppHome',
@@ -11,6 +12,7 @@ export default {
     TypeMenu,
     RestaurantShow,
     Jumbotron,
+    Footer,
   },
   data() {
     return {
@@ -148,6 +150,7 @@ export default {
 <template>
   <Jumbotron />
   <div class="main-container">
+    <img id="wave-home" src="../assets/img/svg-0.svg" alt="wave">
     <div class="container">
       <div class="row">
         <div class="col-2">
@@ -170,13 +173,22 @@ export default {
       </div>
     </div>
   </div>
+  <Footer />
 </template>
 
 <style lang="scss" scoped>
 @use '../styles/general.scss';
 
 .main-container {
-  // height: calc(100vh - 50px);
+  position: relative;
+
+  #wave-home {
+    transform: scaleX(-1) scaleY(-1);
+    position: absolute;
+    top: -110px;
+    left: 0;
+    width: 100%;
+  }
 
   h3 {
     text-align: center;

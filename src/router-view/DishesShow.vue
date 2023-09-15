@@ -4,6 +4,7 @@ import { store } from '../store';
 import DishShow from '../components/DishShow.vue';
 import Cart from '../components/Cart.vue';
 import RestaurantHeader from '../components/RestaurantHeader.vue';
+import Footer from '../components/Footer.vue';
 
 export default {
   name: 'DishesShow',
@@ -11,6 +12,7 @@ export default {
     DishShow,
     RestaurantHeader,
     Cart,
+    Footer,
   },
 
   data() {
@@ -44,32 +46,42 @@ export default {
 </script>
 
 <template>
-      <RestaurantHeader/>
+  <RestaurantHeader />
   <div class="main-container">
     <div class="container">
-      
-      
+
+
       <div class="row">
 
-        <div class="col-9">      
+        <div class="col-9">
 
           <div class="container-element">
-            <DishShow/>
+            <DishShow />
           </div>
 
         </div>
         <div class="col-3">
           <div class="container-element">
-            
-            <Cart/>
+
+            <Cart />
           </div>
         </div>
 
       </div>
     </div>
+    <!-- <div class="dishcard-container container d-flex flex-wrap justify-content-center gap-4">
+      <DishCard v-for="dish in store.dishesList" :key="dish.id" :dish="dish" />
+    </div> -->
+    <Footer />
   </div>
 </template>
 
 <style lang="scss" scoped>
-  @use '../styles/general.scss';
+@use '../styles/general.scss';
+
+.main-container {}
+
+.dishcard-container {
+  margin-bottom: 100px;
+}
 </style>
