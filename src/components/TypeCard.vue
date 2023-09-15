@@ -23,7 +23,6 @@ export default {
       type="checkbox"
       :name="type.id"
       :value="type.img"
-      v-model="isChecked"
     />
     <span v-html="type.img"></span>
   
