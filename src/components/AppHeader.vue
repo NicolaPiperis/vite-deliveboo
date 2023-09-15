@@ -50,9 +50,9 @@ export default {
             <router-link :to="{ name: 'AppHome' }">
                 <img id="logo" src="../assets/img/Logo-Bianco-DeliveBoo.png" alt="logo">
             </router-link>
-            <h1>
+            <!-- <h1>
                 Header di Deliveboo
-            </h1>
+            </h1> -->
             <div class="cart-container" @click="openCart">
                 <span id="cart-logo"><font-awesome-icon icon="cart-shopping" /></span>
                 <span id="dish-counter">{{ totalDishesInCart }}</span>

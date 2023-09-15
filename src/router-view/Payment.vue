@@ -177,21 +177,30 @@ export default {
             <div class="riepilogo">
                 <ul v-for="details in store.cart" :key="details.id">
                     <li>
-                        <span>{{ details.quantity }} </span>
+                        <span class="quantity-style">{{ details.quantity }} </span>
                         <span>{{ details.name }} </span>
-                        <span>{{ details.price }} &euro;</span>
+                        <span class="price-style">{{ details.price }} &euro;</span>
                     </li>
                 </ul>
 
-                <div>
-                    <hr>
+                <hr>
+                <div class="total-price-style">
                     <span >
-                        Prezzo Totale : {{ priceTotal.toFixed(2) }} &euro;
+                        Prezzo Totale : 
+                    </span>
+                    <span class="price-style">
+                        {{ priceTotal.toFixed(2) }} &euro;
                     </span>
                 </div>
 
+                
             </div>
-
+            
+            <router-link :to="{ name: 'AppHome' }">
+                <div class="btn btn-danger font-weight-bold text-center mt-3">
+                    Torna indietro
+                </div>
+            </router-link>
         </div>
 
     </div>
@@ -315,7 +324,7 @@ export default {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    text-align: left;
 
 
 
@@ -324,14 +333,36 @@ export default {
         padding: 0;
     
             li {
-            margin-bottom: 5px;
-        
-                span {
-                margin-right: 10px;
+                margin-bottom: 5px;
+                display: flex;
+            
+                    span {
+                    margin-right: 10px;
+                    font-weight: bold;
                 }
+                .quantity-style{
+                    border-radius: 50%;
+                    width: 30px;
+                    height: 30px;
+                    display: inline-block;
+                    text-align: center;
+                    background-color: black;
+                    color: white;
+                    font-weight: bold;
 
+                }
+                
             }
+            
+        }
         
+        .price-style{
+            text-align: right;
+            flex-grow: 1;
+        }
+        .total-price-style{
+            font-weight: bold;
+            display: flex;
         }
 
     }

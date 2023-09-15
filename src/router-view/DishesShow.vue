@@ -72,7 +72,4 @@ export default {
 
 <style lang="scss" scoped>
   @use '../styles/general.scss';
-.main-container{
-
-}
 </style>

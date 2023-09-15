@@ -107,21 +107,22 @@ export default {
             <p>&#8364; {{ cartTotal.toFixed(2) }}</p>
         </div>
 
+        <!-- collegamento pagina checkout -->
+        <router-link
+        :to="{ 
+            name: 'Payment',
+        }">
+    
+            <div class="card-footer text-body-secondary text-center">
+                <button class="btn btn-success " v-if="store.cart.length > 0">
+                    Ordina e Paga {{ cartTotal.toFixed(2) }} &euro;
+                </button>
+            </div>
+    
+        </router-link>
+        
     </div>
     
-    <!-- collegamento pagina checkout -->
-    <router-link
-    :to="{ 
-        name: 'Payment',
-    }">
-
-        <div class="card-footer text-body-secondary text-center">
-            <button class="btn btn-success " v-if="store.cart.length > 0">
-                Ordina e Paga {{ cartTotal.toFixed(2) }} &euro;
-            </button>
-        </div>
-
-    </router-link>
 
 </template>
 
