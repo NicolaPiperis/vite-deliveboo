@@ -25,6 +25,7 @@ export default {
           id: this.dish.id,
           name: this.dish.dish_name,
           price: this.dish.price,
+          user_id: this.dish.user_id,
           quantity: 1
         };
         store.cart.push(dishToAdd);

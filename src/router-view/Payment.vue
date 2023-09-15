@@ -15,6 +15,7 @@ export default {
             return this.store.cart.reduce((acc, dish) => {
                 return acc + (dish.price * dish.quantity);
             }, 0);
+            
         }
     },
     methods: {
@@ -132,8 +133,37 @@ export default {
             <h1>Completa con i tuoi dati</h1>
 
             <form action="#" method="POST">
-                <label for="customers_namecustomers_adress">Nome:</label>
-                <input type="text" id="customers_namecustomers_adress" name="customers_namecustomers_adress" required><br><br>
+
+                <h3>Riepilogo ordine</h3>
+                <div class="riepilogo">
+                    <ul v-for="details in store.cart" :key="details.id">
+                        <li>
+                            
+                            <!-- <label for="details.quantity">Quantità:</label> -->
+                            <input type="text" id="details.quantity" name="amount" readonly="readonly" disabled :value="details.quantity"><br><br> <hr>
+
+                            <label for="dish_name"></label>
+                            <input type="text" id="dish_name" name="dish_name" readonly="readonly" disabled :value="details.name"><br><br>
+ 
+
+                            <label for="dish_price"></label>
+                            <input type="text" id="dish_price" name="dish_price" readonly="readonly" disabled :value="details.price"><br><br>
+
+                            <label for="dish_id"></label>
+                            <input type="text" id="dish_id" name="dish_id" readonly="readonly" disabled :value="details.id"><br><br>
+                            
+                        </li>
+                    </ul>
+    
+                    <hr>
+    
+                    <label for="details.total_price"></label>
+                    <input type="text" id="details.total_price" name="details.total_price" readonly="readonly" disabled :value="priceTotal.toFixed(2)"><br><br>
+
+                </div>
+
+                <label for="customers_name">Nome:</label>
+                <input type="text" id="customers_name" name="customers_name" required><br><br>
                 
                 <label for="customers_adress">Indirizzo di Consegna:</label>
                 <textarea id="customers_adress" name="customers_adress" required></textarea><br><br>
@@ -169,39 +199,42 @@ export default {
 
             </form>
 
-        </div>
-
-        <div class="container-riepilogo ">
-            
-            <h3>Riepilogo ordine</h3>
-            <div class="riepilogo">
-                <ul v-for="details in store.cart" :key="details.id">
-                    <li>
-                        <span class="quantity-style">{{ details.quantity }} </span>
-                        <span>{{ details.name }} </span>
-                        <span class="price-style">{{ details.price }} &euro;</span>
-                    </li>
-                </ul>
-
-                <hr>
-                <div class="total-price-style">
-                    <span >
-                        Prezzo Totale : 
-                    </span>
-                    <span class="price-style">
-                        {{ priceTotal.toFixed(2) }} &euro;
-                    </span>
-                </div>
-
+            <div class="container-riepilogo ">
                 
-            </div>
-            
-            <router-link :to="{ name: 'AppHome' }">
-                <div class="btn btn-danger font-weight-bold text-center mt-3">
-                    Torna indietro
+                <h3>Riepilogo ordine</h3>
+                <div class="riepilogo">
+                    <ul v-for="details in store.cart" :key="details.id">
+                        <li>
+                            <span class="quantity-style">{{ details.quantity }} </span>
+                            <span>{{ details.name }} </span>
+                            <span class="price-style">{{ details.price }} &euro;</span>
+                        </li>
+                    </ul>
+    
+                    <hr>
+                    <div class="total-price-style">
+                        <span >
+                            Prezzo Totale : 
+                        </span>
+                        <span class="price-style">
+                            {{ priceTotal.toFixed(2) }} &euro;
+                        </span>
+                    </div>
+    
+                    
                 </div>
-            </router-link>
+                
+                <router-link :to="{ 
+                    name: 'DishesShow',
+                    params: { id: store.cart[0].user_id }
+                }">
+                    <div class="btn btn-danger font-weight-bold text-center mt-3">
+                        Torna indietro
+                    </div>
+                </router-link>
+            </div>
         </div>
+
 
     </div>
 
@@ -307,8 +340,8 @@ export default {
 
     .container-riepilogo{
         margin-top: 130px;
-        position: fixed;
-        right: 600px;
+        // position: fixed;
+        // right: 600px;
 
         h3 {
         font-size: 24px;
