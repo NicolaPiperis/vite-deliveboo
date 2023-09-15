@@ -94,7 +94,17 @@ export default {
             <p>TOTALE ORDINE:</p>
             <p>&#8364; {{ cartTotal.toFixed(2) }}</p>
         </div>
+
+        <!-- collegamento pagina checkout -->
+        <router-link
+        :to="{ 
+            name: 'Payment',
+        }">
+
         <button id="checkout-btn" v-if="store.cart.length > 0">Vai al pagamento</button>
+
+        </router-link>
+
         <div class="d-flex flex-column justify-content-center align-items-center" id="empty-cart"
             v-if="store.cart.length < 1">
             <p>IL TUO CARRELLO E' VUOTO</p>

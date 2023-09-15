@@ -13,11 +13,17 @@ export default {
       store,
     }
   },
+  computed: {
+    isPaymentRoute() {
+      // Verifica se la route corrente è "Payment"
+      return this.$route.name === 'Payment';
+    }
+  }
 }
 </script>
 
 <template>
-  <AppHeader />
+  <AppHeader v-if="!isPaymentRoute"/>
   <router-view></router-view>
 </template>
 
