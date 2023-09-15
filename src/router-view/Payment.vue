@@ -171,7 +171,7 @@ export default {
 
         </div>
 
-        <div class="align-self-start container-riepilogo flex-column d-flex">
+        <div class="container-riepilogo ">
             
             <h3>Riepilogo ordine</h3>
             <div class="riepilogo">
@@ -183,7 +183,7 @@ export default {
                     </li>
                 </ul>
 
-                <div class="total-price">
+                <div>
                     <hr>
                     <span >
                         Prezzo Totale : {{ priceTotal.toFixed(2) }} &euro;
@@ -298,6 +298,8 @@ export default {
 
     .container-riepilogo{
         margin-top: 130px;
+        position: fixed;
+        right: 600px;
 
         h3 {
         font-size: 24px;
@@ -314,9 +316,7 @@ export default {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    min-height: 500px;
-    display: flex;
-    flex-direction: column;
+
 
 
         ul {
@@ -332,11 +332,6 @@ export default {
 
             }
         
-        }
-
-        .total-price {
-
-        justify-content: end;
         }
 
     }
