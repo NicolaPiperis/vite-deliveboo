@@ -3,12 +3,14 @@ import axios from 'axios';
 import { store } from '../store';
 import DishCard from '../components/DishCard.vue';
 import RestaurantHeader from '../components/RestaurantHeader.vue';
+import Footer from '../components/Footer.vue';
 
 export default {
   name: 'DishesShow',
   components: {
     DishCard,
     RestaurantHeader,
+    Footer,
   },
 
   data() {
@@ -51,9 +53,10 @@ export default {
 
   <h2 class="text-center mb-4">piatti</h2>
 
-  <div class="container d-flex flex-wrap justify-content-center gap-4">
+  <div class="dishcard-conainer container d-flex flex-wrap justify-content-center gap-4">
     <DishCard v-for="dish in store.dishesList" :key="dish.id" :dish="dish" />
   </div>
+  <Footer />
 </template>
 
 <style lang="scss" scoped>
@@ -61,5 +64,9 @@ export default {
 
 h3 {
   text-align: center;
+}
+
+.dishcard-conainer {
+  margin-bottom: 100px;
 }
 </style>

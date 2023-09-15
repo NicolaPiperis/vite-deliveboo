@@ -150,6 +150,7 @@ export default {
 <template>
   <Jumbotron />
   <div class="main-container">
+    <img id="wave" src="../assets/img/svg-0.svg" alt="wave">
     <div class="container">
       <div class="row">
         <div class="col-2">
@@ -179,7 +180,15 @@ export default {
 @use '../styles/general.scss';
 
 .main-container {
-  // height: calc(100vh - 50px);
+  position: relative;
+
+  #wave {
+    transform: scaleX(-1) scaleY(-1);
+    position: absolute;
+    top: -110px;
+    left: 0;
+    width: 100%;
+  }
 
   h3 {
     text-align: center;
