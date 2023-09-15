@@ -134,26 +134,5 @@ export default {
 
 <style lang="scss" scoped>
 @use '../styles/general.scss';
-.main-container{
-  // height: calc(100vh - 50px);
 
-  h3 {
-    text-align: center;
-  }
-  .container-element {
-    padding-top: 20px;
-    height: calc(100vh - 100px);
-    overflow-y: scroll; /* Abilita lo scorrimento quando necessario */
-    scrollbar-width: thin; /* Larghezza sottile della barra di scorrimento */
-    scrollbar-color: transparent transparent; /* Colore trasparente per la barra di scorrimento */
-}
-
-.container-element::-webkit-scrollbar {
-  width: 6px; /* Larghezza della barra di scorrimento */
-}
-
-.container-element::-webkit-scrollbar-thumb {
-  background-color: transparent; /* Colore trasparente per il "pulsante" di scorrimento */
-}
-}
 </style>
