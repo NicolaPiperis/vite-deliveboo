@@ -16,7 +16,7 @@ export default {
     },
     methods: {
         handleImageError(event) {
-            event.target.src = store.errorImageURL;
+            event.target.src = 'https://picsum.photos/1200/800';
         }
     }
 }
@@ -27,7 +27,9 @@ export default {
    
         <div class="container-img">
             <img :src="store.imageURL + store.restaurantSelected.img" class="card-img"
-                :alt="store.restaurantSelected.restaurant_name">
+                :alt="store.restaurantSelected.restaurant_name"
+                @error="handleImageError"
+                >
             <div class="text-restaurant">
                 <div class="container">
                     <div class="row mb-2">
