@@ -72,64 +72,68 @@ export default {
 </script>
 
 <template>
-    <div>
-        <div v-for="details in store.cart" :key="details.id">
-            <div class="d-flex align-items-center">
-                <div class="delete-button-container">
-                    <span @click="removeDishesById(details)">X</span>
+    <div class="card">
+        <div class="card-header">
+            <h2 class=" text-center">Il tuo carrello</h2>
+        </div>
+        <div class="card-body">
+            <div v-for="details in store.cart" :key="details.id">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-2 text-start quantita">{{ details.quantity }}x</div>
+                        <div class="col-7 text-center dish-name">{{ details.name }}</div>
+                        <div class="col-3 text-end prezzo">{{ details.price }} &euro;</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 text-start">
+                            <div class="add-button plus" @click="decreaseQuantity(details)">-</div>
+                        </div>
+                        <div class="col-7 text-center mod">Modifica</div>
+                        <div class="col-3 d-flex justify-content-end">
+                            <div class="deduct-button plus" @click="increaseQuantity(details)">+</div>
+                        </div>
+                    </div>
                 </div>
-                <ul class="dish-display-container">
-                    <li>Nome: {{ details.name }}</li>
-                    <li>Prezzo: {{ details.price }}</li>
-                </ul>
-                <div class="count-cart-container d-flex">
-                    <span class="add-button" @click="decreaseQuantity(details)">-</span>
-                    <span class="counter">{{ details.quantity }}</span>
-                    <span class="deduct-button" @click="increaseQuantity(details)">+</span>
-                </div>
+
+                <hr>
             </div>
-            <hr>
+            <div id="empty-cart" v-if="store.cart.length < 1">
+                <p class="text-center">IL TUO CARRELLO E' VUOTO</p>
+                <div class="text-center"><font-awesome-icon icon="cart-shopping" /></div>
+            </div>
         </div>
-        <div class="d-flex justify-content-between" id="cart-total" v-if="store.cart.length > 0">
-            <p>TOTALE ORDINE:</p>
-            <p>&#8364; {{ cartTotal.toFixed(2) }}</p>
+        <div class="card-footer text-body-secondary text-center">
+            <button class="btn btn-success " v-if="store.cart.length > 0">
+                Ordina e Paga {{ cartTotal.toFixed(2) }} &euro;
+            </button>
         </div>
-        <button id="checkout-btn" v-if="store.cart.length > 0">Vai al pagamento</button>
-        <div class="d-flex flex-column justify-content-center align-items-center" id="empty-cart"
-            v-if="store.cart.length < 1">
-            <p>IL TUO CARRELLO E' VUOTO</p>
-            <span><font-awesome-icon icon="cart-shopping" /></span>
-        </div>
+
     </div>
 </template>
 
 <style scoped lang="scss">
 @use '../styles/general.scss';
 
-.cart {
-    min-height: 150px;
-    max-width: 300px;
-    min-width: 400px;
-    background-color: #0099ff;
-    border: 3px solid black;
-    border-radius: 30px;
-    position: fixed;
-    top: 120px;
-    right: 20px;
-    padding-top: 20px;
-}
+// .cart {
+//     min-height: 150px;
+//     max-width: 300px;
+//     min-width: 400px;
+//     background-color: #0099ff;
+//     border: 3px solid black;
+//     border-radius: 30px;
+//     position: fixed;
+//     top: 120px;
+//     right: 20px;
+//     padding-top: 20px;
+// }
 
-.invisible-cart {
-    display: none;
-}
+// .invisible-cart {
+//     display: none;
+// }
 
-.visible-cart {
-    display: block;
-}
-
-ul {
-    list-style: none;
-}
+// .visible-cart {
+//     display: block;
+// }
 
 hr {
     margin-right: 15px;
@@ -138,105 +142,34 @@ hr {
     border: 1px solid black;
 }
 
-.delete-button-container {
-    width: 10%;
-
-    span {
-        color: red;
-        font-weight: bold;
-        font-size: 18px;
-        margin-left: 10px;
-        background-color: white;
-        padding: 1px 4px;
-    }
-
-    &:hover {
-        cursor: pointer;
-    }
+.prezzo{
+    font-size: 12px;
 }
-
-.dish-display-container {
-    width: 65%;
+.dish-name{
+    font-size: 14px;
 }
-
-.count-cart-container {
-    width: 25%;
-    margin-left: 10px;
-
-    .add-button {
-        color: black;
-        font-weight: bold;
-        font-size: 15px;
-        background-color: white;
-        border: 1px solid gray;
-        padding: 0 9px;
-        border-radius: 4px;
-
-        &:hover {
-            cursor: pointer;
-        }
-    }
-
-    .counter {
-        margin: 0 7px;
-        font-size: 18px;
-        font-weight: bold;
-    }
-
-    .deduct-button {
-        color: black;
-        font-weight: bold;
-        font-size: 15px;
-        background-color: white;
-        border: 1px solid gray;
-        padding: 0 7px;
-        border-radius: 4px;
-
-        &:hover {
-            cursor: pointer;
-        }
-    }
-}
-
-#cart-total {
-    margin: 0 20px;
+.quantita{
     font-weight: bold;
-    font-size: 18px;
 }
-
-#empty-cart {
-    color: white;
-    height: 100%;
-
-    p {
-        font-size: 25px;
-        margin: 30px 0;
+.plus {
+    text-align: center;
+    line-height: 17px;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgb(155, 211, 72);
+    color: rgb(2, 93, 2);
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    }
+    .mod{
+        font-size: 15px;
+        color:  rgb(155, 211, 72);
     }
 
-    span {
-        font-size: 70px;
-        margin-bottom: 30px;
-    }
-}
 
-#checkout-btn {
-    display: block; // Centra il bottone
-    margin: 0 auto 20px; // Centra il bottone
-    padding: 10px 20px; // Spazio interno
-    background-color: rgb(202, 146, 73); // Colore di sfondo
-    color: #ffffff; // Colore del testo
-    border: 2px solid black;
-    border-radius: 8px; // Angoli arrotondati
-    font-size: 16px; // Dimensione del testo
-    cursor: pointer; // Cambia il cursore quando sopra il bottone
-    transition: background-color 0.3s, transform 0.2s; // Aggiunge una transizione per l'hover e l'active
 
-    &:hover {
-        background-color: rgb(182, 126, 53); // Scurisce il colore di sfondo quando il mouse è sopra
-    }
 
-    &:active {
-        transform: scale(0.97); // Riduce leggermente la dimensione del bottone quando premuto
-    }
-}
 </style>

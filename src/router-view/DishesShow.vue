@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { store } from '../store';
 import DishShow from '../components/DishShow.vue';
+import Cart from '../components/Cart.vue';
 import RestaurantHeader from '../components/RestaurantHeader.vue';
 
 export default {
@@ -9,6 +10,7 @@ export default {
   components: {
     DishShow,
     RestaurantHeader,
+    Cart,
   },
   data() {
     return {
@@ -43,27 +45,25 @@ export default {
 </script>
 
 <template>
-
+      <RestaurantHeader/>
   <div class="main-container">
-
-
-
     <div class="container">
+      
+      
       <div class="row">
 
         <div class="col-9">      
 
           <div class="container-element">
-            <div class="container d-flexjustify-content-center">
-    <!-- Utilizza il componente RestaurantHeader -->
-    <RestaurantHeader/>
-  </div>
-            <h2>piatti</h2>
             <DishShow/>
           </div>
 
         </div>
         <div class="col-3">
+          <div class="container-element">
+            
+            <Cart/>
+          </div>
         </div>
 
       </div>
@@ -73,5 +73,7 @@ export default {
 
 <style lang="scss" scoped>
   @use '../styles/general.scss';
+.main-container{
 
+}
 </style>
