@@ -23,10 +23,9 @@ export default {
 </script>
 
 <template>
-
   <div class="container">
     <div class="row">
-      <div class="col-4" v-for="singleRestaurant in store.restaurantSearch" :key="singleRestaurant.id" >
+      <div class="col-4" v-for="singleRestaurant in store.restaurantSearch" :key="singleRestaurant.id">
         <RestaurantCard :restaurant="singleRestaurant" />
       </div>
     </div>
@@ -35,5 +34,4 @@ export default {
 
 <style lang="scss" scoped>
 @use '../styles/general.scss';
-
 </style>

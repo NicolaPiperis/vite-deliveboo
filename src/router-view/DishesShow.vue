@@ -10,14 +10,13 @@ export default {
     DishCard,
     RestaurantHeader,
   },
+
   data() {
     return {
       store,
     }
   },
-  methods: {
-    // Puoi definire qui eventuali metodi personalizzati per il componente
-  },
+
   mounted() {
     // Ottieni l'ID del ristorante dalla route attuale
     const restaurantId = this.$route.params.id;
@@ -47,7 +46,7 @@ export default {
 
   <div class="container container d-flex flex-wrap justify-content-center mb-5">
     <!-- Utilizza il componente RestaurantHeader -->
-    <RestaurantHeader/>
+    <RestaurantHeader />
   </div>
 
   <h2 class="text-center mb-4">piatti</h2>
@@ -58,8 +57,9 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-  @use '../styles/general.scss';
-  h3 {
-    text-align: center;
-  }
+@use '../styles/general.scss';
+
+h3 {
+  text-align: center;
+}
 </style>
