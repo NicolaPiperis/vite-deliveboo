@@ -59,7 +59,7 @@ export default {
             </div>
             <Cart class="cart" :class="isCartVisible ? 'visible-cart' : 'invisible-cart'" />
         </div>
-
+        <!-- <Cart class="cart" :class="isCartVisible ? 'visible-cart' : 'invisible-cart'" /> -->
     </div>
 </template>
 

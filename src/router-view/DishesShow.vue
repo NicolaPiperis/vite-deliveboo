@@ -1,14 +1,16 @@
 <script>
 import axios from 'axios';
 import { store } from '../store';
-import DishCard from '../components/DishCard.vue';
+import DishShow from '../components/DishShow.vue';
+import Cart from '../components/Cart.vue';
 import RestaurantHeader from '../components/RestaurantHeader.vue';
 
 export default {
   name: 'DishesShow',
   components: {
-    DishCard,
+    DishShow,
     RestaurantHeader,
+    Cart,
   },
 
   data() {
@@ -42,24 +44,35 @@ export default {
 </script>
 
 <template>
-  <h3>Questa è la card type</h3>
+      <RestaurantHeader/>
+  <div class="main-container">
+    <div class="container">
+      
+      
+      <div class="row">
 
-  <div class="container container d-flex flex-wrap justify-content-center mb-5">
-    <!-- Utilizza il componente RestaurantHeader -->
-    <RestaurantHeader />
-  </div>
+        <div class="col-9">      
 
-  <h2 class="text-center mb-4">piatti</h2>
+          <div class="container-element">
+            <DishShow/>
+          </div>
 
-  <div class="container d-flex flex-wrap justify-content-center gap-4">
-    <DishCard v-for="dish in store.dishesList" :key="dish.id" :dish="dish" />
+        </div>
+        <div class="col-3">
+          <div class="container-element">
+            
+            <Cart/>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-@use '../styles/general.scss';
+  @use '../styles/general.scss';
+.main-container{
 
-h3 {
-  text-align: center;
 }
 </style>
