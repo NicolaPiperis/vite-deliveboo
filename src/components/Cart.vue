@@ -65,8 +65,10 @@ export default {
             } catch (e) {
                 console.error('Failed to load cart from sessionStorage:', e);
             }
-        }
-    },
+        };
+
+    }
+    
 }
 
 </script>

@@ -1,9 +1,13 @@
 <script>
 import { store } from '../store';
+import Braintree from '../components/Braintree.vue';
 
 
 export default {
     name: 'Payment',
+    components: {
+        Braintree
+    },
     data() {
         return {
             store,
@@ -18,107 +22,105 @@ export default {
             
         }
     },
-    methods: {
-        // Conferma pagamento dal carrello
-        confirmPayment() {
-            this.$emit('', {
+    // methods: {
 
-            });
-        },
+    //     confirmPayment() {
+    //         this.$emit('', {
 
-        // API Braintree
-        getBraintree() {
-            // const braintree = require('braintree');  --> Inserito nell'index
+    //         });
+    //     },
 
-            var gateway = new braintree.BraintreeGateway({
-                environment: braintree.Environment.Sandbox,
-                merchantId: '95dqr4b9sk8hvw6h',
-                publicKey: 'mhfn7bd29dvj2774',
-                privateKey: '395dbfc136c8baddbf06dcc4f54427fc'
-            });
 
-            return gateway;
-        },
+    //     getBraintree() {
 
-        // Genera token
-        getToken() {
-            gateway.clientToken.generate({}, function (err, response) {
-                if (err) {
-                    console.error(err);
-                    return;
-                }
 
-                var clientToken = response.clientToken;
-                // Utilizza clientToken nel frontend
-            });
+    //         var gateway = new braintree.BraintreeGateway({
+    //             environment: braintree.Environment.Sandbox,
+    //             merchantId: '95dqr4b9sk8hvw6h',
+    //             publicKey: 'mhfn7bd29dvj2774',
+    //             privateKey: '395dbfc136c8baddbf06dcc4f54427fc'
+    //         });
 
-        },
+    //         return gateway;
+    //     },
 
-        // Modulo di pagamento
-        goToPay() {
-            var form = document.querySelector('#payment-form');
+    //     getToken() {
+    //         gateway.clientToken.generate({}, function (err, response) {
+    //             if (err) {
+    //                 console.error(err);
+    //                 return;
+    //             }
 
-            gateway.dropin.create({
-                authorization: this.clientToken,
-                container: '#dropin-container'
-            }, function (err, instance) {
-                if (err) {
-                    console.error(err);
-                    return;
-                }
+    //             var clientToken = response.clientToken;
 
-                form.addEventListener('submit', function (event) {
-                    event.preventDefault();
+    //         });
 
-                    instance.requestPaymentMethod(function (err, payload) {
-                        if (err) {
-                            console.error(err);
-                            return;
-                        }
+    //     },
 
-                        // Invia payload al server per l'elaborazione del pagamento
-                    });
-                });
-            });
 
-        },
+    //     goToPay() {
+    //         var form = document.querySelector('#payment-form');
 
-        // Crea transazione
-        createTransaction() {
-            document.getElementById('pay-button').addEventListener('click', function () {
-                gateway.client.create({
-                    authorization: 'IL_TUO_CLIENT_TOKEN'
-                }, function (clientErr, clientInstance) {
-                    if (clientErr) {
-                        console.error(clientErr);
-                        return;
-                    }
+    //         gateway.dropin.create({
+    //             authorization: this.clientToken,
+    //             container: '#dropin-container'
+    //         }, function (err, instance) {
+    //             if (err) {
+    //                 console.error(err);
+    //                 return;
+    //             }
 
-                    // Crea la transazione
-                    clientInstance.request({
-                        endpoint: 'payment_methods/credit_cards',
-                        method: 'post',
-                        data: {
-                            creditCard: {
-                                number: '',
-                                expirationDate: '',
-                            }
-                        }
-                    }, function (requestErr, response) {
-                        if (requestErr) {
-                            console.error(requestErr);
-                            return;
-                        }
+    //             form.addEventListener('submit', function (event) {
+    //                 event.preventDefault();
 
-                        // Gestisci la risposta della transazione
-                        console.log(response);
-                    });
-                });
-            });
+    //                 instance.requestPaymentMethod(function (err, payload) {
+    //                     if (err) {
+    //                         console.error(err);
+    //                         return;
+    //                     }
 
-        }
+    //                 });
+    //             });
+    //         });
 
-    }
+    //     },
+
+
+    //     createTransaction() {
+    //         document.getElementById('pay-button').addEventListener('click', function () {
+    //             gateway.client.create({
+    //                 authorization: 'IL_TUO_CLIENT_TOKEN'
+    //             }, function (clientErr, clientInstance) {
+    //                 if (clientErr) {
+    //                     console.error(clientErr);
+    //                     return;
+    //                 }
+
+
+    //                 clientInstance.request({
+    //                     endpoint: 'payment_methods/credit_cards',
+    //                     method: 'post',
+    //                     data: {
+    //                         creditCard: {
+    //                             number: '',
+    //                             expirationDate: '',
+    //                         }
+    //                     }
+    //                 }, function (requestErr, response) {
+    //                     if (requestErr) {
+    //                         console.error(requestErr);
+    //                         return;
+    //                     }
+
+
+    //                     console.log(response);
+    //                 });
+    //             });
+    //         });
+
+    //     }
+
+    // }
 }
 
 
@@ -177,25 +179,25 @@ export default {
                 <hr>
 
                 <!-- Campo di pagamento -->
-                <label for="pagamento">Metodo di Pagamento:</label>
+                <!-- <label for="pagamento">Metodo di Pagamento:</label>
                 <select id="pagamento" name="pagamento" required>
                     <option value="carta">Carta di Credito</option>
                     <option value="paypal">PayPal</option>
-                </select><br><br>
+                </select><br><br> -->
 
                 <!-- Campo per i dati della carta di credito -->
-                <label for="carta-credito">Numero della Carta di Credito:</label>
-                <input type="text" id="carta-credito" name="carta-credito" class="credit-card" placeholder="XXXX-XXXX-XXXX-XXXX" required><br><br>
+                <!-- <label for="carta-credito">Numero della Carta di Credito:</label>
+                <input type="text" id="carta-credito" name="carta-credito" class="credit-card" placeholder="XXXX-XXXX-XXXX-XXXX" required><br><br> -->
 
                 <!-- Campo per la data di scadenza -->
-                <label for="scadenza">Data di Scadenza:</label>
-                <input type="text" id="scadenza" name="scadenza" class="credit-card" placeholder="MM/AA" required><br><br>
+                <!-- <label for="scadenza">Data di Scadenza:</label>
+                <input type="text" id="scadenza" name="scadenza" class="credit-card" placeholder="MM/AA" required><br><br> -->
 
                 <!-- Campo per il codice di sicurezza (CVV) -->
-                <label for="cvv">CVV:</label>
-                <input type="text" id="cvv" name="cvv" class="credit-card" placeholder="CVV" required><br><br>
+                <!-- <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" class="credit-card" placeholder="CVV" required><br><br> -->
 
-                <input type="submit" value="Invia Ordine">
+                <input type="submit" value="Invia Ordine"> 
 
             </form>
 
@@ -224,14 +226,14 @@ export default {
                     
                 </div>
                 
-                <router-link :to="{ 
+                <!-- <router-link :to="{ 
                     name: 'DishesShow',
                     params: { id: store.cart[0].user_id }
                 }">
                     <div class="btn btn-danger font-weight-bold text-center mt-3">
                         Torna indietro
                     </div>
-                </router-link>
+                </router-link> -->
             </div>
         </div>
 
@@ -239,9 +241,11 @@ export default {
     </div>
 
     
-
+<!-- 
     <div id="dropin-container"></div>
-    <button id="submit-button">Conferma pagamento</button>
+    <button id="submit-button">Conferma pagamento</button> -->
+
+    <Braintree/>
     
 </template>
 
