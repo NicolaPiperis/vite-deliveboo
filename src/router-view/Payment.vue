@@ -1,26 +1,10 @@
 <template>
     <div>
-        <form action="#" method="POST">
-            <div class="riepilogo_invisible">
+        <form method="POST" ref="orderForm"
+        @submit.prevent="submitOrder">
+
+            <div class="riepilogo_form">
                 <h3>Riepilogo ordine</h3>
-                <ul v-for="details in store.cart" :key="details.id">
-                    <li>
-                        <input type="text" id="details.quantity" name="amount" readonly="readonly" disabled
-                            :value="details.quantity">
-                        <br><br>
-                        <label for="dish_name"></label>
-                        <input type="text" id="dish_name" name="dish_name" readonly="readonly" disabled
-                            :value="details.name">
-                        <br><br>
-                        <label for="dish_price"></label>
-                        <input type="text" id="dish_price" name="dish_price" readonly="readonly" disabled
-                            :value="details.price">
-                        <br><br>
-                        <label for="dish_id"></label>
-                        <input type="text" id="dish_id" name="dish_id" readonly="readonly" disabled :value="details.id">
-                        <br><br>
-                    </li>
-                </ul>
 
                 <hr>
 
@@ -50,20 +34,23 @@
             </div>
 
             <label for="customers_name">Nome:</label>
-            <input type="text" id="customers_name" name="customer_name" required><br><br>
+            <input type="text" id="customers_name" name="customer_name" required v-model="this.customer_name"><br><br>
 
             <label for="customers_adress">Indirizzo di Consegna:</label>
-            <textarea id="customers_adress" name="customer_adress" required></textarea><br><br>
+            <textarea id="customers_adress" name="customer_adress" required v-model="this.customer_adress"></textarea><br><br>
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required><br><br>
+            <input type="email" id="email" name="email" required  v-model="this.email"><br><br>
 
             <label for="phone_number">Numero di Telefono:</label>
-            <input type="tel" id="phone_number" name="phone_number" required><br><br>
+            <input type="tel" id="phone_number" name="phone_number" required v-model="this.phone_number"><br><br>
 
-            <!-- <hr>
-            <input type="submit" value="Invia Ordine">  -->
-            <Braintree @mystore="getDataOrder" />
+            <div v-if="errorMessage">
+                <p>{{ errorMessage }}</p>
+            </div>
+
+            <Braintree />
+    
         </form>
     </div>
     <button @click="debug()">debug</button>
@@ -89,31 +76,46 @@ export default {
             customer_adress: '',
             email: '',
             phone_number: '',
-            dish_id: '',
-            amount: ''
+            status: false,
+            errorMessage: '',
 
         };
     },
     methods: {
-        getDataOrder() {
-            // Simula il click del pulsante di invio del form
-            this.$refs.orderForm.submit();
+        submitOrder() {
+             // Controlla la risposta del pagamento (sostituisci con la logica di Braintree)
+             if (paymentIsSuccessful) {
+                this.status = true;
+            // Puoi fare altre azioni qui, ad esempio mostrare il riepilogo dell'ordine
+            } else {
+                this.errorMessage = 'Pagamento non riuscito. Si prega di riprovare.';
+            }
 
             const formData = {
-                customers_name: this.customers_name,
-                customers_adress: this.customers_adress,
+                customer_name: this.customer_name,
+                customer_adress: this.customer_adress,
                 email: this.email,
-                phone_number: this.phone_number,
-                dish_id: this.dish_id,
-                amount: this.amount
-            };
+                phone_number: this.phone_number, 
+                status: this.status,
+                total_price: this.priceTotal.toFixed(2),
 
+                dishes: this.store.cart.map((dish) => ({
+                    dish_id: dish.id,
+                    amount: dish.quantity,
+                 })),
+            };
+            console.log(formData);
             axios.post('http://localhost:8000/api/v1/orders', formData)
                 .then(response => {
-                    console.log(response);
+                    console.log('risposta axios', response.data);
+
+   
                 })
+
                 .catch(error => {
                     console.log(error);
+                    this.errorMessage = 'Si è verificato un errore durante il pagamento. Si prega di riprovare più tardi.';
+
                 });
         }
     },
@@ -229,7 +231,7 @@ ul li span {
     margin-top: 30px;
 }
 
-    .riepilogo_invisible {
+    .riepilogo_form {
         display: none;
         background-color: #f9f9f9;
         padding: 20px;
