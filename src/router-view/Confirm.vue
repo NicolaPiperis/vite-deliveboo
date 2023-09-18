@@ -9,13 +9,14 @@ export default {
   data() {
     return {
       store,
+      orderData: [],
     };
   },
   methods: {
 
   },
   mounted() {
- 
+;
   }
 }
 </script>

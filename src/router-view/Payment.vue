@@ -93,18 +93,9 @@ export default {
             console.log(formData);
             axios.post('http://localhost:8000/api/v1/orders', formData)
                 .then(response => {
-                    console.log('risposta axios', response.data);
-                    // this.$router.push({ name: 'OrderConfirmation' });
-                    console.log('risposta axios', response.data.order);
-                    console.log('risposta axios', response.data.order.customer_name);
-                    console.log('risposta axios', response.data.order.customer_adress);
-                    console.log('risposta axios', response.data.order.email);
-                    console.log('risposta axios', response.data.order.phone_number);
-                    console.log('risposta axios', response.data.order.total_price);
-                    console.log('risposta axios', response.data.order.dishes);
                     store.order = response.data.order
-                    console.log('dati salvati', store.order)
 
+                    // resetto carrello e form
                     this.$refs.orderForm.reset();
                     this.store.cart = [];
                     sessionStorage.removeItem('cart');
