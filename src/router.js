@@ -19,7 +19,13 @@ const router = createRouter({
             path: '/order',
             name: 'Payment',
             component: () => import('./router-view/Payment.vue')
-        }
+        },
+
+        {
+            path: '/confirm/:orderId',
+            name: 'Confirm',
+            component: () => import('./router-view/Confirm.vue')
+        },
     ]
 });
 

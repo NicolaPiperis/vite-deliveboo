@@ -98,7 +98,6 @@ export default {
                     this.$refs.orderForm.reset();
                     this.store.cart = [];
                     sessionStorage.removeItem('cart');
-                    this.$router.push({ name: 'Confirm' });
                 })
 
                 .catch(error => {
