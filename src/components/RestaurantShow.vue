@@ -25,7 +25,7 @@ export default {
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-4" v-for="singleRestaurant in store.restaurantSearch" :key="singleRestaurant.id">
+      <div class=" col-md-4 col-sm-12" v-for="singleRestaurant in store.restaurantSearch" :key="singleRestaurant.id">
         <RestaurantCard :restaurant="singleRestaurant" />
       </div>
     </div>
