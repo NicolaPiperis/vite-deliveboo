@@ -8,6 +8,17 @@ export default {
         return {
         };
     },
+    methods: {
+        scrollToRestaurantShow() {
+            const element = document.getElementById('restaurant-show');
+            const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+            const offset = 200; // Cambia questo valore in base all'altezza del tuo menu
+            window.scrollTo({
+                top: elementPosition - offset,
+                behavior: 'smooth'
+            });
+        }
+    }
 }
 
 </script>
@@ -17,7 +28,8 @@ export default {
         <div id="title-container">
             <p class="white">Affamato?</p>
             <h1 class="yellow">Cibo <br> Direttamente a<br> Casa!</h1>
-            <button class="white red-button"> VISUALIZZA I RISTORANTI <i class="fa-solid fa-circle-right"></i></button>
+            <button class="white red-button" @click="scrollToRestaurantShow"> VISUALIZZA I RISTORANTI <i
+                    class="fa-solid fa-circle-right"></i></button>
         </div>
     </div>
 </template>
