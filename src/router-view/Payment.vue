@@ -72,13 +72,12 @@ export default {
             customer_adress: '',
             email: '',
             phone_number: '',
+            errorMessage: '',
 
         };
     },
     methods: {
         submitOrder() {
-            // Simula il click del pulsante di invio del form
-            // this.$refs.orderForm.submit();
 
             const formData = {
                 customer_name: this.customer_name,
@@ -95,10 +94,29 @@ export default {
             axios.post('http://localhost:8000/api/v1/orders', formData)
                 .then(response => {
                     console.log('risposta axios', response.data);
-                    this.$router.push({ name: 'OrderConfirmation' });
+                    // this.$router.push({ name: 'OrderConfirmation' });
+                    console.log('risposta axios', response.data.order);
+                    console.log('risposta axios', response.data.order.customer_name);
+                    console.log('risposta axios', response.data.order.customer_adress);
+                    console.log('risposta axios', response.data.order.email);
+                    console.log('risposta axios', response.data.order.phone_number);
+                    console.log('risposta axios', response.data.order.total_price);
+                    console.log('risposta axios', response.data.order.dishes);
+                    store.order = response.data.order
+                    console.log('dati salvati', store.order)
+
+                    this.$refs.orderForm.reset();
+                    this.store.cart = [];
+                    sessionStorage.removeItem('cart');
+
+                    this.$router.push({
+                        name: 'Confirm',
+                        params: { orderData: response.data.order }
+                    });
                 })
                 .catch(error => {
                     console.log(error);
+
                 });
         }
     },
