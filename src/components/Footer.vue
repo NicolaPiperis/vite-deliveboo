@@ -22,16 +22,16 @@ export default {
             <ul id="voucher-column">
                 <h4>VOUCHER</h4>
                 <img id="footer-coupon" src="../assets/img/Logo-Bianco-DeliveBoo.png" alt="footer-coupon">
-                <p>Just Use The Code</p>
+                <p>Basta usare il codice</p>
                 <p class="yellow" id="coupon-code">FIRSTORDER</p>
-                <p>At Checkout</p>
+                <p>Al pagamento</p>
             </ul>
 
             <!-- navigate column -->
             <ul id="navigate-column">
-                <h4>NAVIGATE</h4>
+                <h4>NAVIGA</h4>
                 <li><router-link to="/">Home</router-link></li>
-                <li><a href="#">Cart</a></li>
+                <li><a href="#">Carrello</a></li>
             </ul>
 
             <!-- opening column -->
@@ -42,10 +42,10 @@ export default {
 
             <!-- information column -->
             <ul id="information-column">
-                <h4>INFORMATION</h4>
-                <li><a href="#">My Account</a></li>
-                <li><a href="#">Terms Of Service</a></li>
-                <li><a href="#">Privacy Policy</a></li>
+                <h4>INFORMAZIONI</h4>
+                <li><a href="javascript:void(0)">Account</a></li>
+                <li><a href="javascript:void(0)">Termini Di Servizio</a></li>
+                <li><a href="javascript:void(0)">Privacy Policy</a></li>
                 <img class="download-badge" src="../assets/img/app-store-badge.png" alt="app-store-badge">
                 <img class="download-badge" src="../assets/img/play-store-badge.png" alt="play-store-badge">
             </ul>
@@ -55,17 +55,17 @@ export default {
         <!-- Bottom Footer -->
         <section id="bottom-footer">
             <img id="logo-footer" src="../assets/img/Logo-Bianco-DeliveBoo.png" alt="logo-footer">
-            <h3 class="yellow">Stay In The Loop</h3>
-            <p>Sign up to receive up to date news and offers directly in your inbox:</p>
-            <input type="email" id="sign-up-mailbox" placeholder="you@email.com">
-            <button class="red-button" id="subscribe-button">SUBSCRIBE</button>
+            <h3 class="yellow">Rimani aggiornato</h3>
+            <p>Iscriviti per ricevere novità e offerte aggiornate direttamente nella tua casella di posta:</p>
+            <input type="email" id="sign-up-mailbox" placeholder="account@email.com">
+            <button class="red-button" id="subscribe-button">ISCRIVITI</button>
             <div id="socials-container">
-                <i class="fa-brands fa-facebook"></i>
-                <i class="fa-brands fa-twitter"></i>
-                <i class="fa-brands fa-instagram"></i>
-                <i class="fa-brands fa-linkedin-in"></i>
-                <i class="fa-solid fa-rss"></i>
-                <i class="fa-regular fa-envelope"></i>
+                <a href="javascript:void(0)"><i class="fa-brands fa-facebook"></i></a>
+                <a href="javascript:void(0)"><i class="fa-brands fa-twitter"></i></a>
+                <a href="javascript:void(0)"><i class="fa-brands fa-instagram"></i></a>
+                <a href="javascript:void(0)"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="javascript:void(0)"><i class="fa-solid fa-rss"></i></a>
+                <a href="javascript:void(0)"><i class="fa-regular fa-envelope"></i></a>
             </div>
             <p id="copyright"><span class="yellow"><i class="fa-regular fa-copyright"></i> Copyright 2023 | DeliveBoo by
                 </span>TEAM 1<span class="yellow">| All Right Reserved | Powered by </span>Laravel + Vue</p>
@@ -177,6 +177,10 @@ export default {
         #information-column {
             @include my-flex-column;
             align-items: center;
+
+            img:hover {
+                cursor: pointer;
+            }
         }
     }
 
@@ -220,6 +224,10 @@ export default {
             font-size: 20px;
             color: white;
             margin-bottom: 20px;
+
+            a {
+                color: white;
+            }
         }
 
         #copyright {
