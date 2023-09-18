@@ -13,10 +13,20 @@ export default {
   data() {
     return {
       store,
+      selectedTypes: [],
     }
   },
   methods: {
-
+    handleCheckboxToggle(typeId, isChecked) {
+      if (isChecked) {
+        this.selectedTypes.push(typeId);
+      } else {
+        const index = this.selectedTypes.indexOf(typeId);
+        if (index > -1) {
+          this.selectedTypes.splice(index, 1);
+        }
+      }
+    }
   },
 
   mounted() {
@@ -26,16 +36,18 @@ export default {
 </script>
 
 <template>
-
-        <form>
-            <div v-for="singleType in store.typeList" :key="singleType.id" class="border-bottom">
-                <TypeCard  :type="singleType" />
-            </div>
-        </form>
-
+  <form>
+    <div v-for="singleType in store.typeList" :key="singleType.id" class="border-bottom"
+      :class="{ 'card-background': selectedTypes.includes(singleType.id) }">
+      <TypeCard :type="singleType" @checkboxToggled="handleCheckboxToggle(singleType.id, $event)" />
+    </div>
+  </form>
 </template>
 
 <style lang="scss" scoped>
 @use '../styles/general.scss';
 
+.card-background {
+  background-color: green;
+}
 </style>
