@@ -153,7 +153,7 @@ export default {
     <img id="wave-home" src="../assets/img/svg-0.svg" alt="wave">
     <div class="container">
       <div class="row">
-        <div class="col-md-2 d-sm-none">
+        <div class=" col-lg-2 col-md-2 d-md-block d-sm-none">
           <div class="upper-fade"></div>
           <div class="container-element">
             <h4>Tipologie</h4>
