@@ -6,8 +6,19 @@ export default {
     },
     data() {
         return {
+            thxMsg: false
         };
     },
+    methods: {
+        showThanksMessage() {
+            var email = document.getElementById('sign-up-mailbox').value;
+            if (!!email) {
+                this.thxMsg = true;
+                document.getElementById('subscribe-button').disabled = true;
+            }
+
+        }
+    }
 }
 
 </script>
@@ -56,9 +67,17 @@ export default {
         <section id="bottom-footer">
             <img id="logo-footer" src="../assets/img/Logo-Bianco-DeliveBoo.png" alt="logo-footer">
             <h3 class="yellow">Rimani aggiornato</h3>
-            <p>Iscriviti per ricevere novità e offerte aggiornate direttamente nella tua casella di posta:</p>
-            <input type="email" id="sign-up-mailbox" placeholder="account@email.com">
-            <button class="red-button" id="subscribe-button">ISCRIVITI</button>
+            <form id="subscribe-form">
+                <p>Iscriviti per ricevere novità e offerte aggiornate direttamente nella tua casella di posta:</p>
+                <div>
+                    <input type="email" id="sign-up-mailbox" placeholder="account@email.com" required>
+                </div>
+                <div>
+                    <button type="submit" class="red-button" id="subscribe-button"
+                        @click="showThanksMessage()">ISCRIVITI</button>
+                </div>
+                <p v-if="thxMsg" class="gold-msg">Grazie per esserti registrato!</p>
+            </form>
             <div id="socials-container">
                 <a href="javascript:void(0)"><i class="fa-brands fa-facebook"></i></a>
                 <a href="javascript:void(0)"><i class="fa-brands fa-twitter"></i></a>
@@ -204,6 +223,10 @@ export default {
             color: white;
         }
 
+        #subscribe-form {
+            text-align: center;
+        }
+
         #sign-up-mailbox {
             width: 40%;
             padding: 11px 30px;
@@ -216,6 +239,11 @@ export default {
             width: 40%;
             margin: 20px 0 30px;
             color: white;
+        }
+
+        .gold-msg {
+            color: gold;
+            font-size: xx-large;
         }
 
         #socials-container {
@@ -235,6 +263,5 @@ export default {
             color: white;
         }
     }
-
 }
 </style>
