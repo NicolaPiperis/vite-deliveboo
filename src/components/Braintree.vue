@@ -2,14 +2,15 @@
     <div id="dropin-wrapper braintree_style">
       <div id="checkout-message"></div>
       <div id="dropin-container"></div>
-      <button id="submit-button">Submit payment</button>
+      <button id="submit-button" @click="$emit('mystore')">Submit payment</button>
     </div>
-  </template>
+</template>
   
   <script>
   import $ from "jquery";
   
   export default {
+    emit: ['mystore'],
     mounted() {
       var button = document.querySelector("#submit-button");
   
