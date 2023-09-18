@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form action="#" method="POST">
+        <form action="#" method="POST" ref="orderForm">
             <div class="riepilogo_form">
                 <h3>Riepilogo ordine</h3>
                 <ul v-for="details in store.cart" :key="details.id">
@@ -21,8 +21,8 @@
 
                 <hr>
 
-                <label for="details.total_price"></label>
-                <input type="text" id="details.total_price" name="details.total_price" readonly="readonly" disabled :value="priceTotal.toFixed(2)">
+                <label for="total_price"></label>
+                <input type="text" id="total_price" name="total_price" readonly="readonly" disabled :value="priceTotal.toFixed(2)">
                 <br><br>
             </div>
 
@@ -46,10 +46,10 @@
             </div>
 
             <label for="customers_name">Nome:</label>
-            <input type="text" id="customers_name" name="customers_name" required><br><br>
+            <input type="text" id="customers_name" name="customer_name" required><br><br>
 
             <label for="customers_adress">Indirizzo di Consegna:</label>
-            <textarea id="customers_adress" name="customers_adress" required></textarea><br><br>
+            <textarea id="customers_adress" name="customer_adress" required></textarea><br><br>
 
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required><br><br>
@@ -59,7 +59,7 @@
 
             <!-- <hr>
             <input type="submit" value="Invia Ordine">  -->
-            <Braintree/>
+            <Braintree  @mystore="getDataOrder" />
         </form>
     </div>
 </template>
@@ -68,6 +68,8 @@
 <script>
     import { mapState } from 'vuex';
     import { store } from '../store';
+    import axios from 'axios';
+
     import Braintree from '../components/Braintree.vue';
 
     export default {
@@ -77,8 +79,38 @@
         },
         data() {
             return {
-                store
+                store,
+                customer_name: '',
+                customer_adress: '',
+                email: '',
+                phone_number: '',
+                dish_id: '',
+                amount: ''
+
             };
+        },
+        methods: {
+            getDataOrder() {
+            // Simula il click del pulsante di invio del form
+                this.$refs.orderForm.submit();
+
+                const formData = {
+                    customers_name: this.customers_name,
+                    customers_adress: this.customers_adress,
+                    email: this.email,
+                    phone_number: this.phone_number,
+                    dish_id: this.dish_id,
+                    amount: this.amount
+                };
+
+                axios.post('http://localhost:8000/api/v1/orders', formData)
+                    .then(response => {
+                        console.log(response);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            }
         },
         computed: {
             ...mapState(['store']),
