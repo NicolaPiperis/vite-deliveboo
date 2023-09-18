@@ -5,13 +5,11 @@ import { watch } from 'vue';
 
 export default {
     name: 'Cart',
-
     data() {
         return {
             store
         }
     },
-
     computed: {
         cartTotal() {
             return this.store.cart.reduce((acc, dish) => {
@@ -19,7 +17,6 @@ export default {
             }, 0);
         }
     },
-
     watch: {
         'store.cart': {
             handler() {
@@ -28,12 +25,13 @@ export default {
             deep: true
         }
     },
-
     methods: {
+        debug() {
+            console.log(this.store.cart);
+        },
         increaseQuantity(item) {
             item.quantity += 1;
         },
-
         decreaseQuantity(item) {
             if (item.quantity > 1) {
                 item.quantity -= 1;
@@ -44,19 +42,16 @@ export default {
                 }
             }
         },
-
         removeDishesById(item) {
             const index = this.store.cart.findIndex(dish => dish.id === item.id);
             if (index !== -1) {
                 this.store.cart.splice(index, 1);
             }
         },
-
         saveCartToSession() {
             sessionStorage.setItem('cart', JSON.stringify(this.store.cart));
         }
     },
-
     mounted() {
         const savedCart = sessionStorage.getItem('cart');
         if (savedCart) {
@@ -66,9 +61,7 @@ export default {
                 console.error('Failed to load cart from sessionStorage:', e);
             }
         };
-
     }
-    
 }
 
 </script>
@@ -103,29 +96,27 @@ export default {
                 <p class="text-center">IL TUO CARRELLO E' VUOTO</p>
                 <div class="text-center"><font-awesome-icon icon="cart-shopping" /></div>
             </div>
+            <button @click="debug()">debug</button>
         </div>
-        <!-- <div class="d-flex justify-content-between" id="cart-total" v-if="store.cart.length > 0">
+        <div class="d-flex justify-content-between" id="cart-total" v-if="store.cart.length > 0">
             <p>TOTALE ORDINE:</p>
             <p>&#8364; {{ cartTotal.toFixed(2) }}</p>
-        </div> -->
+        </div>
 
         <!-- collegamento pagina checkout -->
-        <router-link
-        :to="{ 
+        <router-link :to="{
             name: 'Payment',
         }">
-    
+
             <div class="card-footer text-body-secondary text-center">
                 <button class="btn btn-success " v-if="store.cart.length > 0">
                     Ordina e Paga {{ cartTotal.toFixed(2) }} &euro;
                 </button>
             </div>
-    
-        </router-link>
-        
-    </div>
-    
 
+        </router-link>
+
+    </div>
 </template>
 
 <style scoped lang="scss">
@@ -159,15 +150,18 @@ hr {
     border: 1px solid black;
 }
 
-.prezzo{
+.prezzo {
     font-size: 12px;
 }
-.dish-name{
+
+.dish-name {
     font-size: 14px;
 }
-.quantita{
+
+.quantita {
     font-weight: bold;
 }
+
 .plus {
     text-align: center;
     line-height: 17px;
@@ -180,13 +174,10 @@ hr {
     font-weight: bold;
     font-size: 15px;
     cursor: pointer;
-    }
-    .mod{
-        font-size: 15px;
-        color:  rgb(155, 211, 72);
-    }
+}
 
-
-
-
+.mod {
+    font-size: 15px;
+    color: rgb(155, 211, 72);
+}
 </style>
