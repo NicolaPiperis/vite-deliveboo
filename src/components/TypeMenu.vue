@@ -41,6 +41,7 @@ export default {
       :class="{ 'card-background': selectedTypes.includes(singleType.id) }">
       <TypeCard :type="singleType" @checkboxToggled="handleCheckboxToggle(singleType.id, $event)" />
     </div>
+    <hr class="bottom-margin">
   </form>
 </template>
 

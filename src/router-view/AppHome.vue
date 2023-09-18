@@ -217,14 +217,22 @@ export default {
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
     position: relative;
+
+    h2 {
+      padding-top: 50px;
+    }
+
+    h4 {
+      padding-top: 50px;
+    }
   }
 
   .upper-fade {
     position: absolute;
     left: 0;
     top: 100px;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-    height: 80px;
+    background: linear-gradient(to bottom, rgb(255, 255, 255), rgba(255, 255, 255, 0));
+    height: 75px;
     width: 100%;
     z-index: 2;
     pointer-events: none;
@@ -235,7 +243,7 @@ export default {
     left: 0;
     bottom: 100px;
     background: linear-gradient(to top, rgb(255, 255, 255), rgba(255, 255, 255, 0));
-    height: 80px;
+    height: 90px;
     width: 100%;
     z-index: 2;
     pointer-events: none;

@@ -29,6 +29,7 @@ export default {
         <RestaurantCard :restaurant="singleRestaurant" />
       </div>
     </div>
+    <hr class="bottom-margin">
   </div>
 </template>
 
