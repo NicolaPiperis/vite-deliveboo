@@ -1,7 +1,7 @@
 <template>
     <div>
         <form action="#" method="POST">
-            <div class="riepilogo_form">
+            <div class="riepilogo_invisible">
                 <h3>Riepilogo ordine</h3>
                 <ul v-for="details in store.cart" :key="details.id">
                     <li>
@@ -177,7 +177,7 @@
         margin-top: 30px;
     }
 
-    .riepilogo_form {
+    .riepilogo_invisible {
         display: none;
         background-color: #f9f9f9;
         padding: 20px;
