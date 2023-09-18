@@ -48,6 +48,6 @@ export default {
 @use '../styles/general.scss';
 
 .card-background {
-  background-color: green;
+  background-color: rgba(109, 201, 38, 0.5);
 }
 </style>
