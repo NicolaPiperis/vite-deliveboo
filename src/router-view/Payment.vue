@@ -45,10 +45,6 @@
             <label for="phone_number">Numero di Telefono:</label>
             <input type="tel" id="phone_number" name="phone_number" required v-model="this.phone_number"><br><br>
 
-            <div v-if="errorMessage">
-                <p>{{ errorMessage }}</p>
-            </div>
-
             <Braintree />
     
         </form>
@@ -76,29 +72,19 @@ export default {
             customer_adress: '',
             email: '',
             phone_number: '',
-            status: false,
             errorMessage: '',
 
         };
     },
     methods: {
         submitOrder() {
-             // Controlla la risposta del pagamento (sostituisci con la logica di Braintree)
-             if (paymentIsSuccessful) {
-                this.status = true;
-            // Puoi fare altre azioni qui, ad esempio mostrare il riepilogo dell'ordine
-            } else {
-                this.errorMessage = 'Pagamento non riuscito. Si prega di riprovare.';
-            }
 
             const formData = {
                 customer_name: this.customer_name,
                 customer_adress: this.customer_adress,
                 email: this.email,
                 phone_number: this.phone_number, 
-                status: this.status,
                 total_price: this.priceTotal.toFixed(2),
-
                 dishes: this.store.cart.map((dish) => ({
                     dish_id: dish.id,
                     amount: dish.quantity,
@@ -108,13 +94,28 @@ export default {
             axios.post('http://localhost:8000/api/v1/orders', formData)
                 .then(response => {
                     console.log('risposta axios', response.data);
+                    // this.$router.push({ name: 'OrderConfirmation' });
+                    console.log('risposta axios', response.data.order);
+                    console.log('risposta axios', response.data.order.customer_name);
+                    console.log('risposta axios', response.data.order.customer_adress);
+                    console.log('risposta axios', response.data.order.email);
+                    console.log('risposta axios', response.data.order.phone_number);
+                    console.log('risposta axios', response.data.order.total_price);
+                    console.log('risposta axios', response.data.order.dishes);
+                    store.order = response.data.order
+                    console.log('dati salvati', store.order)
 
-   
+                    this.$refs.orderForm.reset();
+                    this.store.cart = [];
+                    sessionStorage.removeItem('cart');
+
+                    this.$router.push({
+                        name: 'Confirm',
+                        params: { orderData: response.data.order }
+                    });
                 })
-
                 .catch(error => {
                     console.log(error);
-                    this.errorMessage = 'Si è verificato un errore durante il pagamento. Si prega di riprovare più tardi.';
 
                 });
         }
@@ -231,14 +232,14 @@ ul li span {
     margin-top: 30px;
 }
 
-    .riepilogo_form {
-        display: none;
-        background-color: #f9f9f9;
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        text-align: left;
+.riepilogo_form {
+    display: none;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
 
     ul {
         list-style: none;
@@ -277,4 +278,3 @@ ul li span {
     }
 }
 </style>
-

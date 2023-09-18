@@ -23,12 +23,13 @@ export default {
 </script>
 
 <template>
-  <div class="container">
+  <div class="container" id="restaurant-show">
     <div class="row">
       <div class=" col-md-4 col-sm-12" v-for="singleRestaurant in store.restaurantSearch" :key="singleRestaurant.id">
         <RestaurantCard :restaurant="singleRestaurant" />
       </div>
     </div>
+    <hr class="bottom-margin">
   </div>
 </template>
 
