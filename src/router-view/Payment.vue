@@ -45,10 +45,6 @@
             <label for="phone_number">Numero di Telefono:</label>
             <input type="tel" id="phone_number" name="phone_number" required v-model="this.phone_number"><br><br>
 
-            <div v-if="errorMessage">
-                <p>{{ errorMessage }}</p>
-            </div>
-
             <Braintree />
     
         </form>
@@ -76,27 +72,18 @@ export default {
             customer_adress: '',
             email: '',
             phone_number: '',
-            status: false,
             errorMessage: '',
 
         };
     },
     methods: {
         submitOrder() {
-             // Controlla la risposta del pagamento (sostituisci con la logica di Braintree)
-             if (paymentIsSuccessful) {
-                this.status = true;
-            // Puoi fare altre azioni qui, ad esempio mostrare il riepilogo dell'ordine
-            } else {
-                this.errorMessage = 'Pagamento non riuscito. Si prega di riprovare.';
-            }
 
             const formData = {
                 customer_name: this.customer_name,
                 customer_adress: this.customer_adress,
                 email: this.email,
                 phone_number: this.phone_number, 
-                status: this.status,
                 total_price: this.priceTotal.toFixed(2),
 
                 dishes: this.store.cart.map((dish) => ({
@@ -108,6 +95,7 @@ export default {
             axios.post('http://localhost:8000/api/v1/orders', formData)
                 .then(response => {
                     console.log('risposta axios', response.data);
+                    
 
    
                 })
