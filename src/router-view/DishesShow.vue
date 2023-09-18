@@ -53,14 +53,14 @@ export default {
 
       <div class="row">
 
-        <div class="col-9">
+        <div class="col-lg-9 col-sm-12">
 
           <div class="container-element">
             <DishShow />
           </div>
 
         </div>
-        <div class="col-3">
+        <div class="col-lg-3 col-sm-12">
           <div class="container-element">
 
             <Cart />

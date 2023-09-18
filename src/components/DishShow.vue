@@ -26,7 +26,7 @@ export default {
 
   <div class="container">
     <div class="row">
-      <div class="col-6" v-for="singleDish in store.dishesList" :key="singleDish.id" >
+      <div class="col-lg-6 col-sm-12" v-for="singleDish in store.dishesList" :key="singleDish.id" >
         <DishCard :dish="singleDish" />
       </div>
     </div>
