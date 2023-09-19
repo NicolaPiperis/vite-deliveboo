@@ -50,13 +50,16 @@ export default {
         },
         saveCartToSession() {
             sessionStorage.setItem('cart', JSON.stringify(this.store.cart));
+            sessionStorage.setItem('order_code', JSON.stringify(this.store.order_code));
         }
     },
     mounted() {
         const savedCart = sessionStorage.getItem('cart');
+        const savedCode = sessionStorage.getItem('order_code');
         if (savedCart) {
             try {
                 this.store.cart = JSON.parse(savedCart);
+                this.store.order_code = JSON.parse(savedCode);
             } catch (e) {
                 console.error('Failed to load cart from sessionStorage:', e);
             }
@@ -70,6 +73,7 @@ export default {
     <div class="card">
         <div class="card-header">
             <h2 class=" text-center">Il tuo carrello</h2>
+            <div class="text-center"><small class="text-body-secondary">codice ordine: {{store.order_code }}</small></div>
         </div>
         <div class="card-body">
             <div v-for="details in store.cart" :key="details.id">
@@ -97,10 +101,6 @@ export default {
                 <div class="text-center"><font-awesome-icon icon="cart-shopping" /></div>
             </div>
             <button @click="debug()">debug</button>
-        </div>
-        <div class="d-flex justify-content-between" id="cart-total" v-if="store.cart.length > 0">
-            <p>TOTALE ORDINE:</p>
-            <p>&#8364; {{ cartTotal.toFixed(2) }}</p>
         </div>
 
         <!-- collegamento pagina checkout -->

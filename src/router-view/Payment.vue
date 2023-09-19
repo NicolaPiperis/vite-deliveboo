@@ -15,7 +15,7 @@
             </div>
 
             <div class="container-riepilogo">
-                <h3>Riepilogo ordine</h3>
+                <h3>Riepilogo ordine {{ store.order_code }}</h3>
                 <div class="riepilogo">
                     <ul v-for="details in store.cart" :key="details.id">
                         <li>
@@ -44,8 +44,14 @@
 
             <label for="phone_number">Numero di Telefono:</label>
             <input type="tel" id="phone_number" name="phone_number" required v-model="this.phone_number"><br><br>
+            <h5 v-if="!this.transactionStatus" class=" text-center border border-danger text-danger rounded-3 py-3">
+                Inserisci una carta di credito valida!
+            </h5>
+            <h5 v-if="this.transactionStatus === true" class=" text-center border border-success text-success rounded-3 py-3">
+                Transazione completata correttamente
+            </h5>
 
-            <Braintree />
+            <Braintree @transaction-complete="handleTransactionComplete" />
     
         </form>
     </div>
@@ -73,43 +79,63 @@ export default {
             email: '',
             phone_number: '',
             errorMessage: '',
+            transactionStatus: 'attesa',
 
         };
     },
     methods: {
+        handleTransactionComplete(transactionStatus) {
+
+            console.log("Stato della transazione:", transactionStatus);
+            this.transactionStatus = transactionStatus;
+
+            if (transactionStatus === "true") {
+                this.submitOrder();
+            } else {
+                this.errorMessage = "Errore durante il pagamento";
+            }
+        },
+        goToPage() {
+            // resetto carrello e form
+            this.$refs.orderForm.reset();
+            this.store.cart = [];
+            sessionStorage.removeItem('cart');
+
+            this.$router.push({
+                name: 'Confirm',
+                params: { orderData: response.data.order }
+            });            
+        },
         submitOrder() {
+            setTimeout(() => {
+               
+                    const formData = {
+                        order_code: this.store.order_code,
+                        customer_name: this.customer_name,
+                        customer_adress: this.customer_adress,
+                        email: this.email,
+                        status: this.transactionStatus,
+                        phone_number: this.phone_number, 
+                        total_price: this.priceTotal.toFixed(2),
+                        dishes: this.store.cart.map((dish) => ({
+                            dish_id: dish.id,
+                            amount: dish.quantity,
+                        })),
+                    };
+                    console.log(formData);
+                    axios.post('http://localhost:8000/api/v1/orders', formData)
+                        .then(response => {
+                            store.order = response.data.order
 
-            const formData = {
-                customer_name: this.customer_name,
-                customer_adress: this.customer_adress,
-                email: this.email,
-                phone_number: this.phone_number, 
-                total_price: this.priceTotal.toFixed(2),
-                dishes: this.store.cart.map((dish) => ({
-                    dish_id: dish.id,
-                    amount: dish.quantity,
-                 })),
-            };
-            console.log(formData);
-            axios.post('http://localhost:8000/api/v1/orders', formData)
-                .then(response => {
-                    store.order = response.data.order
+                        })
+                        .catch(error => {
+                            console.log(error);
 
-                    // resetto carrello e form
-                    this.$refs.orderForm.reset();
-                    this.store.cart = [];
-                    sessionStorage.removeItem('cart');
-
-                    this.$router.push({
-                        name: 'Confirm',
-                        params: { orderData: response.data.order }
-                    });
-                })
-                .catch(error => {
-                    console.log(error);
-
-                });
-        }
+                        });
+                if (this.transactionStatus === true) { this.goToPage(); }
+            }
+        , 2000);
+        },
     },
     computed: {
         ...mapState(['store']),
@@ -119,7 +145,11 @@ export default {
             }, 0);
         }
     },
+    mounted(){
+        
+    },
     created() {
+    
         // Carica il carrello salvato da sessionStorage all'avvio del componente
         const savedCart = sessionStorage.getItem('cart');
         if (savedCart) {
