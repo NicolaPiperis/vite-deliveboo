@@ -20,7 +20,11 @@ const router = createRouter({
             name: 'Payment',
             component: () => import('./router-view/Payment.vue')
         }
-    ]
+    ], 
+    scrollBehavior(to, from, savedPosition) {
+        // Scrolla in cima alla pagina quando si effettua la navigazione
+        return { top: 0 };
+    }
 });
 
 export { router };
