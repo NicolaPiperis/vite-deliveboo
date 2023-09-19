@@ -38,13 +38,13 @@ export default {
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-md-4 col-12 info-style">
                             <p class="card-text text-bg-success rounded-5 p-2 text-light overflow-wrap-break-word">{{ store.restaurantSelected.email }}</p>
                         </div>
-                        <div class="col-4">
+                        <div class="col-md-4 col-12 info-style ">
                             <p class="card-text text-bg-success rounded-5 p-2 text-light overflow-wrap-break-word"><small>{{ store.restaurantSelected.address }}</small></p>
                         </div>
-                        <div class="col-4">
+                        <div class="col-md-4 col-12 info-style ">
                             <p class="card-text text-bg-success rounded-5 p-2 text-light overflow-wrap-break-word"><small>{{ store.restaurantSelected.phone_number }}</small></p>
                         </div>
                     </div>
@@ -70,16 +70,16 @@ export default {
             object-fit: cover;
         }
         .text-restaurant {
-    position: absolute;
-    bottom: 50px;
-    left: 50%;
-    transform: translate(-50%, 100%);
-    color: gray;
-    text-align: center;
-    background-color: white;
-    border-radius: 2px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); 
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translate(-50%, 100%);
+            color: gray;
+            text-align: center;
+            background-color: white;
+            border-radius: 2px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); 
 
             h5{
                 font-size: 30px;
@@ -106,8 +106,9 @@ p{
     /* Inserisci qui le regole CSS per il font-size desiderato */
     
     p{
-        font-size: 10px;
+        font-size: 15px;
         font-weight: bold;
+
     }
     .overflow-wrap-break-word {
       overflow-wrap: break-word;
@@ -116,6 +117,10 @@ p{
     .text-restaurant {
         width: 80%;
         margin-bottom: 50px;
+    }
+
+    .info-style{
+        margin-bottom: 30px;
     }
 }
 
