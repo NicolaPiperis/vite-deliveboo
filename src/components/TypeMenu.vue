@@ -37,7 +37,7 @@ export default {
 
 <template>
   <form>
-    <div v-for="singleType in store.typeList" :key="singleType.id" class="border-bottom"
+    <div v-for="singleType in store.typeList" :key="singleType.id" class="border-bottom card"
       :class="{ 'card-background': selectedTypes.includes(singleType.id) }">
       <TypeCard :type="singleType" @checkboxToggled="handleCheckboxToggle(singleType.id, $event)" />
     </div>
@@ -50,5 +50,14 @@ export default {
 
 .card-background {
   background-color: rgba(109, 201, 38, 0.5);
+}
+.card{
+  border: none;
+}
+
+@media screen and (max-width: 900px) {
+  .card{
+    text-align: center;
+  }
 }
 </style>
