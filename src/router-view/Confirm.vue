@@ -31,7 +31,7 @@ export default {
           <h5 class="card-title">Nome</h5>
           <p class="card-text">{{ store.order.customer_name }}</p>
           <h5 class="card-title">Indirizzo</h5>
-          <p class="card-text">{{ store.order.customer_adress }}</p>
+          <p class="card-text">{{ store.order.customer_address }}</p>
           <h5 class="card-title">Email</h5>
           <p class="card-text">{{ store.order.email }}</p>
           <h5 class="card-title">Telefono</h5>
