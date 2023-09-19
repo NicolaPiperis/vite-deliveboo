@@ -99,16 +99,18 @@ export default {
             // resetto carrello e form
             this.$refs.orderForm.reset();
             this.store.cart = [];
+            this.store.order_code = '';
             sessionStorage.removeItem('cart');
+            sessionStorage.removeItem('order_code');
 
             this.$router.push({
                 name: 'Confirm',
-                params: { orderData: response.data.order }
+                // params: { orderData: response.data.order }
             });            
         },
         submitOrder() {
             setTimeout(() => {
-               
+                if (this.transactionStatus === true) { 
                     const formData = {
                         order_code: this.store.order_code,
                         customer_name: this.customer_name,
@@ -132,7 +134,8 @@ export default {
                             console.log(error);
 
                         });
-                if (this.transactionStatus === true) { this.goToPage(); }
+                    this.goToPage();
+                }
             }
         , 2000);
         },

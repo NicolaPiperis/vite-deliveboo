@@ -80,7 +80,7 @@ export default {
     <div class="card">
         <div @click="toggleButton" class="card-header">
             <h2 class=" text-center">Il tuo carrello</h2>
-            <div class="text-center"><small class="text-body-secondary">codice ordine: {{store.order_code }}</small></div>
+            <div class="text-center"><small class="text-body-secondary">codice ordine: {{ store.order_code }}</small></div>
         </div>
         <div class="card-body">
             <div v-for="details in store.cart" :key="details.id">
