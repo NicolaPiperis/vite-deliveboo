@@ -16,7 +16,7 @@ export default {
     },
     methods: {
         handleImageError(event) {
-            event.target.src = 'https://picsum.photos/1200/800';
+            event.target.src = store.errorImageURL;
         }
     }
 }
