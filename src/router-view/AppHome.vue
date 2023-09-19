@@ -4,7 +4,7 @@ import { store } from '../store';
 import TypeMenu from '../components/TypeMenu.vue';
 import RestaurantShow from '../components/RestaurantShow.vue';
 import Jumbotron from '../components/Jumbotron.vue';
-import Footer from '../components/Footer.vue';
+import TypeMenuSmartphone from '../components/TypeMenuSmartphone.vue';
 
 export default {
   name: 'AppHome',
@@ -12,7 +12,7 @@ export default {
     TypeMenu,
     RestaurantShow,
     Jumbotron,
-    Footer,
+    TypeMenuSmartphone,
   },
   data() {
     return {
@@ -150,25 +150,32 @@ export default {
 <template>
   <Jumbotron />
   <div class="main-container">
-    <img id="wave-home" src="../assets/img/svg-0.svg" alt="wave">
+    <img id="wave-home" src="../assets/img/svg-0.svg" alt="wave" class="d-none d-md-block">
     <div class="container">
+
+    <!-- smartphone -->
+    <div class="button-menu d-md-none d-sm-block d-flex justify-content-center dropdown-menu">
+        <TypeMenuSmartphone @change="cercaRistorante()"/>
+    </div>
+
       <div class="row">
-        <div class=" col-lg-2 col-md-2 d-md-block d-sm-none">
-
-          <div class="container-element ">
+        <div class="col-md-2 d-none d-md-block">
+          <div class="upper-fade"></div>
+          <!-- desktop -->
+          <div class="container-element">
             <h4>Tipologie</h4>
-
-            <TypeMenu @change="cercaRistorante()" />
+            <TypeMenu @change="cercaRistorante()"/>  
           </div>
 
+          <div class="lower-fade d-none d-md-block"></div>
         </div>
         <div class="col-md-10 col-sm-12">
-
+          <div class="upper-fade d-none d-md-block"></div>
           <div class="container-element">
             <h2>Ristoranti</h2>
             <RestaurantShow />
           </div>
-
+          <div class="lower-fade d-none d-md-block"></div>
         </div>
       </div>
     </div>
@@ -181,6 +188,11 @@ export default {
 
 .main-container {
   position: relative;
+
+  .button-menu {
+    position: fixed;
+    top: 100px;
+  }
 
   #wave-home {
     transform: scaleX(-1) scaleY(-1);
@@ -204,19 +216,6 @@ export default {
     padding: 20px 0;
   }
 
-  .container-element {
-    padding-top: 20px;
-    height: calc(100vh - 100px);
-    overflow-y: scroll;
-    /* Abilita lo scorrimento quando necessario */
-    scrollbar-width: thin;
-    /* Larghezza sottile della barra di scorrimento */
-    scrollbar-color: transparent transparent;
-    /* Colore trasparente per la barra di scorrimento */
-    margin: 100px 0;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-    position: relative;
 
     h2 {
       color: white;
@@ -257,35 +256,4 @@ export default {
     pointer-events: none;
   }
 
-  .container-element::-webkit-scrollbar {
-    width: 6px;
-    /* Larghezza della barra di scorrimento */
-  }
-
-  .container-element::-webkit-scrollbar-thumb {
-    background-color: transparent;
-    /* Colore trasparente per il "pulsante" di scorrimento */
-  }
-}
-
-@media screen and (max-width: 900px) {
-  .upper-fade{
-    display: none;
-  }
-  .lower-fade{
-    display: none;
-  }
-  h4{
-    text-align: center;
-  }
-  // #wave-home {
-  //   transform: scaleX(-1) scaleY(-1);
-  //   position: absolute;
-  //   top: -109px;
-  //   left: 0;
-  //   width: 100%;
-  // }
-
-
-}
 </style>

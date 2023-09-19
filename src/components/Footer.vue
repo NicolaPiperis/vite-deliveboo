@@ -25,7 +25,7 @@ export default {
 
 <template>
     <div id="footer-container">
-        <img id="wave" src="../assets/img/svg-0.svg" alt="wave">
+        <img id="wave" src="../assets/img/svg-0.svg" alt="wave" class="d-none d-md-block">
         <!-- Upper Footer -->
         <section id="upper-footer">
 
