@@ -229,21 +229,14 @@ export default {
             text-align: center;
         }
 
-        #sign-up-mailbox {
-            width: 40%;
-            padding: 11px 30px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 16px;
-        }
-
+        
         
         #subscribe-button {
             width: 40%;
             margin: 20px 0 30px;
             color: white;
         }
-
+        
         .gold-msg {
             color: gold;
             font-size: xx-large;
@@ -276,6 +269,7 @@ export default {
     text-decoration: none;
     font-size: 16px;
 }
+
 
 @media screen and (max-width: 900px) {
     #copyright {
