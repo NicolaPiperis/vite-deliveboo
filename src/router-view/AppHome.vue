@@ -154,8 +154,8 @@ export default {
     <div class="container">
 
     <!-- smartphone -->
-    <div class="d-md-none d-sm-block d-flex justify-content-center dropdown-menu">
-      <TypeMenuSmartphone @change="cercaRistorante()"/>
+    <div class="button-menu d-md-none d-sm-block d-flex justify-content-center dropdown-menu">
+        <TypeMenuSmartphone @change="cercaRistorante()"/>
     </div>
 
       <div class="row">
@@ -164,7 +164,6 @@ export default {
           <!-- desktop -->
           <div class="container-element">
             <h4>Tipologie</h4>
-            <!-- <TypeMenu  @change="searchTypeRestaurant()"/>    -->
             <TypeMenu @change="cercaRistorante()"/>  
           </div>
 
@@ -190,6 +189,11 @@ export default {
 .main-container {
   position: relative;
 
+  .button-menu {
+    position: fixed;
+    top: 100px;
+  }
+
   #wave-home {
     transform: scaleX(-1) scaleY(-1);
     position: absolute;
@@ -212,19 +216,6 @@ export default {
     padding: 20px 0;
   }
 
-  .container-element {
-    padding-top: 20px;
-    height: calc(100vh - 100px);
-    overflow-y: scroll;
-    /* Abilita lo scorrimento quando necessario */
-    scrollbar-width: thin;
-    /* Larghezza sottile della barra di scorrimento */
-    scrollbar-color: transparent transparent;
-    /* Colore trasparente per la barra di scorrimento */
-    margin: 100px 0;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-    position: relative;
 
     h2 {
       padding-top: 50px;
@@ -257,14 +248,4 @@ export default {
     pointer-events: none;
   }
 
-  .container-element::-webkit-scrollbar {
-    width: 6px;
-    /* Larghezza della barra di scorrimento */
-  }
-
-  .container-element::-webkit-scrollbar-thumb {
-    background-color: transparent;
-    /* Colore trasparente per il "pulsante" di scorrimento */
-  }
-}
 </style>

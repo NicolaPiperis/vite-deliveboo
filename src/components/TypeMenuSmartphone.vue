@@ -40,14 +40,13 @@ export default {
 
 <!-- smartphone -->
   <div>
-    <button @click="toggleFormVisibility" class="btn btn-dark mt-3">Tipologie</button> <!-- Bottone per mostrare il form -->
-    <form v-if="isFormVisible">
+    <button @click="toggleFormVisibility" class="btn btn-dark">Tipologie</button> <!-- Bottone per mostrare il form -->
+    <form v-if="isFormVisible" class="container-element-menu">
       <!-- Contenuto del form con le checkbox -->
       <div v-for="singleType in store.typeList" :key="singleType.id" class="border-bottom">
         <TypeCard :type="singleType" @checkboxToggled="handleCheckboxToggle(singleType.id, $event)" />
       </div>
       <hr class="bottom-margin">
-      <button @click="toggleFormVisibility" class="btn btn-dark">Chiudi Form</button> <!-- Bottone per chiudere il form -->
     </form>
   </div>
 
