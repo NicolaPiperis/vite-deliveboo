@@ -117,7 +117,8 @@ export default {
     /* Upper Footer */
 
     #upper-footer {
-        @include my-flex-row;
+        display: flex;
+        flex-direction: row;
         justify-content: space-between;
         margin-top: 150px;
 
@@ -221,6 +222,7 @@ export default {
         p:first-of-type {
             margin: 20px 0;
             color: white;
+            text-align: center;
         }
 
         #subscribe-form {
@@ -235,6 +237,7 @@ export default {
             font-size: 16px;
         }
 
+        
         #subscribe-button {
             width: 40%;
             margin: 20px 0 30px;
@@ -246,21 +249,70 @@ export default {
             font-size: xx-large;
         }
 
+        
         #socials-container {
             @include my-flex-row;
             gap: 30px;
             font-size: 20px;
             color: white;
             margin-bottom: 20px;
-
+            
             a {
                 color: white;
             }
         }
-
+        
         #copyright {
             font-size: 13px;
             color: white;
+        }
+    }
+    
+}
+#sign-up-mailbox {
+    width: 40%;
+    padding: 11px 30px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+@media screen and (max-width: 900px) {
+    #copyright {
+        text-align: center;
+    }
+    #sign-up-mailbox{
+        width: 70%;
+        text-align: center;
+    }
+
+    #logo-footer{
+        width: 380px;
+    }
+    #footer-container {
+        #upper-footer{
+        display: block;
+
+            #voucher-column{
+                margin-bottom: 100px;
+            }
+            #navigate-column{
+                margin-bottom: 100px;
+            }
+            #opening-column{
+                margin-bottom: 100px;
+            }
+            #information-column{
+                margin-bottom: 100px;
+            }
+
+            ul{
+                h4{
+                    border: 1px solid red;
+                    border-radius: 20px;
+                    padding: 15px;
+                }
+            }
         }
     }
 }

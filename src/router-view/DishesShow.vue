@@ -53,14 +53,14 @@ export default {
 
       <div class="row">
 
-        <div class="col-9">
+        <div class="col-lg-9 col-sm-12">
 
           <div class="container-element">
             <DishShow />
           </div>
 
         </div>
-        <div class="col-3">
+        <div class="col-lg-3 col-sm-12">
           <div class="container-element">
 
             <Cart />
@@ -69,17 +69,12 @@ export default {
 
       </div>
     </div>
-    <!-- <div class="dishcard-container container d-flex flex-wrap justify-content-center gap-4">
-      <DishCard v-for="dish in store.dishesList" :key="dish.id" :dish="dish" />
-    </div> -->
-    <Footer />
+
   </div>
 </template>
 
 <style lang="scss" scoped>
 @use '../styles/general.scss';
-
-.main-container {}
 
 .dishcard-container {
   margin-bottom: 100px;
