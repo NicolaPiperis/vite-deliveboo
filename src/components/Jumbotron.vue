@@ -31,7 +31,7 @@ export default {
 
             <p class="white">Affamato?</p>
 
-            <h1 class="yellow">Cibo <br> Direttamente a<br> Casa!</h1>
+            <h1 class="yellow">Cibo Direttamente a Casa!</h1>
 
             <button class="white red-button" @click="scrollToRestaurantShow">
                 VISUALIZZA I RISTORANTI 
@@ -68,9 +68,10 @@ export default {
         }
 
         h1 {
-            font-size: 80px;
-            line-height: 80px;
-            margin-bottom: 50px;
+            // font-size: 80px;
+            // line-height: 100px;
+            // margin-bottom: 50px;
+            // width: 500px;
         }
     }
 }
@@ -79,7 +80,7 @@ export default {
     #header-container {
 
         #title-container {
-
+            padding: 180px 20% 400px;
             h1 {
                 font-size: 50px;
             }

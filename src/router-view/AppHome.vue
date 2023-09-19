@@ -154,21 +154,21 @@ export default {
     <div class="container">
       <div class="row">
         <div class=" col-lg-2 col-md-2 d-md-block d-sm-none">
-          <div class="upper-fade"></div>
-          <div class="container-element">
+
+          <div class="container-element ">
             <h4>Tipologie</h4>
-            <!-- <TypeMenu  @change="searchTypeRestaurant()"/>    -->
+
             <TypeMenu @change="cercaRistorante()" />
           </div>
-          <div class="lower-fade"></div>
+
         </div>
         <div class="col-md-10 col-sm-12">
-          <div class="upper-fade"></div>
+
           <div class="container-element">
-            <h2>ristoranti cercati</h2>
+            <h2>Ristoranti</h2>
             <RestaurantShow />
           </div>
-          <div class="lower-fade"></div>
+
         </div>
       </div>
     </div>
@@ -219,11 +219,19 @@ export default {
     position: relative;
 
     h2 {
-      padding-top: 50px;
+      color: white;
+      font-weight: bold;
+      background-color: black;
+      text-align: center;
+      padding: 10px;
+      border-radius: 20px;
+      margin-top: 35px;
     }
 
     h4 {
       padding-top: 50px;
+      font-weight: bold;
+      
     }
   }
 
@@ -258,5 +266,26 @@ export default {
     background-color: transparent;
     /* Colore trasparente per il "pulsante" di scorrimento */
   }
+}
+
+@media screen and (max-width: 900px) {
+  .upper-fade{
+    display: none;
+  }
+  .lower-fade{
+    display: none;
+  }
+  h4{
+    text-align: center;
+  }
+  // #wave-home {
+  //   transform: scaleX(-1) scaleY(-1);
+  //   position: absolute;
+  //   top: -109px;
+  //   left: 0;
+  //   width: 100%;
+  // }
+
+
 }
 </style>

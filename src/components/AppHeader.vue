@@ -17,21 +17,24 @@ export default {
         totalDishesInCart() {
             return store.cart.reduce((acc, dish) => acc + dish.quantity, 0);
         },
-        headerStyle() {
-            return {
-                backgroundColor: `rgba(0, 0, 0, ${this.headerOpacity})`
-            };
-        }
+        // headerStyle() {
+        //     return {
+        //         backgroundColor: `rgba(0, 0, 0, ${this.headerOpacity})`
+        //     };
+        // }
     },
     methods: {
         openCart() {
             this.isCartVisible = !this.isCartVisible;
         },
         updateHeaderOpacity() {
-            const containerHeight = document.getElementById('header-container').offsetHeight;
-            const scrollY = window.scrollY;
-            const opacity = Math.min(scrollY / containerHeight, 1);
-            this.headerOpacity = opacity;
+            window.addEventListener('DOMContentLoaded', () => {
+                const containerHeight = document.getElementById('header-container').offsetHeight;
+                const scrollY = window.scrollY;
+                const opacity = Math.min(scrollY / containerHeight, 1);
+                this.headerOpacity = opacity;
+   
+            });
         },
     },
     mounted() {
@@ -48,17 +51,17 @@ export default {
 
     <div id="header-container">
 
-        <div class="d-flex justify-content-around header-style" :style="headerStyle">
+        <div class="d-flex justify-content-center header-style" >
 
             <router-link :to="{ name: 'AppHome' }">
                 <img id="logo" src="../assets/img/Logo-Bianco-DeliveBoo.png" alt="logo">
                 <img src="../assets/img/Panino-DeliveBoo-bianco.png" alt="logo" id="logo-responsive">
             </router-link>
             
-            <div class="cart-container" @click="openCart">
+            <!-- <div class="cart-container" @click="openCart">
                 <span id="cart-logo"><font-awesome-icon icon="cart-shopping" /></span>
                 <span id="dish-counter">{{ totalDishesInCart }}</span>
-            </div>
+            </div> -->
 
         </div>
 
@@ -84,38 +87,39 @@ export default {
     position: fixed;
     z-index: 10;
     align-items: center;
+    background-color: black;
 }
 
-h1 {
-    text-align: center;
-    color: white;
-}
+// h1 {
+//     text-align: center;
+//     color: white;
+// }
 
-.cart-container {
-    position: relative;
-    display: inline-block;
-}
+// .cart-container {
+//     position: relative;
+//     display: inline-block;
+// }
 
-.cart-container:hover {
-    cursor: pointer;
-}
+// .cart-container:hover {
+//     cursor: pointer;
+// }
 
-#dish-counter {
-    position: absolute;
-    bottom: 40px;
-    right: -13px;
-    background-color: #0099ff;
-    border-radius: 50%;
-    color: white;
-    font-weight: bold;
-    height: 25px;
-    width: 25px;
-    text-align: center;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
+// #dish-counter {
+//     position: absolute;
+//     bottom: 40px;
+//     right: -13px;
+//     background-color: #0099ff;
+//     border-radius: 50%;
+//     color: white;
+//     font-weight: bold;
+//     height: 25px;
+//     width: 25px;
+//     text-align: center;
+//     -webkit-user-select: none;
+//     -moz-user-select: none;
+//     -ms-user-select: none;
+//     user-select: none;
+// }
 
 #logo {
     cursor: pointer;
