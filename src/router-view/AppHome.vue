@@ -4,7 +4,7 @@ import { store } from '../store';
 import TypeMenu from '../components/TypeMenu.vue';
 import RestaurantShow from '../components/RestaurantShow.vue';
 import Jumbotron from '../components/Jumbotron.vue';
-import Footer from '../components/Footer.vue';
+import TypeMenuSmartphone from '../components/TypeMenuSmartphone.vue';
 
 export default {
   name: 'AppHome',
@@ -12,7 +12,7 @@ export default {
     TypeMenu,
     RestaurantShow,
     Jumbotron,
-    Footer,
+    TypeMenuSmartphone,
   },
   data() {
     return {
@@ -150,25 +150,33 @@ export default {
 <template>
   <Jumbotron />
   <div class="main-container">
-    <img id="wave-home" src="../assets/img/svg-0.svg" alt="wave">
+    <img id="wave-home" src="../assets/img/svg-0.svg" alt="wave" class="d-none d-md-block">
     <div class="container">
+
+    <!-- smartphone -->
+    <div class="d-md-none d-sm-block d-flex justify-content-center dropdown-menu">
+      <TypeMenuSmartphone @change="cercaRistorante()"/>
+    </div>
+
       <div class="row">
-        <div class=" col-lg-2 col-md-2 d-md-block d-sm-none">
+        <div class="col-md-2 d-none d-md-block">
           <div class="upper-fade"></div>
+          <!-- desktop -->
           <div class="container-element">
             <h4>Tipologie</h4>
             <!-- <TypeMenu  @change="searchTypeRestaurant()"/>    -->
-            <TypeMenu @change="cercaRistorante()" />
+            <TypeMenu @change="cercaRistorante()"/>  
           </div>
-          <div class="lower-fade"></div>
+
+          <div class="lower-fade d-none d-md-block"></div>
         </div>
         <div class="col-md-10 col-sm-12">
-          <div class="upper-fade"></div>
+          <div class="upper-fade d-none d-md-block"></div>
           <div class="container-element">
             <h2>ristoranti cercati</h2>
             <RestaurantShow />
           </div>
-          <div class="lower-fade"></div>
+          <div class="lower-fade d-none d-md-block"></div>
         </div>
       </div>
     </div>
