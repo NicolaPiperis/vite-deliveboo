@@ -17,21 +17,24 @@ export default {
         totalDishesInCart() {
             return store.cart.reduce((acc, dish) => acc + dish.quantity, 0);
         },
-        headerStyle() {
-            return {
-                backgroundColor: `rgba(0, 0, 0, ${this.headerOpacity})`
-            };
-        }
+        // headerStyle() {
+        //     return {
+        //         backgroundColor: `rgba(0, 0, 0, ${this.headerOpacity})`
+        //     };
+        // }
     },
     methods: {
         openCart() {
             this.isCartVisible = !this.isCartVisible;
         },
         updateHeaderOpacity() {
-            const containerHeight = document.getElementById('header-container').offsetHeight;
-            const scrollY = window.scrollY;
-            const opacity = Math.min(scrollY / containerHeight, 1);
-            this.headerOpacity = opacity;
+            window.addEventListener('DOMContentLoaded', () => {
+                const containerHeight = document.getElementById('header-container').offsetHeight;
+                const scrollY = window.scrollY;
+                const opacity = Math.min(scrollY / containerHeight, 1);
+                this.headerOpacity = opacity;
+   
+            });
         },
     },
     mounted() {
@@ -48,7 +51,7 @@ export default {
 
     <div id="header-container">
 
-        <div class="d-flex justify-content-around header-style" :style="headerStyle">
+        <div class="d-flex justify-content-around header-style" >
 
             <router-link :to="{ name: 'AppHome' }">
                 <img id="logo" src="../assets/img/Logo-Bianco-DeliveBoo.png" alt="logo">
@@ -82,6 +85,7 @@ export default {
     position: fixed;
     z-index: 10;
     align-items: center;
+    background-color: black;
 }
 
 h1 {
