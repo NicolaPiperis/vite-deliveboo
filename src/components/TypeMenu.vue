@@ -36,7 +36,7 @@ export default {
 </script>
 
 <template>
-  <form>
+  <form >
     <div v-for="singleType in store.typeList" :key="singleType.id" class="border-bottom card"
       :class="{ 'card-background': selectedTypes.includes(singleType.id) }">
       <TypeCard :type="singleType" @checkboxToggled="handleCheckboxToggle(singleType.id, $event)" />

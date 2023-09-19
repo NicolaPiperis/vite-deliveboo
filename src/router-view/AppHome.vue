@@ -154,21 +154,21 @@ export default {
     <div class="container">
       <div class="row">
         <div class=" col-lg-2 col-md-2 d-md-block d-sm-none">
-          <div class="upper-fade"></div>
-          <div class="container-element">
+
+          <div class="container-element ">
             <h4>Tipologie</h4>
-            <!-- <TypeMenu  @change="searchTypeRestaurant()"/>    -->
+
             <TypeMenu @change="cercaRistorante()" />
           </div>
-          <div class="lower-fade"></div>
+
         </div>
         <div class="col-md-10 col-sm-12">
-          <div class="upper-fade"></div>
+
           <div class="container-element">
-            <h2>Ristoranti cercati</h2>
+            <h2>Ristoranti</h2>
             <RestaurantShow />
           </div>
-          <div class="lower-fade"></div>
+
         </div>
       </div>
     </div>
@@ -278,6 +278,14 @@ export default {
   h4{
     text-align: center;
   }
+  // #wave-home {
+  //   transform: scaleX(-1) scaleY(-1);
+  //   position: absolute;
+  //   top: -109px;
+  //   left: 0;
+  //   width: 100%;
+  // }
+
 
 }
 </style>

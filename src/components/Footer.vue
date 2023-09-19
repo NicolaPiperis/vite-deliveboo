@@ -65,7 +65,10 @@ export default {
 
         <!-- Bottom Footer -->
         <section id="bottom-footer">
-            <img id="logo-footer" src="../assets/img/Logo-Bianco-DeliveBoo.png" alt="logo-footer">
+            <!-- <div class="img_container">
+
+                <img id="logo-footer" src="../assets/img/Logo-Bianco-DeliveBoo.png" alt="logo-footer">
+            </div> -->
             <h3 class="yellow">Rimani aggiornato</h3>
             <form id="subscribe-form">
                 <p>Iscriviti per ricevere novità e offerte aggiornate direttamente nella tua casella di posta:</p>
@@ -210,10 +213,14 @@ export default {
         align-items: center;
         margin-top: 100px;
 
-        #logo-footer {
-            height: 80px;
-            margin-bottom: 50px;
-        }
+
+            #logo-footer {
+                margin-bottom: 50px;
+                max-width: 100%;
+                width: 400px;
+            }
+        
+
 
         h3 {
             font-size: 45px;
@@ -309,5 +316,16 @@ export default {
             }
         }
     }
+    h3{
+        text-align: center;
+    }
+    .img_container{
+        width: 100%;
+
+            #logo-footer {
+                margin-bottom: 50px;
+                width: 100%;
+            }
+        }
 }
 </style>
