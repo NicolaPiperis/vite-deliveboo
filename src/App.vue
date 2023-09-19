@@ -1,11 +1,13 @@
 <script>
 import { store } from '../src/store';
 import AppHeader from './components/AppHeader.vue';
+import Footer from './components/Footer.vue';
 
 export default {
   name: 'App',
   components: {
-    AppHeader
+    AppHeader,
+    Footer
 
   },
   data() {
@@ -25,6 +27,7 @@ export default {
 <template>
   <AppHeader v-if="!isPaymentRoute"/>
   <router-view></router-view>
+  <Footer v-if="!isPaymentRoute"/>
 </template>
 
 <style  lang="scss">

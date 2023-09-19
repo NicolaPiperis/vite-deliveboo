@@ -173,7 +173,7 @@ export default {
       </div>
     </div>
   </div>
-  <Footer />
+  <!-- <Footer /> -->
 </template>
 
 <style lang="scss" scoped>

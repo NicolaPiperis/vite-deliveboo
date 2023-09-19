@@ -72,7 +72,7 @@ export default {
     <!-- <div class="dishcard-container container d-flex flex-wrap justify-content-center gap-4">
       <DishCard v-for="dish in store.dishesList" :key="dish.id" :dish="dish" />
     </div> -->
-    <Footer />
+    <!-- <Footer /> -->
   </div>
 </template>
 
