@@ -12,12 +12,25 @@ export default {
         return {
             store,
             showPlusOne: false, // Variabile per gestire l'effetto "+1"
-            restaurantSelected: this.dish.user_id
+            restaurantSelected: this.dish.user_id,
         };
     },
     methods: {
+        //generate random code
+        generateRandomCode() {
+            let result = '';
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            const charactersLength = characters.length;
+            for (let i = 0; i < 10; i++) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            return result;
+        },
 
         addToCart() {
+        if (store.cart.length === 0 ) {
+            store.order_code = this.generateRandomCode();
+        }
           const existingDish = store.cart.find(item => item.id === this.dish.id);
           if (existingDish) {
 
@@ -29,11 +42,11 @@ export default {
           existingDish.quantity += 1;
           } else {
             const dishToAdd = {
-            id: this.dish.id,
-            name: this.dish.dish_name,
-            price: this.dish.price,
-            user_id: this.dish.user_id,
-            quantity: 1
+                id: this.dish.id,
+                name: this.dish.dish_name,
+                price: this.dish.price,
+                user_id: this.dish.user_id,
+                quantity: 1
             };
 
               if (store.cart.length === 0 || store.cart[0].user_id === this.dish.user_id) {
