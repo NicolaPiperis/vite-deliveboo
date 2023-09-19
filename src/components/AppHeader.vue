@@ -69,6 +69,8 @@ export default {
 #header-container {
     width: 100%;
     position: relative;
+    background-color: black;
+    height: 100px;
 }
 
 .header-style {
