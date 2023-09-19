@@ -115,6 +115,7 @@ p{
     }
     .text-restaurant {
         width: 80%;
+        margin-bottom: 50px;
     }
 }
 

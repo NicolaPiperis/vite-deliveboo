@@ -54,7 +54,23 @@ export default {
 
         saveCartToSession() {
             sessionStorage.setItem('cart', JSON.stringify(this.store.cart));
-        }
+        },
+
+    //     toggleButton() {
+            
+    //         if(window.innerWidth < 900) {
+    //             const cartBody = document.querySelector('.card-body');
+    //             const cartFooter = document.querySelector('.card-footer');
+    //             if(cardBody.style.display === 'none' && cardFooter.style.display === 'none') {
+    //                 cardBody.style.display = 'block';
+    //                 cardFooter.style.display = 'block';
+    //             }
+    //             else{
+    //                 cardBody.style.display = 'none';
+    //                 cardFooter.style.display = 'none';
+    //             }
+    //         }
+    //     }
     },
 
     mounted() {
@@ -75,7 +91,7 @@ export default {
 
 <template>
     <div class="card">
-        <div class="card-header">
+        <div @click="toggleButton" class="card-header">
             <h2 class=" text-center">Il tuo carrello</h2>
         </div>
         <div class="card-body">
@@ -131,27 +147,6 @@ export default {
 <style scoped lang="scss">
 @use '../styles/general.scss';
 
-// .cart {
-//     min-height: 150px;
-//     max-width: 300px;
-//     min-width: 400px;
-//     background-color: #0099ff;
-//     border: 3px solid black;
-//     border-radius: 30px;
-//     position: fixed;
-//     top: 120px;
-//     right: 20px;
-//     padding-top: 20px;
-// }
-
-// .invisible-cart {
-//     display: none;
-// }
-
-// .visible-cart {
-//     display: block;
-// }
-
 hr {
     margin-right: 15px;
     margin-left: 15px;
@@ -186,7 +181,22 @@ hr {
         color:  rgb(155, 211, 72);
     }
 
+    
 
+@media screen and (max-width: 900px) {
+    /* .card-body{
+        display: none;
+    }
+    .card-footer{
+        display: none;
+    }
+    .card-header{
+        cursor: pointer;
+        h2{
+            font-weight: bold;
+        }
+    } */
+}
 
 
 </style>
