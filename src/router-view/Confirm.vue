@@ -44,7 +44,7 @@ export default {
         </div>
         <div class="card-footer">
           <router-link :to="{ name: 'AppHome' }" class="btn btn-primary">
-            Home
+            Torna alla Home
           </router-link>
         </div>
 

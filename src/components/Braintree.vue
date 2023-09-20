@@ -2,7 +2,7 @@
   <div id="dropin-wrapper braintree_style">
     <div id="checkout-message"></div>
     <div id="dropin-container"></div>
-    <button id="submit-button" @click="$emit('transaction-complete', false)">Submit payment</button>
+    <button id="submit-button" @click="$emit('transaction-complete', false)">Paga</button>
   </div>
 </template>
 
