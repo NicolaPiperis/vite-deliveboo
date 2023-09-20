@@ -223,18 +223,20 @@ export default {
 
 
     h2 {
-      color: white;
-      font-weight: bold;
-      background-color: black;
+      // color: white;
+      // font-weight: bold;
+      // background-color: black;
       text-align: center;
       padding: 10px;
-      border-radius: 20px;
+      // border-radius: 20px;
       margin-top: 35px;
+      margin-bottom: 20px;
     }
 
     h4 {
       padding-top: 50px;
-      font-weight: bold;
+      // font-weight: bold;
+      margin-bottom: 20px;
       
     }
   }
