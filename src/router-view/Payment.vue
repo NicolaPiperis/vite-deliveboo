@@ -34,10 +34,10 @@
             </div>
 
             <label for="customers_name">Nome:</label>
-            <input type="text" id="customers_name" name="customer_name" required v-model="this.customer_name" value="Guybrush"><br><br>
+            <input type="text" id="customers_name" name="customer_name" required v-model="this.customer_name" ><br><br>
 
             <label for="customers_adress">Indirizzo di Consegna:</label>
-            <textarea id="customers_adress" name="customer_adress" value="Guybrush" required v-model="this.customer_adress"></textarea><br><br>
+            <textarea id="customers_adress" name="customer_adress"  required v-model="this.customer_adress"></textarea><br><br>
 
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required  v-model="this.email"><br><br>
