@@ -53,6 +53,10 @@
 
             <Braintree @transaction-complete="handleTransactionComplete" />
     
+            <h5 v-if="this.dataError" class=" text-center border border-success text-success rounded-3 py-3">
+                Errore database
+            </h5>
+
         </form>
     </div>
 </template>
@@ -79,6 +83,7 @@ export default {
             phone_number: '',
             errorMessage: '',
             transactionStatus: 'attesa',
+            dataError: false,
 
         };
     },
@@ -127,13 +132,13 @@ export default {
                     axios.post('http://localhost:8000/api/v1/orders', formData)
                         .then(response => {
                             store.order = response.data.order
-
+                            this.goToPage();
                         })
                         .catch(error => {
                             console.log(error);
-
+                            this.dataError = true;
                         });
-                    this.goToPage();
+                    // this.goToPage();
                 }
             }
         , 2000);
