@@ -3,7 +3,7 @@ import { store } from '../store';
 import TypeCard from '../components/TypeCard.vue';
 
 export default {
-  name: 'TypeMenu',
+  name: 'TypeMenuSmartphone',
   components: {
     TypeCard,
   },
@@ -39,8 +39,8 @@ export default {
 <template>
 
 <!-- smartphone -->
-  <div>
-    <button @click="toggleFormVisibility" class="btn btn-dark">Tipologie</button> <!-- Bottone per mostrare il form -->
+  <div class="button-tipology">
+    <button @click="toggleFormVisibility" class="button-tipology btn btn-dark">Tipologie</button> <!-- Bottone per mostrare il form -->
     <form v-if="isFormVisible" class="container-element-menu">
       <!-- Contenuto del form con le checkbox -->
       <div v-for="singleType in store.typeList" :key="singleType.id" class="border-bottom">
@@ -54,5 +54,10 @@ export default {
 
 <style lang="scss">
 @use '../styles/general.scss';
+
+.button-tipology {
+  width: 100%;
+  height: 100%;
+}
 
 </style>

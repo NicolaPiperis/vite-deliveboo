@@ -79,13 +79,20 @@ export default {
             background-color: white;
             border-radius: 2px;
             padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+       
 
             h5{
                 font-size: 30px;
                 font-weight: bold;
             }
             
+        }
+        @media (max-width: 767px) { 
+            .text-restaurant {
+            bottom: 150px;
+        
+            }
         }
     }
 }

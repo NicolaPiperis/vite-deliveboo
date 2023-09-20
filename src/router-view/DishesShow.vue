@@ -3,6 +3,7 @@ import axios from 'axios';
 import { store } from '../store';
 import DishShow from '../components/DishShow.vue';
 import Cart from '../components/Cart.vue';
+import CartSmartphone from '../components/CartSmartphone.vue';
 import RestaurantHeader from '../components/RestaurantHeader.vue';
 import Footer from '../components/Footer.vue';
 
@@ -12,6 +13,7 @@ export default {
     DishShow,
     RestaurantHeader,
     Cart,
+    CartSmartphone,
     Footer,
   },
 
@@ -47,9 +49,12 @@ export default {
 
 <template>
   <RestaurantHeader />
+    <!-- smartphone -->
+    <div class="button-menu d-md-none d-sm-block d-flex justify-content-center dropdown-menu">
+        <CartSmartphone />
+    </div>
   <div class="main-container">
     <div class="container">
-
 
       <div class="row">
 
@@ -60,7 +65,7 @@ export default {
           </div>
 
         </div>
-        <div class="col-lg-3 col-sm-12">
+        <div class="col-lg-3  d-none d-md-block">
           <div class="container-element">
 
             <Cart />
@@ -79,4 +84,12 @@ export default {
 .dishcard-container {
   margin-bottom: 100px;
 }
+.dropdown-menu {
+  padding: 0;
+  border-radius: 20px;
+}
+  .button-menu {
+    position: fixed;
+    top: 105px;
+  }
 </style>

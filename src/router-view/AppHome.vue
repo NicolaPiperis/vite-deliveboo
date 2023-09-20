@@ -160,7 +160,7 @@ export default {
 
       <div class="row">
         <div class="col-md-2 d-none d-md-block">
-          <div class="upper-fade"></div>
+          <div class="upper-fade d-none d-md-block"></div>
           <!-- desktop -->
           <div class="container-element">
             <h4>Tipologie</h4>
@@ -186,12 +186,17 @@ export default {
 <style lang="scss" scoped>
 @use '../styles/general.scss';
 
+.dropdown-menu {
+  padding: 0;
+  border-radius: 20px;
+}
+
 .main-container {
   position: relative;
 
   .button-menu {
     position: fixed;
-    top: 100px;
+    top: 105px;
   }
 
   #wave-home {
