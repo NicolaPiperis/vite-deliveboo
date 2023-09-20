@@ -40,7 +40,7 @@
             <textarea id="customers_adress" name="customer_adress" value="Guybrush" required v-model="this.customer_adress"></textarea><br><br>
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="Guybrush" required  v-model="this.email"><br><br>
+            <input type="email" id="email" name="email" required  v-model="this.email"><br><br>
 
             <label for="phone_number">Numero di Telefono:</label>
             <input type="tel" id="phone_number" name="phone_number" required v-model="this.phone_number"><br><br>
