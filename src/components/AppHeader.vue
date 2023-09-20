@@ -57,12 +57,17 @@ export default {
                 <img src="../assets/img/Panino-DeliveBoo-bianco.png" alt="logo" id="logo-responsive">
             </router-link>
 
+            <!-- <router-link :to="{ name: 'AppHome' }"  class="d-sm-block d-md-none">
+                <img id="logo" src="../assets/img/Logo-Bianco-DeliveBoo.png" alt="logo">
+                <img src="../assets/img/Panino-DeliveBoo-bianco.png" alt="logo" id="logo-responsive">
+            </router-link> -->
+
             <!-- <div class="cart-container" @click="openCart">
                 <span id="cart-logo"><font-awesome-icon icon="cart-shopping" /></span>
                 <span id="dish-counter">{{ totalDishesInCart }}</span>
             </div> -->
 
-            <a href="http://localhost:8000/" class="text-light">
+            <a href="http://localhost:8000/" class="text-light d-none d-md-block">
                 Area Ristoratori
                 <!-- <button class="white red-button">AREA RISTORATORI</button> -->
             </a>
