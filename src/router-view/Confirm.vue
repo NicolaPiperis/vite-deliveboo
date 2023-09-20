@@ -23,7 +23,7 @@ export default {
 
 
 <template>
-  <div class="main-container">
+  <!-- <div class="main-container"> -->
     <div class="container-element d-flex justify-content-center align-items-center">
       <div class="card border-success mb-3" style="max-width: 18rem;">
         <div class="card-header">Riepilogo del tuo ordine</div>
@@ -50,7 +50,7 @@ export default {
 
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 </template>
 
 <style lang="scss">
