@@ -62,8 +62,9 @@ export default {
                 <span id="dish-counter">{{ totalDishesInCart }}</span>
             </div> -->
 
-            <a href="http://localhost:8000/">
-                <button class="white red-button">AREA RISTORATORI</button>
+            <a href="http://localhost:8000/" class="text-light">
+                Area Ristoratori
+                <!-- <button class="white red-button">AREA RISTORATORI</button> -->
             </a>
         </div>
     </div>
@@ -72,6 +73,15 @@ export default {
 
 <style lang="scss" scoped>
 @use '../styles/general.scss';
+
+a.text-light {
+    
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
 
 #header-container {
     width: 100%;
