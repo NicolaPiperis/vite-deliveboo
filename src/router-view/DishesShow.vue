@@ -93,9 +93,9 @@ export default {
     top: 105px;
   }
   @media (max-width: 767px) { 
-    .margin-smartphone {
-      margin-top: 150px;
+    // .margin-smartphone {
+    //   margin-top: 150px;
   
-    }
+    // }
   }
 </style>
