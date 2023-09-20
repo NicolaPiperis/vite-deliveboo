@@ -18,12 +18,23 @@ export default {
     methods: {
         //generate random code
         generateRandomCode() {
+            const randomLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const randomNumbers = '0123456789';
+    
             let result = '';
-            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            const charactersLength = characters.length;
-            for (let i = 0; i < 10; i++) {
-                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+
+            // Genera 3 caratteri maiuscoli casuali
+            for (let i = 0; i < 3; i++) {
+                const randomIndex = Math.floor(Math.random() * randomLetters.length);
+                result += randomLetters.charAt(randomIndex);
             }
+
+            // Genera 7 cifre casuali
+            for (let i = 0; i < 7; i++) {
+                const randomIndex = Math.floor(Math.random() * randomNumbers.length);
+                result += randomNumbers.charAt(randomIndex);
+            }
+
             return result;
         },
 
