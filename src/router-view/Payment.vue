@@ -53,7 +53,7 @@
 
             <Braintree @transaction-complete="handleTransactionComplete" />
     
-            <h5 v-if="this.dataError" class=" text-center border border-success text-success rounded-3 py-3">
+            <h5 v-if="this.dataError" class=" text-center border border-danger text-danger rounded-3 py-3">
                 Errore database
             </h5>
 
