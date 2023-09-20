@@ -36,21 +36,26 @@ export default {
           <p class="card-text bg-success-subtle rounded"><b>{{ store.order.email }}</b></p>
           <h5 class="card-title bg-secondary-subtle rounded">Telefono</h5>
           <p class="card-text bg-success-subtle rounded"><b>{{ store.order.phone_number }}</b></p>
+          <h5 class="card-title bg-secondary-subtle rounded">Codice Ordine</h5>
+          <p class="card-text bg-success-subtle rounded"><b>{{ store.order_code }}</b></p>
+
+          <h5 class="card-title bg-secondary-subtle rounded">Piatti</h5>
+          <p class="card-text bg-success-subtle rounded" v-for="(cartDish, idx) in store.cart.dishes" :key="idx">
+            <span>{{ cartDish.name }} - </span>
+            <span>{{ cartDish.price }}</span>
+
+          <p>Quantità: {{ cartDish.quantity }}</p>
+          </p>
+
           <h5 class="card-title bg-secondary-subtle rounded">Totale</h5>
           <p class="card-text bg-success-subtle rounded"><b>{{ store.order.total_price }}</b></p>
-<!-- 
-          <h5 class="card-title bg-secondary-subtle rounded">Dettagli</h5>
-          <p class="card-text bg-success-subtle rounded" v-for="(cart, idx) in store.cart" :key="idx">
-            <b>{{ cart.name }}</b>
-          </p> -->
-         
           <br>
           <p class="card-text text-success">Grazie per averci scelto!</p>
 
         </div>
         <div class="card-footer">
           <router-link :to="{ name: 'AppHome' }" class="btn btn-primary">
-            Home
+            Torna Indietro
           </router-link>
         </div>
 

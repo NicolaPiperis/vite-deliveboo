@@ -20,7 +20,7 @@ export default {
         generateRandomCode() {
             const randomLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
             const randomNumbers = '0123456789';
-    
+
             let result = '';
 
             // Genera 3 caratteri maiuscoli casuali
@@ -39,82 +39,76 @@ export default {
         },
 
         addToCart() {
-        if (store.cart.length === 0 ) {
-            store.order_code = this.generateRandomCode();
-        }
-          const existingDish = store.cart.find(item => item.id === this.dish.id);
-          if (existingDish) {
+            if (store.cart.length === 0) {
+                store.order_code = this.generateRandomCode();
+            }
+            const existingDish = store.cart.find(item => item.id === this.dish.id);
+            if (existingDish) {
 
-          if (existingDish.user_id !== this.dish.user_id) {
-          alert("Non è possibile ordinare da ristoranti diversi in un unico ordine.");
-          return; 
-          }
+                if (existingDish.user_id !== this.dish.user_id) {
+                    alert("Non è possibile ordinare da ristoranti diversi in un unico ordine.");
+                    return;
+                }
 
-          existingDish.quantity += 1;
-          } else {
-            const dishToAdd = {
-                id: this.dish.id,
-                name: this.dish.dish_name,
-                price: this.dish.price,
-                user_id: this.dish.user_id,
-                quantity: 1
-            };
+                existingDish.quantity += 1;
+            } else {
+                const dishToAdd = {
+                    id: this.dish.id,
+                    name: this.dish.dish_name,
+                    price: this.dish.price,
+                    user_id: this.dish.user_id,
+                    quantity: 1
+                };
 
-              if (store.cart.length === 0 || store.cart[0].user_id === this.dish.user_id) {
-              store.cart.push(dishToAdd);
-              } else {
-                alert("Non è possibile ordinare da ristoranti diversi in un unico ordine.");
-                return; 
+                if (store.cart.length === 0 || store.cart[0].user_id === this.dish.user_id) {
+                    store.cart.push(dishToAdd);
+                } else {
+                    alert("Non è possibile ordinare da ristoranti diversi in un unico ordine.");
+                    return;
                 }
             }
 
-          // Attiva l'effetto "+1"
-          this.showPlusOne = true;
+            // Attiva l'effetto "+1"
+            this.showPlusOne = true;
+            console.log(store.cart);
 
-          // Imposta un timeout per nascondere l'effetto dopo un breve periodo
-          setTimeout(() => {
-            this.showPlusOne = false;
-          }, 1000); // Nascondi l'effetto dopo 1 secondo (puoi regolare il valore)
+            // Imposta un timeout per nascondere l'effetto dopo un breve periodo
+            setTimeout(() => {
+                this.showPlusOne = false;
+            }, 1000); // Nascondi l'effetto dopo 1 secondo (puoi regolare il valore)
         }
     }
 };
 </script>
 
 <template>
-<div
-    v-if="dish.visibility && !dish.deleted"
-    class="card-container card mb-3"
-    style="max-width: 540px;"
-    @click="addToCart"
->
-    <div class="row g-0">
-        <div class="col-md-4 d-flex align-items-center">
-            <div class="container-img">
-                <img
-                    :src="store.imageURL + dish.img"
-                    class="img-fluid rounded-start card-image"
-                    :alt="dish.dish_name"
-                />
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title">{{ dish.dish_name }}</h5>
-                <p class="card-text">{{ dish.description }}</p>
-                <p class="card-text">
-                    <small class="text-body-secondary">{{ dish.price }} &euro;</small>
-                </p>
-                <div class="container-add">
-                    <span class="plus">+</span>
+    <div v-if="dish.visibility && !dish.deleted" class="card-container card mb-3" style="max-width: 540px;"
+        @click="addToCart">
+        <div class="row g-0">
+            <div class="col-md-4 d-flex align-items-center">
+                <div class="container-img">
+                    <img :src="store.imageURL + dish.img" class="img-fluid rounded-start card-image"
+                        :alt="dish.dish_name" />
                 </div>
-                <!-- Aggiungi il div per l'effetto "+1" -->
-                <div v-if="showPlusOne" class="plus-one">
-                    +1
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ dish.dish_name }}</h5>
+                    <p class="card-text">{{ dish.description }}</p>
+                    <p class="card-text">
+                        <small class="text-body-secondary">{{ dish.price }} &euro;</small>
+                    </p>
+                    <div class="container-add">
+                        <span class="plus">+</span>
+                    </div>
+                    <!-- Aggiungi il div per l'effetto "+1" -->
+                    <div v-if="showPlusOne" class="plus-one">
+                        +1
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </template>
 
 <style lang="scss" scoped>
@@ -189,10 +183,12 @@ export default {
         opacity: 1;
         transform: translateY(0);
     }
+
     50% {
         opacity: 1;
         transform: translateY(-20px);
     }
+
     100% {
         opacity: 0;
         transform: translateY(-40px);
