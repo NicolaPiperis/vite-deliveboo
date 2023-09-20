@@ -33,7 +33,7 @@ export default {
                 const scrollY = window.scrollY;
                 const opacity = Math.min(scrollY / containerHeight, 1);
                 this.headerOpacity = opacity;
-   
+
             });
         },
     },
@@ -43,30 +43,30 @@ export default {
     },
     beforeDestroy() {
         window.removeEventListener('scroll', this.updateHeaderOpacity);
-    }, 
+    },
 }
 </script>
 
 <template>
-
     <div id="header-container">
 
-        <div class="d-flex justify-content-center header-style" >
+        <div class="d-flex justify-content-between me-3 header-style">
 
             <router-link :to="{ name: 'AppHome' }">
                 <img id="logo" src="../assets/img/Logo-Bianco-DeliveBoo.png" alt="logo">
                 <img src="../assets/img/Panino-DeliveBoo-bianco.png" alt="logo" id="logo-responsive">
             </router-link>
-            
+
             <!-- <div class="cart-container" @click="openCart">
                 <span id="cart-logo"><font-awesome-icon icon="cart-shopping" /></span>
                 <span id="dish-counter">{{ totalDishesInCart }}</span>
             </div> -->
 
+            <a href="http://localhost:8000/">
+                <button class="white red-button">AREA RISTORATORI</button>
+            </a>
         </div>
-
     </div>
-
 </template>
 
 
@@ -130,20 +130,22 @@ export default {
     font-size: 50px;
     color: white;
 }
-#logo-responsive{
-        display: none;
-    }
+
+#logo-responsive {
+    display: none;
+}
 
 
 @media screen and (max-width: 900px) {
-    
-    #logo{
+
+    #logo {
         display: none;
     }
-    #logo-responsive{
+
+    #logo-responsive {
         display: block;
         height: 60px;
     }
-    
+
 }
 </style>
