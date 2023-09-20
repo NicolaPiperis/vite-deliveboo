@@ -159,9 +159,11 @@ export default {
     
         // Carica il carrello salvato da sessionStorage all'avvio del componente
         const savedCart = sessionStorage.getItem('cart');
+        const savedCode = sessionStorage.getItem('order_code');
         if (savedCart) {
             try {
                 this.store.cart = JSON.parse(savedCart);
+                this.store.order_code = JSON.parse(savedCode);
             } catch (e) {
                 console.error('Failed to load cart from sessionStorage:', e);
             }
