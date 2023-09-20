@@ -59,7 +59,7 @@ export default {
 <style lang="scss" scoped>
 @use '../styles/general.scss';
 .my-container{
-    margin-bottom: 100px;
+    margin-bottom: 0px;
     .container-img{
         width: 100vw;
         height: 300px;

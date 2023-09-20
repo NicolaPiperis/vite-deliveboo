@@ -60,7 +60,7 @@ export default {
 
         <div class="col-lg-9 col-sm-12">
 
-          <div class="container-element">
+          <div class="container-element margin-smartphone">
             <DishShow />
           </div>
 
@@ -91,5 +91,11 @@ export default {
   .button-menu {
     position: fixed;
     top: 105px;
+  }
+  @media (max-width: 767px) { 
+    .margin-smartphone {
+      margin-top: 150px;
+  
+    }
   }
 </style>

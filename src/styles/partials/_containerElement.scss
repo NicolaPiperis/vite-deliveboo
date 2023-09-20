@@ -7,13 +7,13 @@
     .container-element {
       padding-top: 20px;
       height: calc(100vh - 100px);
-      overflow-y: scroll; /* Abilita lo scorrimento quando necessario */
+      overflow-y: scroll; 
       scrollbar-width: thin; /* Larghezza sottile della barra di scorrimento */
       scrollbar-color: transparent transparent; /* Colore trasparente per la barra di scorrimento */
       margin: 100px 0;
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
-      position: relative;
+      // opacity: 0;
+      // transition: opacity 0.5s ease-in-out;
+      // position: relative;
     }
       @media (max-width: 767px) { 
         .container-element {
