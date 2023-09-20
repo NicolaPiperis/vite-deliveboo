@@ -79,7 +79,7 @@ export default {
 <template>
     <div class="card">
         <div @click="toggleButton" class="card-header">
-            <h2 class=" text-center">Il tuo carrello</h2>
+            <h2 class=" text-center d-none">Il tuo carrello</h2>
             <div class="text-center"><small class="text-body-secondary">codice ordine: {{ store.order_code }}</small></div>
         </div>
         <div class="card-body">
